@@ -12,7 +12,7 @@ import type { Project } from '@/types'
 
 const router = useRouter()
 
-const ADAPTERS = ['sqlserver', 'postgres', 'duckdb', 'snowflake', 'bigquery']
+const ADAPTERS = ['sqlserver', 'postgres', 'snowflake', 'bigquery']
 
 const projects = ref<Project[]>([])
 const loading = ref(false)

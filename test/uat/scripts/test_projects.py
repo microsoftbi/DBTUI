@@ -12,12 +12,12 @@ def test_create_and_list_project(api_client: httpx.Client):
     name = f"uat_tmp_{uuid.uuid4().hex[:8]}"
     resp = api_client.post(
         "/api/projects",
-        json={"name": name, "adapter": "duckdb", "description": "tmp"},
+        json={"name": name, "adapter": "sqlserver", "description": "tmp"},
     )
     assert resp.status_code == 201
     project = resp.json()
     assert project["name"] == name
-    assert project["adapter"] == "duckdb"
+    assert project["adapter"] == "sqlserver"
     assert project["slug"]
 
     # 列表中存在
@@ -51,7 +51,7 @@ def test_profiles_read_and_save(api_client: httpx.Client, project_id: int):
     resp = api_client.get(f"/api/projects/{project_id}/profiles")
     assert resp.status_code == 200
     content = resp.json()["content"]
-    assert "duckdb" in content
+    assert "sqlserver" in content
 
     # 非法 YAML
     bad = api_client.put(
@@ -71,7 +71,7 @@ def test_delete_project(api_client: httpx.Client):
     """TC-PROJ-05：删除项目（磁盘目录也被清理）。"""
     name = f"uat_del_{uuid.uuid4().hex[:8]}"
     resp = api_client.post(
-        "/api/projects", json={"name": name, "adapter": "duckdb"}
+        "/api/projects", json={"name": name, "adapter": "sqlserver"}
     )
     pid = resp.json()["id"]
 

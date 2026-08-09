@@ -50,14 +50,14 @@ async def page(browser: Browser) -> AsyncGenerator[Page, None]:
 
 @pytest_asyncio.fixture(scope="session")
 async def visual_project(api_base_url: str) -> dict:
-    """为视觉测试创建一个专用 duckdb 项目并 parse，session 结束删除。"""
+    """为视觉测试创建一个专用 sqlserver 项目并 parse，session 结束删除。"""
     import uuid
 
     name = f"visual_{uuid.uuid4().hex[:8]}"
     async with httpx.AsyncClient(base_url=api_base_url, timeout=60) as client:
         resp = await client.post(
             "/api/projects",
-            json={"name": name, "adapter": "duckdb", "description": "visual test project"},
+            json={"name": name, "adapter": "sqlserver", "description": "visual test project"},
         )
         assert resp.status_code == 201
         project = resp.json()

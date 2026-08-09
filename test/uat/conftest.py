@@ -22,11 +22,11 @@ def api_client() -> httpx.Client:
 
 @pytest.fixture(scope="session")
 def uat_project(api_client: httpx.Client) -> dict:
-    """创建一个 UAT 专用的 duckdb 项目，测试结束后删除。"""
+    """创建一个 UAT 专用的 sqlserver 项目，测试结束后删除。"""
     name = f"uat_demo_{uuid.uuid4().hex[:8]}"
     resp = api_client.post(
         "/api/projects",
-        json={"name": name, "adapter": "duckdb", "description": "UAT test project"},
+        json={"name": name, "adapter": "sqlserver", "description": "UAT test project"},
     )
     assert resp.status_code == 201, f"创建项目失败: {resp.text}"
     project = resp.json()

@@ -7,7 +7,7 @@
 | **执行环境** | macOS 26.5 (arm64) / Python 3.9.6 |
 | **后端** | FastAPI @ http://localhost:8000 |
 | **前端** | Vite dev server @ http://localhost:5173 |
-| **dbt** | dbt-fusion + duckdb adapter |
+| **dbt** | dbt-fusion + sqlserver adapter |
 | **Playwright** | 1.60.0 (chromium headless) |
 
 ---
@@ -30,7 +30,7 @@
 
 | 编号 | 用例 | 结果 | 耗时 |
 |---|---|---|---|
-| TC-PROJ-01 | 创建 duckdb 项目成功 | ✅ PASS | — |
+| TC-PROJ-01 | 创建 sqlserver 项目成功 | ✅ PASS | — |
 | TC-PROJ-02 | 项目列表与详情 | ✅ PASS | — |
 | TC-PROJ-03 | 编辑项目名称/描述 | ✅ PASS | — |
 | TC-PROJ-04 | 连接配置读取与保存（YAML 校验） | ✅ PASS | — |

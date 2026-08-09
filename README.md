@@ -10,7 +10,9 @@
 
 - **项目管理**：创建 / 编辑 / 删除 DBT 项目，自动生成标准脚手架（`dbt_project.yml`、`profiles.yml`、`models/`、`tests/` 等），自动探测本机 dbt 版本。
 - **连接配置**：在 UI 中直接查看 / 编辑 `profiles.yml`（数据源连接），保存时校验 YAML。
-- **Model 管理**：模型列表（物化策略、运行状态）、新建 / 编辑（CodeMirror SQL 高亮）/ 删除、配置物化策略（view/table/incremental/ephemeral）。
+- **分层配置管理**：可视化管理 `models/` 下的分层目录（stage / core / mart 等），支持新建、编辑显示名称、配置物化策略与目标数据库、重命名目录、删除层级，自动同步写入 `dbt_project.yml`。
+- **Sources 可视化**：UI 化管理 `sources.yml`，支持多 source 目录扫描、新建 / 编辑 source、添加 / 编辑 / 删除表、表跨目录移动，自动生成 `{{ source() }}` 引用。
+- **Model 管理**：模型列表（物化策略、运行状态）、新建 / 编辑（CodeMirror SQL 高亮）/ 删除、配置物化策略（view/table/incremental/ephemeral），支持按分层目录筛选。
 - **Test 管理**：展示 generic 与 singular 测试，可新建 / 编辑 / 删除 singular test，运行测试查看结果。
 - **DAG 可视化**：交互式血缘图（类型着色 + 状态描边）、点击节点高亮上下游、搜索与类型筛选、点击节点运行（run/test/build/compile）。
 - **运行**：通过 WebSocket 实时流式输出 dbt 日志，支持 `--select`、运行中取消，运行历史与日志查看。
@@ -31,7 +33,7 @@ flowchart TB
 
     subgraph BE["后端 (FastAPI)"]
         direction TB
-        RT["Routers<br/>projects · models · tests · dag · runs"]
+        RT["Routers<br/>projects · models · tests · sources · layers · dag · runs"]
         SV["Services<br/>dbt 封装 · manifest 解析 · 同步"]
     end
 
@@ -73,6 +75,8 @@ DBT/
 │   │   │   ├── projects.py       # 项目 CRUD + parse + profiles
 │   │   │   ├── models.py         # 模型 CRUD + SQL 读写
 │   │   │   ├── tests.py          # 测试列表 + singular test CRUD
+│   │   │   ├── sources.py        # Sources 管理（CRUD + 表管理 + 跨目录移动）
+│   │   │   ├── layers.py         # 分层配置管理（CRUD + 目录重命名）
 │   │   │   ├── dag.py            # DAG 数据
 │   │   │   └── runs.py           # 运行（REST + WebSocket 日志/状态流 + 取消）
 │   │   └── services/
@@ -103,8 +107,8 @@ python3 -m venv .venv
 source .venv/bin/activate
 pip install -r backend/requirements.txt
 
-# 需要安装 dbt-core 与对应 adapter（如 duckdb 可直接本地运行）
-# pip install dbt-duckdb
+# 需要安装 dbt-core 与 dbt-sqlserver
+# pip install dbt-core dbt-sqlserver
 
 # 启动后端
 cd backend
@@ -125,11 +129,15 @@ npm run dev
 
 ---
 
-## 🧪 快速体验（duckdb，免外部数据库）
+## 🧪 快速体验（SQL Server 三层分库）
 
-1. 前端首页点击「新建项目」，Adapter 选择 `duckdb`（后端会生成本地 `.duckdb` 文件，无需外部服务）。
-2. 进入项目详情 → 点击「重新解析」，生成 DAG（示例模型 + generic test）。
-3. 在 Models 页点「运行」或 DAG 页点节点「运行」，观察实时日志与节点状态变化。
+1. 确保有可用的 SQL Server 实例，并已创建 `stage_db`、`core_db`、`mart_db` 三个数据库。
+2. 前端首页点击「新建项目」，Adapter 选择 `sqlserver`。
+3. 进入项目详情 → 点击「连接配置」，修改 SQL Server 的地址、账号、密码等信息。
+4. 点击「分层配置」，查看 / 编辑 stage / core / mart 各层的物化策略与目标数据库。
+5. 点击「Sources」标签，新建 source 并添加源表，定义数据源。
+6. 点击「重新解析」，生成 DAG（示例模型 + generic test）。
+7. 在 Models 页点「运行」或 DAG 页点节点「运行」，观察实时日志与节点状态变化。
 
 ---
 
@@ -144,6 +152,14 @@ npm run dev
 | GET/POST | `/api/projects/{id}/models` | 模型列表 / 新建 |
 | PUT/DELETE | `/api/projects/{id}/models/{id}` | 更新（含物化策略）/ 删除 |
 | GET | `/api/projects/{id}/models/{id}/sql` | 读取模型 SQL |
+| GET/POST | `/api/projects/{id}/sources` | Sources 列表 / 新建 source |
+| PUT/DELETE | `/api/projects/{id}/sources/{name}` | 编辑 / 删除 source |
+| POST | `/api/projects/{id}/sources/{name}/tables` | 向 source 添加表 |
+| PUT/DELETE | `/api/projects/{id}/sources/{name}/tables/{table}` | 编辑 / 删除 source 表 |
+| POST | `/api/projects/{id}/sources/{name}/tables/{table}/move` | 表跨 source 目录移动 |
+| GET/POST | `/api/projects/{id}/layers` | 分层配置列表 / 新建层级 |
+| PUT/DELETE | `/api/projects/{id}/layers/{name}` | 编辑 / 删除层级 |
+| POST | `/api/projects/{id}/layers/{name}/rename` | 重命名分层目录 |
 | GET/POST | `/api/projects/{id}/tests` | 测试列表 / 新建 singular test |
 | GET | `/api/projects/{id}/dag` | DAG 节点与边 |
 | POST | `/api/projects/{id}/runs` | 同步运行 |
@@ -155,5 +171,5 @@ npm run dev
 ## 📌 说明与限制
 
 - 后端会在磁盘上真实创建 / 删除 dbt 项目目录（位于 `backend/dbt_projects/`）。
-- 除 duckdb 外，其他 adapter 的连接参数需在「连接配置」中按实际环境填写，否则运行会失败。
+- 各 adapter 的连接参数需在「连接配置」中按实际环境填写，否则运行会失败。
 - 运行依赖本机 `dbt` 命令；未安装时项目可创建与解析（解析需能加载 profile），但 `run/test` 会失败。

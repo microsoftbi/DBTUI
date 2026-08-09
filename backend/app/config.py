@@ -19,7 +19,7 @@ class Settings(BaseSettings):
     projects_root: Path = BACKEND_DIR / "dbt_projects"
 
     # 允许的后端类型（adapter）
-    allowed_adapters: list[str] = ["sqlserver", "postgres", "duckdb", "snowflake", "bigquery"]
+    allowed_adapters: list[str] = ["sqlserver", "postgres", "snowflake", "bigquery"]
 
     # dbt 可执行文件路径（Python 版 dbt-core）
     dbt_bin: str = "/opt/homebrew/bin/dbt"

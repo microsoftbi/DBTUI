@@ -78,7 +78,7 @@
 - **Adapter**：选择数据库适配器（本案例使用 `sqlserver`）
 - **描述**：项目描述（可选）
 
-> 支持的适配器：sqlserver、postgres、duckdb、snowflake、bigquery。
+> 支持的适配器：sqlserver、postgres、snowflake、bigquery。
 
 ### 1.3 填写项目信息
 

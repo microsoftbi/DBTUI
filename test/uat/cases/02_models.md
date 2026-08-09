@@ -1,7 +1,7 @@
 # TC-MODEL — 模型管理测试用例
 
 ## 前置条件
-- 已创建 duckdb 项目并完成首次 parse
+- 已创建 sqlserver 项目并完成首次 parse
 - 进入项目详情页 → Models 标签
 
 ---

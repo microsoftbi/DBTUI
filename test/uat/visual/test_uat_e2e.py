@@ -39,7 +39,7 @@ async def uat_project(api_base_url: str) -> dict:
     async with httpx.AsyncClient(base_url=api_base_url, timeout=60) as client:
         resp = await client.post(
             "/api/projects",
-            json={"name": name, "adapter": "duckdb", "description": "UAT 报告演示项目"},
+            json={"name": name, "adapter": "sqlserver", "description": "UAT 报告演示项目"},
         )
         assert resp.status_code == 201
         project = resp.json()

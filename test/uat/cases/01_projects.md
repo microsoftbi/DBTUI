@@ -2,17 +2,17 @@
 
 ## 前置条件
 - 后端与前端均已启动（http://localhost:5173）
-- 本机已安装 dbt + duckdb adapter
+- 本机已安装 dbt + sqlserver adapter
 
 ---
 
-### TC-PROJ-01 创建 duckdb 项目
+### TC-PROJ-01 创建 sqlserver 项目
 
 | 项 | 内容 |
 |---|---|
 | 优先级 | P0 |
-| 步骤 | 1. 访问项目列表页 → 点击「新建项目」<br>2. 填写名称 `UAT Demo`，Adapter 选 `duckdb`，描述填 `UAT 测试项目`<br>3. 点击「创建」 |
-| 预期 | 1. 列表出现新项目，adapter 标签为 duckdb<br>2. 项目状态为「未解析」<br>3. 点击「打开」可进入详情页 |
+| 步骤 | 1. 访问项目列表页 → 点击「新建项目」<br>2. 填写名称 `UAT Demo`，Adapter 选 `sqlserver`，描述填 `UAT 测试项目`<br>3. 点击「创建」 |
+| 预期 | 1. 列表出现新项目，adapter 标签为 sqlserver<br>2. 项目状态为「未解析」<br>3. 点击「打开」可进入详情页 |
 
 ### TC-PROJ-02 项目详情与解析
 

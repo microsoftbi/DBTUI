@@ -59,7 +59,6 @@ def _profiles_yml(adapter: str, slug: str) -> str:
     """根据 adapter 生成 profiles.yml。
 
     - sqlserver: 三层分库（stage_db / core_db / mart_db），主连接指向 stage_db
-    - duckdb: 三层分库，通过 attach 挂载多个数据库文件
     - 其它 adapter: 生成占位连接，用户可在 profiles 接口中配置
     """
     if adapter == "sqlserver":
@@ -77,20 +76,6 @@ def _profiles_yml(adapter: str, slug: str) -> str:
             f"      user: sa\n"
             f"      password: Passw0rd\n"
             f"      trust_cert: true\n"
-            f"      threads: 4\n"
-        )
-    if adapter == "duckdb":
-        return (
-            f"{slug}:\n"
-            f"  target: dev\n"
-            f"  outputs:\n"
-            f"    dev:\n"
-            f"      type: duckdb\n"
-            f"      path: {slug}.duckdb\n"
-            f"      attach:\n"
-            f"        - path: stage_db.duckdb\n"
-            f"        - path: core_db.duckdb\n"
-            f"        - path: mart_db.duckdb\n"
             f"      threads: 4\n"
         )
     # 其它 adapter 生成占位连接，用户可在 profiles 接口中配置

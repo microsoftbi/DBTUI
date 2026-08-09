@@ -19,12 +19,12 @@
 
 - **后端**：FastAPI 运行在 `http://localhost:8000`
 - **前端**：Vite dev server 运行在 `http://localhost:5173`（仅手工测试需要）
-- **dbt**：本机已安装 `dbt-core` 或 `dbt-fusion`，且 `duckdb` adapter 可用（自动化测试使用 duckdb 项目，免外部数据库）
+- **dbt**：本机已安装 `dbt-core` 或 `dbt-fusion`，且 `sqlserver` adapter 可用（自动化测试使用 sqlserver 项目，免外部数据库）
 - **Python**：3.9+
 
 ## 3. 测试数据
 
-- 自动化测试会创建一个独立的 duckdb 项目（名称带 `uat_` 前缀），测试结束后自动清理。
+- 自动化测试会创建一个独立的 sqlserver 项目（名称带 `uat_` 前缀），测试结束后自动清理。
 - 不影响现有项目数据。
 
 ## 4. 执行方式
@@ -75,7 +75,7 @@ pytest
 
 | 编号 | 模块 | 用例 | 自动化 |
 |---|---|---|---|
-| TC-PROJ-01 | 项目 | 创建 duckdb 项目成功 | ✅ |
+| TC-PROJ-01 | 项目 | 创建 sqlserver 项目成功 | ✅ |
 | TC-PROJ-02 | 项目 | 项目列表与详情 | ✅ |
 | TC-PROJ-03 | 项目 | 编辑项目名称 / 描述 | ✅ |
 | TC-PROJ-04 | 项目 | 连接配置读取与保存（YAML 校验） | ✅ |
