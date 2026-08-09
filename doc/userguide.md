@@ -59,7 +59,7 @@
 
 打开浏览器访问 DBT UI，首页展示所有项目列表。
 
-![项目列表页](userguide/01_项目列表页.png)
+![项目列表页](userguide/01_project_list.png)
 
 **页面说明：**
 - 顶部为系统标题栏「DBT 项目」
@@ -71,7 +71,7 @@
 
 点击右上角「新建项目」按钮，弹出创建对话框。
 
-![新建项目弹窗](userguide/02_新建项目弹窗.png)
+![新建项目弹窗](userguide/02_new_project_dialog.png)
 
 **表单字段说明：**
 - **项目名称**：项目名称（仅允许字母、数字、下划线）
@@ -87,7 +87,7 @@
 - Adapter：`sqlserver`
 - 描述：`销售数据仓库三层分库`
 
-![填写项目信息](userguide/03_填写项目信息.png)
+![填写项目信息](userguide/03_fill_project_info.png)
 
 点击「确定」按钮，系统将：
 1. 在磁盘上创建 dbt 项目脚手架（models/staging、models/core、models/marts 等目录）
@@ -100,7 +100,7 @@
 
 项目创建成功后，列表中会显示新创建的项目。
 
-![项目列表 创建成功](userguide/04_项目列表_创建成功.png)
+![项目列表 创建成功](userguide/04_project_created.png)
 
 可以看到 Adapter 列显示为 `sqlserver`。
 
@@ -108,7 +108,7 @@
 
 在项目列表中点击目标项目的「打开」按钮，进入项目详情页。
 
-![项目详情页](userguide/05_项目详情页.png)
+![项目详情页](userguide/05_project_detail.png)
 
 **页面结构：**
 - 顶部：项目名称、适配器标签（sqlserver）、解析状态标签
@@ -119,7 +119,7 @@
 
 点击「连接配置」按钮，查看 `profiles.yml` 数据库连接配置。
 
-![连接配置 profiles](userguide/06_连接配置_profiles.png)
+![连接配置 profiles](userguide/06_connection_profiles.png)
 
 **SQL Server 三层分库配置说明：**
 ```yaml
@@ -145,7 +145,7 @@ sales_warehouse:
 
 点击「重新解析」按钮，系统重新执行 `dbt parse` 并刷新所有元数据。
 
-![重新解析完成](userguide/07_重新解析完成.png)
+![重新解析完成](userguide/07_reparse_done.png)
 
 解析成功后，顶部状态标签会更新为 `success`。
 
@@ -153,7 +153,7 @@ sales_warehouse:
 
 项目详情页顶部有一个「分层配置」按钮，用于管理 dbt 项目的分层结构（即 `dbt_project.yml` 中 `models` 下的目录级配置）。
 
-![分层配置入口](userguide/07b_分层配置入口.png)
+![分层配置入口](userguide/07b_layer_config_entry.png)
 
 点击后弹出分层配置列表弹窗，可以查看和管理所有分层。详细操作见 [第 2 章：分层配置管理](#第-2-章分层配置管理)。
 
@@ -167,7 +167,7 @@ dbt 项目通过 `dbt_project.yml` 中的 `models` 配置，按目录划分不�
 
 点击项目详情页顶部的「分层配置」按钮，弹出分层配置列表弹窗。
 
-![分层配置列表](userguide/07c_分层配置列表.png)
+![分层配置列表](userguide/07c_layer_config_list.png)
 
 **列表列说明：**
 - **显示名称**：分层的友好名称（如「Stage 层」「Core 层」），存储在 `+meta.display_name` 中
@@ -183,7 +183,7 @@ dbt 项目通过 `dbt_project.yml` 中的 `models` 配置，按目录划分不�
 
 点击分层列表弹窗右上角的「新建分层」按钮，弹出新建分层表单。
 
-![新建分层弹窗](userguide/07d_新建分层弹窗.png)
+![新建分层弹窗](userguide/07d_new_layer_dialog.png)
 
 **表单字段说明：**
 - **显示名称**：分层的友好显示名称（如「ODS 层」），可选
@@ -201,7 +201,7 @@ dbt 项目通过 `dbt_project.yml` 中的 `models` 配置，按目录划分不�
 
 点击分层列表中某行的「编辑」按钮，弹出编辑表单。
 
-![编辑分层弹窗](userguide/07e_编辑分层弹窗.png)
+![编辑分层弹窗](userguide/07e_edit_layer_dialog.png)
 
 可以修改显示名称、数据库、schema、物化策略。如果修改了**目录名**，系统会：
 1. 将 `models/` 下的原目录整体重命名为新目录名（目录下的所有模型文件一并迁移）
@@ -247,7 +247,7 @@ SQL Server 版本中，源数据存储在独立的 `sales_db` 数据库中。我
 
 在项目详情页切换到「Sources」标签页，进入 Source 管理界面。
 
-![Sources 标签页](userguide/08_Sources标签页.png)
+![Sources 标签页](userguide/08_sources_tab.png)
 
 **界面布局：**
 - **左侧**：目录树，按目录分组展示所有 source
@@ -260,7 +260,7 @@ SQL Server 版本中，源数据存储在独立的 `sales_db` 数据库中。我
 
 点击左上角「新建 Source」按钮，弹出新建 Source 对话框。
 
-![新建 Source 弹窗](userguide/08a_新建Source弹窗.png)
+![新建 Source 弹窗](userguide/08a_new_source_dialog.png)
 
 **表单字段说明：**
 - **Source 名称**：source 的逻辑名称（在 `{{ source() }}` 中使用），如 `sales_db`
@@ -278,7 +278,7 @@ SQL Server 版本中，源数据存储在独立的 `sales_db` 数据库中。我
 
 在左侧目录树中点击某个 source，右侧显示其详细信息。
 
-![Source 详情](userguide/08b_Source详情.png)
+![Source 详情](userguide/08b_source_detail.png)
 
 **详情页包含：**
 - **基本信息**：名称、数据库、Schema、描述、保存目录
@@ -289,7 +289,7 @@ SQL Server 版本中，源数据存储在独立的 `sales_db` 数据库中。我
 
 在 Source 详情页的表列表区域，点击「添加表」按钮，弹出添加表对话框。
 
-![添加源表弹窗](userguide/08c_添加源表弹窗.png)
+![添加源表弹窗](userguide/08c_add_source_table.png)
 
 **表字段说明：**
 - **表名**：源系统中的表名，如 `customer`
@@ -299,7 +299,7 @@ SQL Server 版本中，源数据存储在独立的 `sales_db` 数据库中。我
 
 添加完成后，表列表如下：
 
-![Source 表列表](userguide/08d_Source表列表.png)
+![Source 表列表](userguide/08d_source_table_list.png)
 
 ### 3.6 编辑和删除
 
@@ -312,7 +312,7 @@ SQL Server 版本中，源数据存储在独立的 `sales_db` 数据库中。我
 
 Sources 配置完成后，系统会自动重新解析。解析完成后，在 Models 列表中可以看到源表（source 节点）。
 
-![模型列表 含 source](userguide/08e_模型列表_含source.png)
+![模型列表 含 source](userguide/08e_model_list_with_source.png)
 
 source 节点会显示在模型列表中，其「数据库」列显示为 `sales_db`，「类型」列显示为 `source`。
 
@@ -326,7 +326,7 @@ Stage 层是数据仓库的第一层，所有模型写入 `stage_db` 数据库�
 
 点击「新建模型」按钮，弹出创建对话框。
 
-![新建模型弹窗](userguide/09_新建模型弹窗.png)
+![新建模型弹窗](userguide/09_new_model_dialog.png)
 
 **新建模型弹窗包含：**
 - **名称**：模型名称（不含 .sql 后缀）
@@ -356,7 +356,7 @@ SELECT
 FROM {{ source('sales_db', 'customer') }}
 ```
 
-![填写 stg_customer](userguide/10_填写stg_customer.png)
+![填写 stg_customer](userguide/10_fill_stg_customer.png)
 
 > 注意使用 `{{ source('sales_db', 'customer') }}` 引用源表，而不是 `{{ ref() }}`。
 > `source()` 用于引用源系统表，`ref()` 用于引用 dbt 模型。
@@ -403,7 +403,7 @@ FROM {{ source('sales_db', 'salesorder') }}
 
 创建完成后，模型列表如下：
 
-![Stage 层模型列表](userguide/11_Stage层模型列表.png)
+![Stage 层模型列表](userguide/11_stage_model_list.png)
 
 可以看到所有 `stg_` 开头的模型，「数据库」列都显示为 `stage_db`，「物化」列显示为 `view`。
 
@@ -411,7 +411,7 @@ FROM {{ source('sales_db', 'salesorder') }}
 
 点击 `stg_customer` 行的「运行」按钮，弹出运行对话框。
 
-![运行 stg_customer](userguide/12_运行stg_customer.png)
+![运行 stg_customer](userguide/12_run_stg_customer.png)
 
 **运行对话框说明：**
 - **运行类型**：`run`（运行模型）/ `test`（运行测试）/ `compile`（仅编译）/ `build`（构建全部）
@@ -422,7 +422,7 @@ FROM {{ source('sales_db', 'salesorder') }}
 
 点击「开始运行」后，系统通过 WebSocket 实时推送 dbt 运行日志。
 
-![Stage 运行中](userguide/13_Stage运行中.png)
+![Stage 运行中](userguide/13_stage_running.png)
 
 **实时日志特性：**
 - 日志区暗色背景，逐行显示 dbt 输出
@@ -433,7 +433,7 @@ FROM {{ source('sales_db', 'salesorder') }}
 
 运行完成后，日志底部显示结果。
 
-![Stage 运行完成](userguide/14_Stage运行完成.png)
+![Stage 运行完成](userguide/14_stage_done.png)
 
 - `✔ 运行完成（returncode 0）`：运行成功
 - `✘ 运行失败（returncode N）`：运行失败，查看日志排查原因
@@ -456,7 +456,7 @@ Core 层采用维度建模，将数据组织为维度表（dimension）和事实
 
 创建完成后，模型列表如下：
 
-![Core 层模型列表](userguide/15_Core层模型列表.png)
+![Core 层模型列表](userguide/15_core_model_list.png)
 
 可以看到 `dim_` 和 `fact_` 开头的模型，「数据库」列都显示为 `core_db`。
 
@@ -489,7 +489,7 @@ FROM {{ ref('stg_product') }}
 
 点击 `fact_sales` 行的「编辑」按钮，查看或修改事实表 SQL。
 
-![编辑 fact_sales](userguide/16_编辑fact_sales.png)
+![编辑 fact_sales](userguide/16_edit_fact_sales.png)
 
 **fact_sales SQL：**
 ```sql
@@ -517,17 +517,17 @@ WHERE s.status = 'completed'
 
 点击 `fact_sales` 行的「运行」按钮，弹出运行对话框。
 
-![运行 fact_sales](userguide/17_运行fact_sales.png)
+![运行 fact_sales](userguide/17_run_fact_sales.png)
 
 运行 `fact_sales` 时，dbt 会自动按依赖顺序运行其上游模型（包括 `stage_db` 中的 `stg_salesorder`）。
 
 ### 5.4 运行中
 
-![Core 运行中](userguide/18_Core运行中.png)
+![Core 运行中](userguide/18_core_running.png)
 
 ### 5.5 运行完成
 
-![Core 运行完成](userguide/19_Core运行完成.png)
+![Core 运行完成](userguide/19_core_done.png)
 
 运行成功后，`core_db` 数据库中会创建对应的维度表和事实表。
 
@@ -545,7 +545,7 @@ Mart 层面向具体业务应用，通常构建大宽表，直接供报表或数
 
 创建完成后，模型列表如下：
 
-![Mart 层模型列表](userguide/20_Mart层模型列表.png)
+![Mart 层模型列表](userguide/20_mart_model_list.png)
 
 `sales_wide` 模型的「数据库」列显示为 `mart_db`。
 
@@ -576,7 +576,7 @@ LEFT JOIN {{ ref('dim_product') }} p ON f.product_id = p.product_id
 
 切换到 Tests 标签页，管理数据质量测试。
 
-![Tests 标签页](userguide/21_Tests标签页.png)
+![Tests 标签页](userguide/21_tests_tab.png)
 
 **测试类型：**
 - **generic**：通用测试（如 unique、not_null、accepted_values 等，在 schema.yml 中定义）
@@ -586,7 +586,7 @@ LEFT JOIN {{ ref('dim_product') }} p ON f.product_id = p.product_id
 
 点击「新建测试」按钮，弹出创建对话框。
 
-![新建测试弹窗](userguide/22_新建测试弹窗.png)
+![新建测试弹窗](userguide/22_new_test_dialog.png)
 
 ### 6.4 编写测试 SQL
 
@@ -600,7 +600,7 @@ FROM {{ ref('sales_wide') }}
 WHERE amount <= 0
 ```
 
-![填写测试 SQL](userguide/23_填写测试SQL.png)
+![填写测试 SQL](userguide/23_fill_test_sql.png)
 
 > 测试的逻辑是：如果 SQL 返回任何行，则测试失败（说明存在异常数据）。
 > 即使测试在 `tests/` 目录下，它也能跨库访问 `mart_db` 中的 `sales_wide` 表。
@@ -614,7 +614,7 @@ WHERE amount <= 0
 
 创建完成后，Tests 标签页如下：
 
-![测试列表](userguide/24_测试列表.png)
+![测试列表](userguide/24_test_list.png)
 
 点击测试行的「运行」按钮可执行测试，查看是否通过。
 
@@ -628,7 +628,7 @@ DAG（有向无环图）以可视化方式展示模型间的依赖关系，包�
 
 切换到 DAG 标签，查看完整的数据流向图。
 
-![DAG 全景图](userguide/25_DAG全景图.png)
+![DAG 全景图](userguide/25_dag_overview.png)
 
 **DAG 图说明：**
 - 每个节点代表一个模型、测试或 source
@@ -645,7 +645,7 @@ DAG（有向无环图）以可视化方式展示模型间的依赖关系，包�
 
 点击 `fact_sales` 节点，系统高亮其所有上游和下游血缘链路。
 
-![DAG fact_sales 血缘](userguide/26_DAG_fact_sales血缘.png)
+![DAG fact_sales 血缘](userguide/26_dag_fact_sales_lineage.png)
 
 **交互说明：**
 - 点击节点：选中并高亮血缘链路（上游 + 下游）
@@ -658,7 +658,7 @@ DAG（有向无环图）以可视化方式展示模型间的依赖关系，包�
 
 点击 `sales_wide` 节点，查看宽表的完整血缘链路。
 
-![DAG sales_wide 血缘](userguide/27_DAG_sales_wide血缘.png)
+![DAG sales_wide 血缘](userguide/27_dag_sales_wide_lineage.png)
 
 从图中可以清晰看到完整的四层数据流向：
 - **最上游（源系统 sales_db）**：`sales_db.customer`、`sales_db.product`、`sales_db.salesorder`
@@ -674,7 +674,7 @@ DAG（有向无环图）以可视化方式展示模型间的依赖关系，包�
 
 切换到「运行历史」标签，查看所有运行记录。
 
-![运行历史列表](userguide/28_运行历史列表.png)
+![运行历史列表](userguide/28_run_history_list.png)
 
 **表格列说明：**
 - **#**：运行编号
@@ -688,7 +688,7 @@ DAG（有向无环图）以可视化方式展示模型间的依赖关系，包�
 
 点击「查看日志」按钮，弹出日志详情弹窗。
 
-![查看运行日志](userguide/29_查看运行日志.png)
+![查看运行日志](userguide/29_view_run_log.png)
 
 **日志弹窗说明：**
 - 标题显示运行编号、类型和选择表达式
@@ -699,7 +699,7 @@ DAG（有向无环图）以可视化方式展示模型间的依赖关系，包�
 
 点击左上角「← 返回」按钮，返回项目列表页。
 
-![返回项目列表](userguide/30_返回项目列表.png)
+![返回项目列表](userguide/30_back_to_project_list.png)
 
 ---
 
