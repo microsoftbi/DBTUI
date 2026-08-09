@@ -1,0 +1,56 @@
+{
+    "path_count": 164,
+    "parsed_path_count": 164,
+    "static_analysis_path_count": 8,
+    "static_analysis_parsed_path_count": 8,
+    "is_partial_parse_enabled": true,
+    "is_static_analysis_enabled": true,
+    "read_files_elapsed": 0.02170408399979351,
+    "load_macros_elapsed": 0.3875842500001454,
+    "parse_project_elapsed": 0.5339347090002775,
+    "patch_sources_elapsed": 0.012221250000038708,
+    "process_manifest_elapsed": 0.017255959000067378,
+    "load_all_elapsed": 1.074598082999728,
+    "projects": [
+        {
+            "project_name": "sales_warehouse",
+            "elapsed": 0.5327676670003711,
+            "parsers": [
+                {
+                    "parser": "model",
+                    "elapsed": 0.13797170799989544,
+                    "parsed_path_count": 8
+                },
+                {
+                    "parser": "test",
+                    "elapsed": 0.09950591699998768,
+                    "parsed_path_count": 1
+                },
+                {
+                    "parser": "test",
+                    "elapsed": 0.294478667000476,
+                    "parsed_path_count": 2
+                }
+            ],
+            "parsed_path_count": 11
+        },
+        {
+            "project_name": "dbt_sqlserver",
+            "elapsed": 0.0005165409993423964,
+            "parsers": [],
+            "parsed_path_count": 0
+        },
+        {
+            "project_name": "dbt",
+            "elapsed": 0.0005760419999205624,
+            "parsers": [
+                {
+                    "parser": "doc",
+                    "elapsed": 0.000126791000184312,
+                    "parsed_path_count": 1
+                }
+            ],
+            "parsed_path_count": 1
+        }
+    ]
+}

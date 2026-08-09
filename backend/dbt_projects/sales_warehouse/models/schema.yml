@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: example
+    description: "示例模型"
+    columns:
+      - name: id
+        tests:
+          - not_null

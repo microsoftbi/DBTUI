@@ -1,0 +1,8 @@
+==================== 2026-08-08T14:38:38.300319Z | 019fe1cf-c6cf-7803-a545-2b3d72c83069 ====================
+14:38:38.302583 [info ]: dbt-fusion 2.0.0-preview.204
+14:38:38.305372 [info ]: Started loading project
+14:38:38.306652 [info ]: Finished loading project [  0.00s]
+14:38:38.307636 [error]: [IoError (dbt1001)]: Cannot open file /Users/wadesong/Documents/trae_projects/DBT/projects/demo/dbt_project.yml: Failed to open file: /Users/wadesong/Documents/trae_projects/DBT/projects/demo/dbt_project.yml: No such file or directory (os error 2): No such file or directory (os error 2)
+14:38:39.114722 [info ]: 
+==================== Execution Summary =====================
+Finished 'debug' with 1 error [814ms]

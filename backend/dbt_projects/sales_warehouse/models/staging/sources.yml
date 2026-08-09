@@ -1,0 +1,14 @@
+version: 2
+sources:
+- name: sales_db
+  database: sales_db
+  schema: dbo
+  tables:
+  - name: customer
+    description: 客户表
+  - name: product
+    description: 产品表
+  - name: salesorder
+    description: 销售订单表
+  loader: sqlserver
+  description: 销售业务系统源数据库

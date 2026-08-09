@@ -1,0 +1,1052 @@
+[0m09:13:00.370577 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10987b550>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10991d950>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10986c050>]}
+
+
+============================== 09:13:00.374354 | 963daf8a-5c47-4ee5-9efc-3541f1fd6bf2 ==============================
+[0m09:13:00.374354 [info ] [MainThread]: Running with dbt=1.12.0
+[0m09:13:00.375218 [debug] [MainThread]: running dbt with arguments {'warn_error': 'None', 'no_print': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'static_parser': 'True', 'indirect_selection': 'eager', 'use_colors': 'True', 'empty': 'None', 'write_json': 'True', 'debug': 'False', 'printer_width': '80', 'hints_enabled': 'True', 'target_path': 'None', 'log_format': 'default', 'quiet': 'False', 'version_check': 'True', 'log_path': '/Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/logs', 'invocation_command': 'dbt parse', 'maximum_seed_size_mib': '1', 'use_experimental_parser': 'False', 'fail_fast': 'False', 'log_cache_events': 'False', 'cache_selected_only': 'False', 'send_anonymous_usage_stats': 'True', 'profiles_dir': '/Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse', 'partial_parse': 'True', 'introspect': 'True'}
+[0m09:13:00.707344 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '963daf8a-5c47-4ee5-9efc-3541f1fd6bf2', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109cf7410>]}
+[0m09:13:00.749939 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '963daf8a-5c47-4ee5-9efc-3541f1fd6bf2', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x108695d90>]}
+[0m09:13:00.750707 [info ] [MainThread]: Registered adapter: sqlserver=1.10.1
+[0m09:13:00.815535 [warn ] [MainThread]: [[33mWARNING[0m]: When True, uses SQL Server-native string type mappings: STRING -> VARCHAR(MAX), NCHAR -> NCHAR(1), NVARCHAR -> NVARCHAR(4000). When False (default), preserves legacy mappings: STRING and NVARCHAR -> VARCHAR(8000), NCHAR -> CHAR(1). The new behaviour is intended to become the default in a future release.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_native_string_types` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m09:13:00.816171 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': '963daf8a-5c47-4ee5-9efc-3541f1fd6bf2', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a0defd0>]}
+[0m09:13:00.816539 [warn ] [MainThread]: [[33mWARNING[0m]: When True, dbt transaction hooks (begin/commit) emit real T-SQL BEGIN TRANSACTION / COMMIT TRANSACTION statements. When False (default and legacy), begin/commit are no-ops and each statement is auto-committed by the driver. This means earlier successful statements are not rolled back if a later statement fails. This behavior is intended to become the default in a future release.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_dbt_transactions` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m09:13:00.816835 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': '963daf8a-5c47-4ee5-9efc-3541f1fd6bf2', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a0df510>]}
+[0m09:13:00.825298 [debug] [MainThread]: checksum: bed11768657b77a668c10da8f2eebbfbd19acd280154f51a0ec69bc064e92266, vars: {}, profile: sales_warehouse, target: dev, version: 1.12.0
+[0m09:13:00.825855 [info ] [MainThread]: Unable to do partial parsing because saved manifest not found. Starting full parse.
+[0m09:13:00.826138 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': '963daf8a-5c47-4ee5-9efc-3541f1fd6bf2', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a0de950>]}
+[0m09:13:01.395322 [warn ] [MainThread]: [[33mWARNING[0m]: When True, uses dbt-core's standard schema concatenation (`target.schema` + `_` + `custom_schema_name`). When False (default), uses legacy adapter behaviour: `custom_schema_name` is used directly without prefixing `target.schema`. For a permanent solution, override the `sqlserver__generate_schema_name` macro in your project instead.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_default_schema_concat` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m09:13:01.395765 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': '963daf8a-5c47-4ee5-9efc-3541f1fd6bf2', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a1233d0>]}
+[0m09:13:01.659747 [warn ] [MainThread]: [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 3 unused configuration paths:
+- models.sales_warehouse.staging
+- models.sales_warehouse.marts
+- models.sales_warehouse.core
+[0m09:13:01.661724 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '963daf8a-5c47-4ee5-9efc-3541f1fd6bf2', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109fbd0d0>]}
+[0m09:13:01.663842 [info ] [MainThread]: Performance info: /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/perf_info.json
+[0m09:13:01.715460 [debug] [MainThread]: Wrote artifact WritableManifest to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/manifest.json
+[0m09:13:01.717536 [debug] [MainThread]: Wrote artifact SemanticManifest to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/semantic_manifest.json
+[0m09:13:01.731211 [debug] [MainThread]: Wrote artifact OsiDocument to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/osi_document.json
+[0m09:13:01.734297 [debug] [MainThread]: Resource report: {"command_name": "parse", "command_success": true, "command_wall_clock_time": 1.4375292, "process_in_blocks": "0", "process_kernel_time": 0.302576, "process_mem_max_rss": "147243008", "process_out_blocks": "0", "process_user_time": 1.995647}
+[0m09:13:01.734679 [debug] [MainThread]: Command `dbt parse` succeeded at 09:13:01.734619 after 1.44 seconds
+[0m09:13:01.734958 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10991e210>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10554c690>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109ecc1d0>]}
+[0m09:13:01.735214 [debug] [MainThread]: Flushing usage events
+[0m09:13:02.646789 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m09:13:08.757553 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10dcf32d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10dcf3e90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10dda0610>]}
+
+
+============================== 09:13:08.760380 | b72f57d7-6d84-4a34-b8b6-6aee68cb0c45 ==============================
+[0m09:13:08.760380 [info ] [MainThread]: Running with dbt=1.12.0
+[0m09:13:08.760786 [debug] [MainThread]: running dbt with arguments {'log_path': '/Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/logs', 'fail_fast': 'False', 'invocation_command': 'dbt parse', 'empty': 'None', 'indirect_selection': 'eager', 'target_path': 'None', 'introspect': 'True', 'no_print': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'printer_width': '80', 'static_parser': 'True', 'partial_parse': 'True', 'maximum_seed_size_mib': '1', 'write_json': 'True', 'log_format': 'default', 'debug': 'False', 'version_check': 'True', 'use_experimental_parser': 'False', 'warn_error': 'None', 'hints_enabled': 'True', 'cache_selected_only': 'False', 'quiet': 'False', 'send_anonymous_usage_stats': 'True', 'use_colors': 'True', 'log_cache_events': 'False', 'profiles_dir': '/Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse'}
+[0m09:13:08.944951 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'b72f57d7-6d84-4a34-b8b6-6aee68cb0c45', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10ddd5f10>]}
+[0m09:13:08.984002 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'b72f57d7-6d84-4a34-b8b6-6aee68cb0c45', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10cb0a010>]}
+[0m09:13:08.984558 [info ] [MainThread]: Registered adapter: sqlserver=1.10.1
+[0m09:13:09.041186 [warn ] [MainThread]: [[33mWARNING[0m]: When True, uses SQL Server-native string type mappings: STRING -> VARCHAR(MAX), NCHAR -> NCHAR(1), NVARCHAR -> NVARCHAR(4000). When False (default), preserves legacy mappings: STRING and NVARCHAR -> VARCHAR(8000), NCHAR -> CHAR(1). The new behaviour is intended to become the default in a future release.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_native_string_types` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m09:13:09.041744 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': 'b72f57d7-6d84-4a34-b8b6-6aee68cb0c45', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e55a690>]}
+[0m09:13:09.042085 [warn ] [MainThread]: [[33mWARNING[0m]: When True, dbt transaction hooks (begin/commit) emit real T-SQL BEGIN TRANSACTION / COMMIT TRANSACTION statements. When False (default and legacy), begin/commit are no-ops and each statement is auto-committed by the driver. This means earlier successful statements are not rolled back if a later statement fails. This behavior is intended to become the default in a future release.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_dbt_transactions` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m09:13:09.042437 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': 'b72f57d7-6d84-4a34-b8b6-6aee68cb0c45', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e55ae10>]}
+[0m09:13:09.048420 [debug] [MainThread]: checksum: bed11768657b77a668c10da8f2eebbfbd19acd280154f51a0ec69bc064e92266, vars: {}, profile: sales_warehouse, target: dev, version: 1.12.0
+[0m09:13:09.119842 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 1 files added, 0 files changed.
+[0m09:13:09.120290 [debug] [MainThread]: Partial parsing: added file: sales_warehouse://models/staging/sources.yml
+[0m09:13:09.232190 [warn ] [MainThread]: [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 3 unused configuration paths:
+- models.sales_warehouse.core
+- models.sales_warehouse.staging
+- models.sales_warehouse.marts
+[0m09:13:09.234516 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'b72f57d7-6d84-4a34-b8b6-6aee68cb0c45', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10eb0eb90>]}
+[0m09:13:09.236855 [info ] [MainThread]: Performance info: /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/perf_info.json
+[0m09:13:09.289387 [debug] [MainThread]: Wrote artifact WritableManifest to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/manifest.json
+[0m09:13:09.291071 [debug] [MainThread]: Wrote artifact SemanticManifest to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/semantic_manifest.json
+[0m09:13:09.302538 [debug] [MainThread]: Wrote artifact OsiDocument to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/osi_document.json
+[0m09:13:09.304869 [debug] [MainThread]: Resource report: {"command_name": "parse", "command_success": true, "command_wall_clock_time": 0.6085639, "process_in_blocks": "0", "process_kernel_time": 0.218697, "process_mem_max_rss": "143949824", "process_out_blocks": "0", "process_user_time": 1.212001}
+[0m09:13:09.305231 [debug] [MainThread]: Command `dbt parse` succeeded at 09:13:09.305179 after 0.61 seconds
+[0m09:13:09.305492 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10dce4310>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10ddbd990>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109934690>]}
+[0m09:13:09.305740 [debug] [MainThread]: Flushing usage events
+[0m09:13:10.298886 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m09:13:31.728635 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109f2b7d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109fdba50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109fd8210>]}
+
+
+============================== 09:13:31.731470 | d0ffb84b-7c0d-4a2a-a8f5-61aa56c3890f ==============================
+[0m09:13:31.731470 [info ] [MainThread]: Running with dbt=1.12.0
+[0m09:13:31.731891 [debug] [MainThread]: running dbt with arguments {'maximum_seed_size_mib': '1', 'target_path': 'None', 'log_path': '/Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/logs', 'no_print': 'None', 'use_experimental_parser': 'False', 'send_anonymous_usage_stats': 'True', 'invocation_command': 'dbt parse', 'cache_selected_only': 'False', 'printer_width': '80', 'log_cache_events': 'False', 'quiet': 'False', 'empty': 'None', 'log_format': 'default', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'hints_enabled': 'True', 'indirect_selection': 'eager', 'partial_parse': 'True', 'introspect': 'True', 'warn_error': 'None', 'fail_fast': 'False', 'static_parser': 'True', 'version_check': 'True', 'profiles_dir': '/Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse', 'use_colors': 'True', 'write_json': 'True', 'debug': 'False'}
+[0m09:13:31.900674 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'd0ffb84b-7c0d-4a2a-a8f5-61aa56c3890f', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a5c2b50>]}
+[0m09:13:31.935752 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'd0ffb84b-7c0d-4a2a-a8f5-61aa56c3890f', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x108d41e10>]}
+[0m09:13:31.936229 [info ] [MainThread]: Registered adapter: sqlserver=1.10.1
+[0m09:13:31.985986 [warn ] [MainThread]: [[33mWARNING[0m]: When True, uses SQL Server-native string type mappings: STRING -> VARCHAR(MAX), NCHAR -> NCHAR(1), NVARCHAR -> NVARCHAR(4000). When False (default), preserves legacy mappings: STRING and NVARCHAR -> VARCHAR(8000), NCHAR -> CHAR(1). The new behaviour is intended to become the default in a future release.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_native_string_types` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m09:13:31.986568 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': 'd0ffb84b-7c0d-4a2a-a8f5-61aa56c3890f', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a783550>]}
+[0m09:13:31.986898 [warn ] [MainThread]: [[33mWARNING[0m]: When True, dbt transaction hooks (begin/commit) emit real T-SQL BEGIN TRANSACTION / COMMIT TRANSACTION statements. When False (default and legacy), begin/commit are no-ops and each statement is auto-committed by the driver. This means earlier successful statements are not rolled back if a later statement fails. This behavior is intended to become the default in a future release.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_dbt_transactions` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m09:13:31.987178 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': 'd0ffb84b-7c0d-4a2a-a8f5-61aa56c3890f', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a783a90>]}
+[0m09:13:31.993046 [debug] [MainThread]: checksum: bed11768657b77a668c10da8f2eebbfbd19acd280154f51a0ec69bc064e92266, vars: {}, profile: sales_warehouse, target: dev, version: 1.12.0
+[0m09:13:32.069795 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 1 files added, 0 files changed.
+[0m09:13:32.070169 [debug] [MainThread]: Partial parsing: added file: sales_warehouse://models/staging/stg_customer.sql
+[0m09:13:32.191334 [warn ] [MainThread]: [[33mWARNING[0m]: When True, uses dbt-core's standard schema concatenation (`target.schema` + `_` + `custom_schema_name`). When False (default), uses legacy adapter behaviour: `custom_schema_name` is used directly without prefixing `target.schema`. For a permanent solution, override the `sqlserver__generate_schema_name` macro in your project instead.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_default_schema_concat` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m09:13:32.191768 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': 'd0ffb84b-7c0d-4a2a-a8f5-61aa56c3890f', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a8dee90>]}
+[0m09:13:32.228887 [warn ] [MainThread]: [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 2 unused configuration paths:
+- models.sales_warehouse.marts
+- models.sales_warehouse.core
+[0m09:13:32.230673 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'd0ffb84b-7c0d-4a2a-a8f5-61aa56c3890f', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a56c110>]}
+[0m09:13:32.232564 [info ] [MainThread]: Performance info: /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/perf_info.json
+[0m09:13:32.286923 [debug] [MainThread]: Wrote artifact WritableManifest to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/manifest.json
+[0m09:13:32.288646 [debug] [MainThread]: Wrote artifact SemanticManifest to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/semantic_manifest.json
+[0m09:13:32.299333 [debug] [MainThread]: Wrote artifact OsiDocument to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/osi_document.json
+[0m09:13:32.301347 [debug] [MainThread]: Resource report: {"command_name": "parse", "command_success": true, "command_wall_clock_time": 0.63075614, "process_in_blocks": "0", "process_kernel_time": 0.225565, "process_mem_max_rss": "147603456", "process_out_blocks": "0", "process_user_time": 1.194858}
+[0m09:13:32.301711 [debug] [MainThread]: Command `dbt parse` succeeded at 09:13:32.301656 after 0.63 seconds
+[0m09:13:32.302065 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109f1c310>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109fdbf90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x105b84690>]}
+[0m09:13:32.302373 [debug] [MainThread]: Flushing usage events
+[0m09:13:33.234485 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m09:13:39.852314 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10d7436d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10d7f3e10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10d7f0790>]}
+
+
+============================== 09:13:39.854970 | d062bb3d-1c63-4b5b-8d6b-19dbee6dfefd ==============================
+[0m09:13:39.854970 [info ] [MainThread]: Running with dbt=1.12.0
+[0m09:13:39.855354 [debug] [MainThread]: running dbt with arguments {'partial_parse': 'True', 'debug': 'False', 'log_cache_events': 'False', 'no_print': 'None', 'empty': 'None', 'static_parser': 'True', 'invocation_command': 'dbt parse', 'hints_enabled': 'True', 'indirect_selection': 'eager', 'warn_error': 'None', 'introspect': 'True', 'log_path': '/Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/logs', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'use_experimental_parser': 'False', 'version_check': 'True', 'target_path': 'None', 'send_anonymous_usage_stats': 'True', 'cache_selected_only': 'False', 'log_format': 'default', 'fail_fast': 'False', 'profiles_dir': '/Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse', 'maximum_seed_size_mib': '1', 'quiet': 'False', 'printer_width': '80', 'use_colors': 'True', 'write_json': 'True'}
+[0m09:13:40.052889 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'd062bb3d-1c63-4b5b-8d6b-19dbee6dfefd', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10dda6810>]}
+[0m09:13:40.089099 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'd062bb3d-1c63-4b5b-8d6b-19dbee6dfefd', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c559ed0>]}
+[0m09:13:40.089622 [info ] [MainThread]: Registered adapter: sqlserver=1.10.1
+[0m09:13:40.141427 [warn ] [MainThread]: [[33mWARNING[0m]: When True, uses SQL Server-native string type mappings: STRING -> VARCHAR(MAX), NCHAR -> NCHAR(1), NVARCHAR -> NVARCHAR(4000). When False (default), preserves legacy mappings: STRING and NVARCHAR -> VARCHAR(8000), NCHAR -> CHAR(1). The new behaviour is intended to become the default in a future release.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_native_string_types` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m09:13:40.141997 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': 'd062bb3d-1c63-4b5b-8d6b-19dbee6dfefd', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10db7a790>]}
+[0m09:13:40.142312 [warn ] [MainThread]: [[33mWARNING[0m]: When True, dbt transaction hooks (begin/commit) emit real T-SQL BEGIN TRANSACTION / COMMIT TRANSACTION statements. When False (default and legacy), begin/commit are no-ops and each statement is auto-committed by the driver. This means earlier successful statements are not rolled back if a later statement fails. This behavior is intended to become the default in a future release.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_dbt_transactions` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m09:13:40.142598 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': 'd062bb3d-1c63-4b5b-8d6b-19dbee6dfefd', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10dfa72d0>]}
+[0m09:13:40.147267 [debug] [MainThread]: checksum: bed11768657b77a668c10da8f2eebbfbd19acd280154f51a0ec69bc064e92266, vars: {}, profile: sales_warehouse, target: dev, version: 1.12.0
+[0m09:13:40.229987 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 1 files added, 0 files changed.
+[0m09:13:40.230364 [debug] [MainThread]: Partial parsing: added file: sales_warehouse://models/staging/stg_product.sql
+[0m09:13:40.350616 [warn ] [MainThread]: [[33mWARNING[0m]: When True, uses dbt-core's standard schema concatenation (`target.schema` + `_` + `custom_schema_name`). When False (default), uses legacy adapter behaviour: `custom_schema_name` is used directly without prefixing `target.schema`. For a permanent solution, override the `sqlserver__generate_schema_name` macro in your project instead.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_default_schema_concat` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m09:13:40.351032 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': 'd062bb3d-1c63-4b5b-8d6b-19dbee6dfefd', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e0d9cd0>]}
+[0m09:13:40.389045 [warn ] [MainThread]: [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 2 unused configuration paths:
+- models.sales_warehouse.core
+- models.sales_warehouse.marts
+[0m09:13:40.390819 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'd062bb3d-1c63-4b5b-8d6b-19dbee6dfefd', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e557e50>]}
+[0m09:13:40.392704 [info ] [MainThread]: Performance info: /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/perf_info.json
+[0m09:13:40.445492 [debug] [MainThread]: Wrote artifact WritableManifest to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/manifest.json
+[0m09:13:40.447104 [debug] [MainThread]: Wrote artifact SemanticManifest to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/semantic_manifest.json
+[0m09:13:40.457440 [debug] [MainThread]: Wrote artifact OsiDocument to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/osi_document.json
+[0m09:13:40.460819 [debug] [MainThread]: Resource report: {"command_name": "parse", "command_success": true, "command_wall_clock_time": 0.66332585, "process_in_blocks": "0", "process_kernel_time": 0.233712, "process_mem_max_rss": "145506304", "process_out_blocks": "0", "process_user_time": 1.247257}
+[0m09:13:40.461133 [debug] [MainThread]: Command `dbt parse` succeeded at 09:13:40.461086 after 0.66 seconds
+[0m09:13:40.461382 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10d734450>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10d734110>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1093d8690>]}
+[0m09:13:40.461629 [debug] [MainThread]: Flushing usage events
+[0m09:13:41.428925 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m09:13:47.707910 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10bcbb890>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10bd6b990>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10bd68750>]}
+
+
+============================== 09:13:47.710638 | ee8f299d-e327-4129-9155-aeef5bea2b87 ==============================
+[0m09:13:47.710638 [info ] [MainThread]: Running with dbt=1.12.0
+[0m09:13:47.711049 [debug] [MainThread]: running dbt with arguments {'version_check': 'True', 'quiet': 'False', 'target_path': 'None', 'use_colors': 'True', 'fail_fast': 'False', 'log_path': '/Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/logs', 'printer_width': '80', 'warn_error': 'None', 'log_format': 'default', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'maximum_seed_size_mib': '1', 'indirect_selection': 'eager', 'static_parser': 'True', 'empty': 'None', 'partial_parse': 'True', 'introspect': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'write_json': 'True', 'profiles_dir': '/Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse', 'log_cache_events': 'False', 'send_anonymous_usage_stats': 'True', 'hints_enabled': 'True', 'cache_selected_only': 'False', 'debug': 'False', 'invocation_command': 'dbt parse'}
+[0m09:13:47.878729 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'ee8f299d-e327-4129-9155-aeef5bea2b87', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10bcd39d0>]}
+[0m09:13:47.914890 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'ee8f299d-e327-4129-9155-aeef5bea2b87', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10aad1dd0>]}
+[0m09:13:47.915391 [info ] [MainThread]: Registered adapter: sqlserver=1.10.1
+[0m09:13:47.969792 [warn ] [MainThread]: [[33mWARNING[0m]: When True, uses SQL Server-native string type mappings: STRING -> VARCHAR(MAX), NCHAR -> NCHAR(1), NVARCHAR -> NVARCHAR(4000). When False (default), preserves legacy mappings: STRING and NVARCHAR -> VARCHAR(8000), NCHAR -> CHAR(1). The new behaviour is intended to become the default in a future release.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_native_string_types` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m09:13:47.970353 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': 'ee8f299d-e327-4129-9155-aeef5bea2b87', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c3fb310>]}
+[0m09:13:47.970666 [warn ] [MainThread]: [[33mWARNING[0m]: When True, dbt transaction hooks (begin/commit) emit real T-SQL BEGIN TRANSACTION / COMMIT TRANSACTION statements. When False (default and legacy), begin/commit are no-ops and each statement is auto-committed by the driver. This means earlier successful statements are not rolled back if a later statement fails. This behavior is intended to become the default in a future release.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_dbt_transactions` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m09:13:47.970933 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': 'ee8f299d-e327-4129-9155-aeef5bea2b87', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c517810>]}
+[0m09:13:47.976397 [debug] [MainThread]: checksum: bed11768657b77a668c10da8f2eebbfbd19acd280154f51a0ec69bc064e92266, vars: {}, profile: sales_warehouse, target: dev, version: 1.12.0
+[0m09:13:48.055152 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 1 files added, 0 files changed.
+[0m09:13:48.055513 [debug] [MainThread]: Partial parsing: added file: sales_warehouse://models/staging/stg_salesorder.sql
+[0m09:13:48.175545 [warn ] [MainThread]: [[33mWARNING[0m]: When True, uses dbt-core's standard schema concatenation (`target.schema` + `_` + `custom_schema_name`). When False (default), uses legacy adapter behaviour: `custom_schema_name` is used directly without prefixing `target.schema`. For a permanent solution, override the `sqlserver__generate_schema_name` macro in your project instead.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_default_schema_concat` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m09:13:48.175966 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': 'ee8f299d-e327-4129-9155-aeef5bea2b87', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c379fd0>]}
+[0m09:13:48.213363 [warn ] [MainThread]: [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 2 unused configuration paths:
+- models.sales_warehouse.marts
+- models.sales_warehouse.core
+[0m09:13:48.215227 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'ee8f299d-e327-4129-9155-aeef5bea2b87', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10caf1a90>]}
+[0m09:13:48.217116 [info ] [MainThread]: Performance info: /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/perf_info.json
+[0m09:13:48.270440 [debug] [MainThread]: Wrote artifact WritableManifest to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/manifest.json
+[0m09:13:48.272073 [debug] [MainThread]: Wrote artifact SemanticManifest to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/semantic_manifest.json
+[0m09:13:48.293605 [debug] [MainThread]: Wrote artifact OsiDocument to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/osi_document.json
+[0m09:13:48.295798 [debug] [MainThread]: Resource report: {"command_name": "parse", "command_success": true, "command_wall_clock_time": 0.6422851, "process_in_blocks": "0", "process_kernel_time": 0.222531, "process_mem_max_rss": "147554304", "process_out_blocks": "0", "process_user_time": 1.206571}
+[0m09:13:48.296111 [debug] [MainThread]: Command `dbt parse` succeeded at 09:13:48.296063 after 0.64 seconds
+[0m09:13:48.296362 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10bd5e050>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10bd6aa10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1078e4590>]}
+[0m09:13:48.296609 [debug] [MainThread]: Flushing usage events
+[0m09:13:49.259567 [debug] [MainThread]: An error was encountered while trying to flush usage events
+==================== 2026-08-09T01:13:54.032961Z | 019fe415-605f-7112-bdc0-2d80b48187a4 ====================
+01:13:54.035752 [info ]: dbt-fusion 2.0.0-preview.204
+01:13:54.038968 [info ]: Started loading project
+01:13:54.053674 [info ]: Loading profiles.yml
+01:13:54.058067 [info ]: Finished loading project [  0.02s]
+01:13:54.059040 [error]: [InvalidConfig (dbt1005)]: Failed to parse profiles.yml: unknown variant `sqlserver`, expected one of `redshift`, `snowflake`, `postgres`, `bigquery`, `trino`, `datafusion`, `spark`, `databricks`, `salesforce`, `duckdb`, `alt`, `exasol`, `fabric`, `clickhouse`
+01:13:54.734918 [info ]: 
+==================== Execution Summary =====================
+Finished 'list' with 1 error [701ms]
+[0m09:13:55.897515 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109e3da50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109f53710>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109f503d0>]}
+
+
+============================== 09:13:55.900116 | 09560d17-bd42-43bd-8823-d455808566ac ==============================
+[0m09:13:55.900116 [info ] [MainThread]: Running with dbt=1.12.0
+[0m09:13:55.900581 [debug] [MainThread]: running dbt with arguments {'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'use_colors': 'True', 'indirect_selection': 'eager', 'cache_selected_only': 'False', 'static_parser': 'True', 'log_cache_events': 'False', 'debug': 'False', 'printer_width': '80', 'send_anonymous_usage_stats': 'True', 'warn_error': 'None', 'version_check': 'True', 'no_print': 'None', 'log_format': 'default', 'introspect': 'True', 'write_json': 'True', 'partial_parse': 'True', 'profiles_dir': '/Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse', 'invocation_command': 'dbt run --select stg_customer', 'log_path': '/Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/logs', 'maximum_seed_size_mib': '1', 'quiet': 'False', 'use_experimental_parser': 'False', 'fail_fast': 'False', 'target_path': 'None', 'hints_enabled': 'True', 'empty': 'False'}
+[0m09:13:56.082520 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '09560d17-bd42-43bd-8823-d455808566ac', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109f3da90>]}
+[0m09:13:56.154603 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '09560d17-bd42-43bd-8823-d455808566ac', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a2c2a50>]}
+[0m09:13:56.155345 [info ] [MainThread]: Registered adapter: sqlserver=1.10.1
+[0m09:13:56.224900 [warn ] [MainThread]: [[33mWARNING[0m]: When True, uses SQL Server-native string type mappings: STRING -> VARCHAR(MAX), NCHAR -> NCHAR(1), NVARCHAR -> NVARCHAR(4000). When False (default), preserves legacy mappings: STRING and NVARCHAR -> VARCHAR(8000), NCHAR -> CHAR(1). The new behaviour is intended to become the default in a future release.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_native_string_types` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m09:13:56.225518 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': '09560d17-bd42-43bd-8823-d455808566ac', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a6f6dd0>]}
+[0m09:13:56.225888 [warn ] [MainThread]: [[33mWARNING[0m]: When True, dbt transaction hooks (begin/commit) emit real T-SQL BEGIN TRANSACTION / COMMIT TRANSACTION statements. When False (default and legacy), begin/commit are no-ops and each statement is auto-committed by the driver. This means earlier successful statements are not rolled back if a later statement fails. This behavior is intended to become the default in a future release.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_dbt_transactions` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m09:13:56.226183 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': '09560d17-bd42-43bd-8823-d455808566ac', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a6f7310>]}
+[0m09:13:56.232280 [debug] [MainThread]: checksum: bed11768657b77a668c10da8f2eebbfbd19acd280154f51a0ec69bc064e92266, vars: {}, profile: sales_warehouse, target: dev, version: 1.12.0
+[0m09:13:56.331605 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 0 files changed.
+[0m09:13:56.331961 [debug] [MainThread]: Nothing changed, skipping partial parsing.
+[0m09:13:56.332175 [debug] [MainThread]: Partial parsing enabled, no changes found, skipping parsing
+[0m09:13:56.336131 [warn ] [MainThread]: [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 2 unused configuration paths:
+- models.sales_warehouse.marts
+- models.sales_warehouse.core
+[0m09:13:56.339146 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '09560d17-bd42-43bd-8823-d455808566ac', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a8b0f10>]}
+[0m09:13:56.416278 [debug] [MainThread]: Wrote artifact WritableManifest to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/manifest.json
+[0m09:13:56.418744 [debug] [MainThread]: Wrote artifact SemanticManifest to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/semantic_manifest.json
+[0m09:13:56.431582 [debug] [MainThread]: Wrote artifact OsiDocument to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/osi_document.json
+[0m09:13:56.440931 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '09560d17-bd42-43bd-8823-d455808566ac', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a7bdad0>]}
+[0m09:13:56.441331 [info ] [MainThread]: Found 4 models, 1 test, 3 sources, 536 macros
+[0m09:13:56.441580 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '09560d17-bd42-43bd-8823-d455808566ac', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a7b7f90>]}
+[0m09:13:56.443013 [info ] [MainThread]: 
+[0m09:13:56.443332 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m09:13:56.443628 [info ] [MainThread]: 
+[0m09:13:56.444117 [debug] [MainThread]: Acquiring new sqlserver connection 'master'
+[0m09:13:56.444699 [debug] [ThreadPool]: Acquiring new sqlserver connection 'list_stage_db'
+[0m09:13:56.458977 [debug] [ThreadPool]: dbt-sqlserver
+[0m09:13:56.460829 [debug] [ThreadPool]: Using sqlserver connection "list_stage_db"
+[0m09:13:56.461123 [debug] [ThreadPool]: On list_stage_db: /* {"app": "dbt", "dbt_version": "1.12.0", "profile_name": "sales_warehouse", "target_name": "dev", "connection_name": "list_stage_db"} */
+USE [stage_db];
+    select  name as [schema]
+    from sys.schemas with (nolock) 
+    OPTION (LABEL = 'dbt-sqlserver');
+
+  
+[0m09:13:56.461349 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m09:13:56.467849 [debug] [ThreadPool]: sqlserver adapter: Using connection string: DRIVER={ODBC Driver 18 for SQL Server};SERVER=192.168.0.116,1433;Database=stage_db;UID=***;PWD=***;encrypt=Yes;TrustServerCertificate=Yes;APP=dbt-sqlserver/1.10.1;Pooling=true;SQL_ATTR_TRACE=SQL_OPT_TRACE_OFF;ConnectRetryCount=3;ConnectRetryInterval=10
+[0m09:14:11.669004 [debug] [ThreadPool]: sqlserver adapter: Got a retryable error when attempting to open a sqlserver connection.
+3 attempts remaining. Retrying in 1 seconds.
+Error:
+('HYT00', '[HYT00] [Microsoft][ODBC Driver 18 for SQL Server]Login timeout expired (0) (SQLDriverConnect)')
+[0m09:14:12.676628 [debug] [ThreadPool]: sqlserver adapter: Using connection string: DRIVER={ODBC Driver 18 for SQL Server};SERVER=192.168.0.116,1433;Database=stage_db;UID=***;PWD=***;encrypt=Yes;TrustServerCertificate=Yes;APP=dbt-sqlserver/1.10.1;Pooling=true;SQL_ATTR_TRACE=SQL_OPT_TRACE_OFF;ConnectRetryCount=3;ConnectRetryInterval=10
+[0m09:14:28.709011 [debug] [ThreadPool]: sqlserver adapter: Got a retryable error when attempting to open a sqlserver connection.
+2 attempts remaining. Retrying in 1 seconds.
+Error:
+('HYT00', '[HYT00] [Microsoft][ODBC Driver 18 for SQL Server]Login timeout expired (0) (SQLDriverConnect)')
+[0m09:14:29.715235 [debug] [ThreadPool]: sqlserver adapter: Using connection string: DRIVER={ODBC Driver 18 for SQL Server};SERVER=192.168.0.116,1433;Database=stage_db;UID=***;PWD=***;encrypt=Yes;TrustServerCertificate=Yes;APP=dbt-sqlserver/1.10.1;Pooling=true;SQL_ATTR_TRACE=SQL_OPT_TRACE_OFF;ConnectRetryCount=3;ConnectRetryInterval=10
+[0m09:14:44.741564 [debug] [ThreadPool]: sqlserver adapter: Got a retryable error when attempting to open a sqlserver connection.
+1 attempts remaining. Retrying in 1 seconds.
+Error:
+('HYT00', '[HYT00] [Microsoft][ODBC Driver 18 for SQL Server]Login timeout expired (0) (SQLDriverConnect)')
+[0m09:14:45.747473 [debug] [ThreadPool]: sqlserver adapter: Using connection string: DRIVER={ODBC Driver 18 for SQL Server};SERVER=192.168.0.116,1433;Database=stage_db;UID=***;PWD=***;encrypt=Yes;TrustServerCertificate=Yes;APP=dbt-sqlserver/1.10.1;Pooling=true;SQL_ATTR_TRACE=SQL_OPT_TRACE_OFF;ConnectRetryCount=3;ConnectRetryInterval=10
+[0m09:15:01.578155 [debug] [ThreadPool]: sqlserver adapter: SQL execution raised FailedToConnectError: Database Error
+  ('HYT00', '[HYT00] [Microsoft][ODBC Driver 18 for SQL Server]Login timeout expired (0) (SQLDriverConnect)')
+[0m09:15:01.578886 [debug] [ThreadPool]: sqlserver adapter: Error running SQL: /* {"app": "dbt", "dbt_version": "1.12.0", "profile_name": "sales_warehouse", "target_name": "dev", "connection_name": "list_stage_db"} */
+USE [stage_db];
+    select  name as [schema]
+    from sys.schemas with (nolock) 
+    OPTION (LABEL = 'dbt-sqlserver');
+
+  
+[0m09:15:01.579422 [debug] [ThreadPool]: sqlserver adapter: Rolling back transaction.
+[0m09:15:01.580191 [debug] [ThreadPool]: On list_stage_db: No close available on handle
+[0m09:15:01.581183 [debug] [ThreadPool]: sqlserver adapter: SQL execution raised FailedToConnectError: Database Error
+  ('HYT00', '[HYT00] [Microsoft][ODBC Driver 18 for SQL Server]Login timeout expired (0) (SQLDriverConnect)')
+[0m09:15:01.581680 [debug] [ThreadPool]: sqlserver adapter: Error running SQL: macro list_schemas
+[0m09:15:01.582125 [debug] [ThreadPool]: sqlserver adapter: Rolling back transaction.
+[0m09:15:01.584324 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m09:15:01.584818 [debug] [MainThread]: Connection 'list_stage_db' was properly closed.
+[0m09:15:01.585483 [info ] [MainThread]: 
+[0m09:15:01.586162 [info ] [MainThread]: Finished running  in 0 hours 1 minutes and 5.14 seconds (65.14s).
+[0m09:15:01.589310 [error] [MainThread]: [[31mERROR[0m]: Encountered an error:
+Database Error
+  ('HYT00', '[HYT00] [Microsoft][ODBC Driver 18 for SQL Server]Login timeout expired (0) (SQLDriverConnect)')
+[0m09:15:01.594338 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": false, "command_wall_clock_time": 65.754654, "process_in_blocks": "0", "process_kernel_time": 0.302375, "process_mem_max_rss": "135348224", "process_out_blocks": "0", "process_user_time": 1.306475}
+[0m09:15:01.595180 [debug] [MainThread]: Command `dbt run` failed at 09:15:01.595073 after 65.76 seconds
+[0m09:15:01.596091 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109e30090>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109f53ad0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a82e290>]}
+[0m09:15:01.596718 [debug] [MainThread]: Flushing usage events
+[0m09:15:02.583049 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m09:15:05.227861 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10bd6dd10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10be2f8d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10be2c390>]}
+
+
+============================== 09:15:05.231175 | 7a1b494f-f29c-4d4b-ad54-add7dc63d1b7 ==============================
+[0m09:15:05.231175 [info ] [MainThread]: Running with dbt=1.12.0
+[0m09:15:05.231622 [debug] [MainThread]: running dbt with arguments {'fail_fast': 'False', 'indirect_selection': 'eager', 'no_print': 'None', 'partial_parse': 'True', 'hints_enabled': 'True', 'write_json': 'True', 'log_cache_events': 'False', 'target_path': 'None', 'invocation_command': 'dbt parse', 'use_experimental_parser': 'False', 'profiles_dir': '/Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse', 'empty': 'None', 'cache_selected_only': 'False', 'send_anonymous_usage_stats': 'True', 'warn_error': 'None', 'log_path': '/Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/logs', 'introspect': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'debug': 'False', 'use_colors': 'True', 'version_check': 'True', 'static_parser': 'True', 'maximum_seed_size_mib': '1', 'log_format': 'default', 'printer_width': '80', 'quiet': 'False'}
+[0m09:15:05.510033 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '7a1b494f-f29c-4d4b-ad54-add7dc63d1b7', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10be50cd0>]}
+[0m09:15:05.546486 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '7a1b494f-f29c-4d4b-ad54-add7dc63d1b7', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10ab85f90>]}
+[0m09:15:05.546990 [info ] [MainThread]: Registered adapter: sqlserver=1.10.1
+[0m09:15:05.595824 [warn ] [MainThread]: [[33mWARNING[0m]: When True, uses SQL Server-native string type mappings: STRING -> VARCHAR(MAX), NCHAR -> NCHAR(1), NVARCHAR -> NVARCHAR(4000). When False (default), preserves legacy mappings: STRING and NVARCHAR -> VARCHAR(8000), NCHAR -> CHAR(1). The new behaviour is intended to become the default in a future release.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_native_string_types` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m09:15:05.596466 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': '7a1b494f-f29c-4d4b-ad54-add7dc63d1b7', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c378f50>]}
+[0m09:15:05.596837 [warn ] [MainThread]: [[33mWARNING[0m]: When True, dbt transaction hooks (begin/commit) emit real T-SQL BEGIN TRANSACTION / COMMIT TRANSACTION statements. When False (default and legacy), begin/commit are no-ops and each statement is auto-committed by the driver. This means earlier successful statements are not rolled back if a later statement fails. This behavior is intended to become the default in a future release.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_dbt_transactions` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m09:15:05.597131 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': '7a1b494f-f29c-4d4b-ad54-add7dc63d1b7', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c5d34d0>]}
+[0m09:15:05.603490 [debug] [MainThread]: checksum: bed11768657b77a668c10da8f2eebbfbd19acd280154f51a0ec69bc064e92266, vars: {}, profile: sales_warehouse, target: dev, version: 1.12.0
+[0m09:15:05.686575 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 1 files added, 0 files changed.
+[0m09:15:05.687046 [debug] [MainThread]: Partial parsing: added file: sales_warehouse://models/core/dim_customer.sql
+[0m09:15:05.823207 [warn ] [MainThread]: [[33mWARNING[0m]: When True, uses dbt-core's standard schema concatenation (`target.schema` + `_` + `custom_schema_name`). When False (default), uses legacy adapter behaviour: `custom_schema_name` is used directly without prefixing `target.schema`. For a permanent solution, override the `sqlserver__generate_schema_name` macro in your project instead.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_default_schema_concat` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m09:15:05.823706 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': '7a1b494f-f29c-4d4b-ad54-add7dc63d1b7', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c7229d0>]}
+[0m09:15:05.865347 [warn ] [MainThread]: [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 1 unused configuration paths:
+- models.sales_warehouse.marts
+[0m09:15:05.867397 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '7a1b494f-f29c-4d4b-ad54-add7dc63d1b7', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10cb93f90>]}
+[0m09:15:05.870040 [info ] [MainThread]: Performance info: /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/perf_info.json
+[0m09:15:05.928460 [debug] [MainThread]: Wrote artifact WritableManifest to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/manifest.json
+[0m09:15:05.931215 [debug] [MainThread]: Wrote artifact SemanticManifest to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/semantic_manifest.json
+[0m09:15:05.943579 [debug] [MainThread]: Wrote artifact OsiDocument to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/osi_document.json
+[0m09:15:05.945384 [debug] [MainThread]: Resource report: {"command_name": "parse", "command_success": true, "command_wall_clock_time": 0.7798104, "process_in_blocks": "0", "process_kernel_time": 0.247877, "process_mem_max_rss": "142376960", "process_out_blocks": "0", "process_user_time": 1.351261}
+[0m09:15:05.945779 [debug] [MainThread]: Command `dbt parse` succeeded at 09:15:05.945683 after 0.78 seconds
+[0m09:15:05.946145 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10be2c350>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10be2f650>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x102f58790>]}
+[0m09:15:05.946455 [debug] [MainThread]: Flushing usage events
+[0m09:15:06.910154 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m09:15:13.934347 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e33f950>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e3ef790>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e3ec590>]}
+
+
+============================== 09:15:13.937113 | 0420edb2-0aab-47c1-842d-f61f28112067 ==============================
+[0m09:15:13.937113 [info ] [MainThread]: Running with dbt=1.12.0
+[0m09:15:13.937497 [debug] [MainThread]: running dbt with arguments {'indirect_selection': 'eager', 'no_print': 'None', 'empty': 'None', 'debug': 'False', 'target_path': 'None', 'maximum_seed_size_mib': '1', 'quiet': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'partial_parse': 'True', 'profiles_dir': '/Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse', 'fail_fast': 'False', 'printer_width': '80', 'log_path': '/Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/logs', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'introspect': 'True', 'warn_error': 'None', 'write_json': 'True', 'log_cache_events': 'False', 'version_check': 'True', 'hints_enabled': 'True', 'log_format': 'default', 'send_anonymous_usage_stats': 'True', 'static_parser': 'True', 'cache_selected_only': 'False', 'invocation_command': 'dbt parse'}
+[0m09:15:14.115268 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '0420edb2-0aab-47c1-842d-f61f28112067', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e3424d0>]}
+[0m09:15:14.154152 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '0420edb2-0aab-47c1-842d-f61f28112067', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10d156050>]}
+[0m09:15:14.154737 [info ] [MainThread]: Registered adapter: sqlserver=1.10.1
+[0m09:15:14.203948 [warn ] [MainThread]: [[33mWARNING[0m]: When True, uses SQL Server-native string type mappings: STRING -> VARCHAR(MAX), NCHAR -> NCHAR(1), NVARCHAR -> NVARCHAR(4000). When False (default), preserves legacy mappings: STRING and NVARCHAR -> VARCHAR(8000), NCHAR -> CHAR(1). The new behaviour is intended to become the default in a future release.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_native_string_types` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m09:15:14.204503 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': '0420edb2-0aab-47c1-842d-f61f28112067', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10eb97550>]}
+[0m09:15:14.204835 [warn ] [MainThread]: [[33mWARNING[0m]: When True, dbt transaction hooks (begin/commit) emit real T-SQL BEGIN TRANSACTION / COMMIT TRANSACTION statements. When False (default and legacy), begin/commit are no-ops and each statement is auto-committed by the driver. This means earlier successful statements are not rolled back if a later statement fails. This behavior is intended to become the default in a future release.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_dbt_transactions` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m09:15:14.205114 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': '0420edb2-0aab-47c1-842d-f61f28112067', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10eb97850>]}
+[0m09:15:14.210894 [debug] [MainThread]: checksum: bed11768657b77a668c10da8f2eebbfbd19acd280154f51a0ec69bc064e92266, vars: {}, profile: sales_warehouse, target: dev, version: 1.12.0
+[0m09:15:14.291405 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 1 files added, 0 files changed.
+[0m09:15:14.291801 [debug] [MainThread]: Partial parsing: added file: sales_warehouse://models/core/dim_product.sql
+[0m09:15:14.418937 [warn ] [MainThread]: [[33mWARNING[0m]: When True, uses dbt-core's standard schema concatenation (`target.schema` + `_` + `custom_schema_name`). When False (default), uses legacy adapter behaviour: `custom_schema_name` is used directly without prefixing `target.schema`. For a permanent solution, override the `sqlserver__generate_schema_name` macro in your project instead.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_default_schema_concat` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m09:15:14.419385 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': '0420edb2-0aab-47c1-842d-f61f28112067', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e9ccfd0>]}
+[0m09:15:14.458581 [warn ] [MainThread]: [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 1 unused configuration paths:
+- models.sales_warehouse.marts
+[0m09:15:14.460505 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '0420edb2-0aab-47c1-842d-f61f28112067', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10f179bd0>]}
+[0m09:15:14.462627 [info ] [MainThread]: Performance info: /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/perf_info.json
+[0m09:15:14.519788 [debug] [MainThread]: Wrote artifact WritableManifest to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/manifest.json
+[0m09:15:14.521489 [debug] [MainThread]: Wrote artifact SemanticManifest to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/semantic_manifest.json
+[0m09:15:14.532346 [debug] [MainThread]: Wrote artifact OsiDocument to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/osi_document.json
+[0m09:15:14.534621 [debug] [MainThread]: Resource report: {"command_name": "parse", "command_success": true, "command_wall_clock_time": 0.65444154, "process_in_blocks": "0", "process_kernel_time": 0.221976, "process_mem_max_rss": "145784832", "process_out_blocks": "0", "process_user_time": 1.235128}
+[0m09:15:14.534958 [debug] [MainThread]: Command `dbt parse` succeeded at 09:15:14.534904 after 0.65 seconds
+[0m09:15:14.535223 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e3e6210>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e323f50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e23be50>]}
+[0m09:15:14.535486 [debug] [MainThread]: Flushing usage events
+[0m09:15:15.596541 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m09:15:23.107660 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10d672650>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10d727a50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10d7246d0>]}
+
+
+============================== 09:15:23.110483 | abc65eca-6d03-4a54-ac73-8283a340de94 ==============================
+[0m09:15:23.110483 [info ] [MainThread]: Running with dbt=1.12.0
+[0m09:15:23.110992 [debug] [MainThread]: running dbt with arguments {'use_colors': 'True', 'static_parser': 'True', 'empty': 'None', 'no_print': 'None', 'log_path': '/Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/logs', 'use_experimental_parser': 'False', 'fail_fast': 'False', 'introspect': 'True', 'partial_parse': 'True', 'write_json': 'True', 'warn_error': 'None', 'target_path': 'None', 'debug': 'False', 'send_anonymous_usage_stats': 'True', 'invocation_command': 'dbt parse', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'hints_enabled': 'True', 'version_check': 'True', 'cache_selected_only': 'False', 'log_format': 'default', 'printer_width': '80', 'maximum_seed_size_mib': '1', 'quiet': 'False', 'log_cache_events': 'False', 'indirect_selection': 'eager', 'profiles_dir': '/Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse'}
+[0m09:15:23.279026 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'abc65eca-6d03-4a54-ac73-8283a340de94', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10cf515d0>]}
+[0m09:15:23.314634 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'abc65eca-6d03-4a54-ac73-8283a340de94', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c48df50>]}
+[0m09:15:23.315111 [info ] [MainThread]: Registered adapter: sqlserver=1.10.1
+[0m09:15:23.363109 [warn ] [MainThread]: [[33mWARNING[0m]: When True, uses SQL Server-native string type mappings: STRING -> VARCHAR(MAX), NCHAR -> NCHAR(1), NVARCHAR -> NVARCHAR(4000). When False (default), preserves legacy mappings: STRING and NVARCHAR -> VARCHAR(8000), NCHAR -> CHAR(1). The new behaviour is intended to become the default in a future release.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_native_string_types` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m09:15:23.363668 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': 'abc65eca-6d03-4a54-ac73-8283a340de94', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10ded33d0>]}
+[0m09:15:23.364050 [warn ] [MainThread]: [[33mWARNING[0m]: When True, dbt transaction hooks (begin/commit) emit real T-SQL BEGIN TRANSACTION / COMMIT TRANSACTION statements. When False (default and legacy), begin/commit are no-ops and each statement is auto-committed by the driver. This means earlier successful statements are not rolled back if a later statement fails. This behavior is intended to become the default in a future release.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_dbt_transactions` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m09:15:23.364327 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': 'abc65eca-6d03-4a54-ac73-8283a340de94', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10ded38d0>]}
+[0m09:15:23.369013 [debug] [MainThread]: checksum: bed11768657b77a668c10da8f2eebbfbd19acd280154f51a0ec69bc064e92266, vars: {}, profile: sales_warehouse, target: dev, version: 1.12.0
+[0m09:15:23.447405 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 1 files added, 0 files changed.
+[0m09:15:23.447821 [debug] [MainThread]: Partial parsing: added file: sales_warehouse://models/core/fact_sales.sql
+[0m09:15:23.566084 [warn ] [MainThread]: [[33mWARNING[0m]: When True, uses dbt-core's standard schema concatenation (`target.schema` + `_` + `custom_schema_name`). When False (default), uses legacy adapter behaviour: `custom_schema_name` is used directly without prefixing `target.schema`. For a permanent solution, override the `sqlserver__generate_schema_name` macro in your project instead.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_default_schema_concat` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m09:15:23.566483 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': 'abc65eca-6d03-4a54-ac73-8283a340de94', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e302ad0>]}
+[0m09:15:23.604279 [warn ] [MainThread]: [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 1 unused configuration paths:
+- models.sales_warehouse.marts
+[0m09:15:23.606044 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'abc65eca-6d03-4a54-ac73-8283a340de94', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e497fd0>]}
+[0m09:15:23.607994 [info ] [MainThread]: Performance info: /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/perf_info.json
+[0m09:15:23.662194 [debug] [MainThread]: Wrote artifact WritableManifest to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/manifest.json
+[0m09:15:23.663930 [debug] [MainThread]: Wrote artifact SemanticManifest to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/semantic_manifest.json
+[0m09:15:23.682761 [debug] [MainThread]: Wrote artifact OsiDocument to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/osi_document.json
+[0m09:15:23.684633 [debug] [MainThread]: Resource report: {"command_name": "parse", "command_success": true, "command_wall_clock_time": 0.630459, "process_in_blocks": "0", "process_kernel_time": 0.224121, "process_mem_max_rss": "148553728", "process_out_blocks": "0", "process_user_time": 1.261746}
+[0m09:15:23.684957 [debug] [MainThread]: Command `dbt parse` succeeded at 09:15:23.684909 after 0.63 seconds
+[0m09:15:23.685215 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10d664310>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10ce3b350>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10d657ed0>]}
+[0m09:15:23.685483 [debug] [MainThread]: Flushing usage events
+[0m09:15:24.635598 [debug] [MainThread]: An error was encountered while trying to flush usage events
+==================== 2026-08-09T01:15:31.481109Z | 019fe416-dcf4-76b1-8f13-4ae72088da04 ====================
+01:15:31.483751 [info ]: dbt-fusion 2.0.0-preview.204
+01:15:31.486420 [info ]: Started loading project
+01:15:31.499443 [info ]: Loading profiles.yml
+01:15:31.504176 [info ]: Finished loading project [  0.02s]
+01:15:31.505090 [error]: [InvalidConfig (dbt1005)]: Failed to parse profiles.yml: unknown variant `sqlserver`, expected one of `redshift`, `snowflake`, `postgres`, `bigquery`, `trino`, `datafusion`, `spark`, `databricks`, `salesforce`, `duckdb`, `alt`, `exasol`, `fabric`, `clickhouse`
+01:16:47.015899 [info ]: 
+==================== Execution Summary =====================
+Finished 'list' with 1 error [1m 16s]
+[0m09:16:48.273349 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109695910>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1097aba90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1097a8350>]}
+
+
+============================== 09:16:48.280005 | 1151ed0a-25ec-4281-bb7c-557aecb5d38b ==============================
+[0m09:16:48.280005 [info ] [MainThread]: Running with dbt=1.12.0
+[0m09:16:48.280423 [debug] [MainThread]: running dbt with arguments {'partial_parse': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'hints_enabled': 'True', 'use_colors': 'True', 'version_check': 'True', 'invocation_command': 'dbt run --select fact_sales', 'debug': 'False', 'cache_selected_only': 'False', 'send_anonymous_usage_stats': 'True', 'fail_fast': 'False', 'write_json': 'True', 'empty': 'False', 'printer_width': '80', 'quiet': 'False', 'indirect_selection': 'eager', 'profiles_dir': '/Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse', 'log_path': '/Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/logs', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'static_parser': 'True', 'warn_error': 'None', 'log_format': 'default', 'maximum_seed_size_mib': '1', 'log_cache_events': 'False', 'introspect': 'True'}
+[0m09:16:48.541318 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '1151ed0a-25ec-4281-bb7c-557aecb5d38b', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109cd7610>]}
+[0m09:16:48.591409 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '1151ed0a-25ec-4281-bb7c-557aecb5d38b', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1084ade50>]}
+[0m09:16:48.592279 [info ] [MainThread]: Registered adapter: sqlserver=1.10.1
+[0m09:16:48.644655 [warn ] [MainThread]: [[33mWARNING[0m]: When True, uses SQL Server-native string type mappings: STRING -> VARCHAR(MAX), NCHAR -> NCHAR(1), NVARCHAR -> NVARCHAR(4000). When False (default), preserves legacy mappings: STRING and NVARCHAR -> VARCHAR(8000), NCHAR -> CHAR(1). The new behaviour is intended to become the default in a future release.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_native_string_types` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m09:16:48.645239 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': '1151ed0a-25ec-4281-bb7c-557aecb5d38b', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109d00190>]}
+[0m09:16:48.645594 [warn ] [MainThread]: [[33mWARNING[0m]: When True, dbt transaction hooks (begin/commit) emit real T-SQL BEGIN TRANSACTION / COMMIT TRANSACTION statements. When False (default and legacy), begin/commit are no-ops and each statement is auto-committed by the driver. This means earlier successful statements are not rolled back if a later statement fails. This behavior is intended to become the default in a future release.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_dbt_transactions` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m09:16:48.646014 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': '1151ed0a-25ec-4281-bb7c-557aecb5d38b', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109f56f90>]}
+[0m09:16:48.651460 [debug] [MainThread]: checksum: bed11768657b77a668c10da8f2eebbfbd19acd280154f51a0ec69bc064e92266, vars: {}, profile: sales_warehouse, target: dev, version: 1.12.0
+[0m09:16:48.735424 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 0 files changed.
+[0m09:16:48.735719 [debug] [MainThread]: Nothing changed, skipping partial parsing.
+[0m09:16:48.735926 [debug] [MainThread]: Partial parsing enabled, no changes found, skipping parsing
+[0m09:16:48.739060 [warn ] [MainThread]: [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 1 unused configuration paths:
+- models.sales_warehouse.marts
+[0m09:16:48.741480 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '1151ed0a-25ec-4281-bb7c-557aecb5d38b', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a17d8d0>]}
+[0m09:16:48.814334 [debug] [MainThread]: Wrote artifact WritableManifest to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/manifest.json
+[0m09:16:48.816417 [debug] [MainThread]: Wrote artifact SemanticManifest to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/semantic_manifest.json
+[0m09:16:48.828081 [debug] [MainThread]: Wrote artifact OsiDocument to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/osi_document.json
+[0m09:16:48.837066 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '1151ed0a-25ec-4281-bb7c-557aecb5d38b', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a012050>]}
+[0m09:16:48.837390 [info ] [MainThread]: Found 7 models, 1 test, 3 sources, 536 macros
+[0m09:16:48.837628 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '1151ed0a-25ec-4281-bb7c-557aecb5d38b', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109fe6410>]}
+[0m09:16:48.838492 [info ] [MainThread]: 
+[0m09:16:48.838768 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m09:16:48.839075 [info ] [MainThread]: 
+[0m09:16:48.839450 [debug] [MainThread]: Acquiring new sqlserver connection 'master'
+[0m09:16:48.839943 [debug] [ThreadPool]: Acquiring new sqlserver connection 'list_core_db'
+[0m09:16:48.851338 [debug] [ThreadPool]: dbt-sqlserver
+[0m09:16:48.852792 [debug] [ThreadPool]: Using sqlserver connection "list_core_db"
+[0m09:16:48.853031 [debug] [ThreadPool]: On list_core_db: /* {"app": "dbt", "dbt_version": "1.12.0", "profile_name": "sales_warehouse", "target_name": "dev", "connection_name": "list_core_db"} */
+USE [core_db];
+    select  name as [schema]
+    from sys.schemas with (nolock) 
+    OPTION (LABEL = 'dbt-sqlserver');
+
+  
+[0m09:16:48.853265 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m09:16:48.858925 [debug] [ThreadPool]: sqlserver adapter: Using connection string: DRIVER={ODBC Driver 18 for SQL Server};SERVER=192.168.0.116,1433;Database=stage_db;UID=***;PWD=***;encrypt=Yes;TrustServerCertificate=Yes;APP=dbt-sqlserver/1.10.1;Pooling=true;SQL_ATTR_TRACE=SQL_OPT_TRACE_OFF;ConnectRetryCount=3;ConnectRetryInterval=10
+[0m09:17:04.031840 [debug] [ThreadPool]: sqlserver adapter: Got a retryable error when attempting to open a sqlserver connection.
+3 attempts remaining. Retrying in 1 seconds.
+Error:
+('HYT00', '[HYT00] [Microsoft][ODBC Driver 18 for SQL Server]Login timeout expired (0) (SQLDriverConnect)')
+[0m09:17:05.040632 [debug] [ThreadPool]: sqlserver adapter: Using connection string: DRIVER={ODBC Driver 18 for SQL Server};SERVER=192.168.0.116,1433;Database=stage_db;UID=***;PWD=***;encrypt=Yes;TrustServerCertificate=Yes;APP=dbt-sqlserver/1.10.1;Pooling=true;SQL_ATTR_TRACE=SQL_OPT_TRACE_OFF;ConnectRetryCount=3;ConnectRetryInterval=10
+[0m09:17:13.629868 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10bd8b510>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10bdd58d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10be38ad0>]}
+
+
+============================== 09:17:13.632473 | 87349c2e-a983-418b-acec-7baab5e9cea3 ==============================
+[0m09:17:13.632473 [info ] [MainThread]: Running with dbt=1.12.0
+[0m09:17:13.632861 [debug] [MainThread]: running dbt with arguments {'quiet': 'False', 'version_check': 'True', 'log_format': 'default', 'cache_selected_only': 'False', 'profiles_dir': '/Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse', 'log_cache_events': 'False', 'fail_fast': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'partial_parse': 'True', 'target_path': 'None', 'send_anonymous_usage_stats': 'True', 'use_experimental_parser': 'False', 'static_parser': 'True', 'introspect': 'True', 'no_print': 'None', 'warn_error': 'None', 'indirect_selection': 'eager', 'printer_width': '80', 'write_json': 'True', 'hints_enabled': 'True', 'debug': 'False', 'invocation_command': 'dbt parse', 'log_path': '/Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/logs', 'use_colors': 'True', 'empty': 'None', 'maximum_seed_size_mib': '1'}
+[0m09:17:13.811650 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '87349c2e-a983-418b-acec-7baab5e9cea3', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c3f6790>]}
+[0m09:17:13.849120 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '87349c2e-a983-418b-acec-7baab5e9cea3', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10ab93c90>]}
+[0m09:17:13.849650 [info ] [MainThread]: Registered adapter: sqlserver=1.10.1
+[0m09:17:13.901858 [warn ] [MainThread]: [[33mWARNING[0m]: When True, uses SQL Server-native string type mappings: STRING -> VARCHAR(MAX), NCHAR -> NCHAR(1), NVARCHAR -> NVARCHAR(4000). When False (default), preserves legacy mappings: STRING and NVARCHAR -> VARCHAR(8000), NCHAR -> CHAR(1). The new behaviour is intended to become the default in a future release.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_native_string_types` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m09:17:13.902410 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': '87349c2e-a983-418b-acec-7baab5e9cea3', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c4cf4d0>]}
+[0m09:17:13.902737 [warn ] [MainThread]: [[33mWARNING[0m]: When True, dbt transaction hooks (begin/commit) emit real T-SQL BEGIN TRANSACTION / COMMIT TRANSACTION statements. When False (default and legacy), begin/commit are no-ops and each statement is auto-committed by the driver. This means earlier successful statements are not rolled back if a later statement fails. This behavior is intended to become the default in a future release.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_dbt_transactions` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m09:17:13.903039 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': '87349c2e-a983-418b-acec-7baab5e9cea3', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c5ef210>]}
+[0m09:17:13.908305 [debug] [MainThread]: checksum: bed11768657b77a668c10da8f2eebbfbd19acd280154f51a0ec69bc064e92266, vars: {}, profile: sales_warehouse, target: dev, version: 1.12.0
+[0m09:17:13.989208 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 1 files added, 0 files changed.
+[0m09:17:13.989580 [debug] [MainThread]: Partial parsing: added file: sales_warehouse://models/marts/sales_wide.sql
+[0m09:17:14.119742 [warn ] [MainThread]: [[33mWARNING[0m]: When True, uses dbt-core's standard schema concatenation (`target.schema` + `_` + `custom_schema_name`). When False (default), uses legacy adapter behaviour: `custom_schema_name` is used directly without prefixing `target.schema`. For a permanent solution, override the `sqlserver__generate_schema_name` macro in your project instead.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_default_schema_concat` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m09:17:14.120188 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': '87349c2e-a983-418b-acec-7baab5e9cea3', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10ca245d0>]}
+[0m09:17:14.165906 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '87349c2e-a983-418b-acec-7baab5e9cea3', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10abaa350>]}
+[0m09:17:14.168505 [info ] [MainThread]: Performance info: /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/perf_info.json
+[0m09:17:14.227157 [debug] [MainThread]: Wrote artifact WritableManifest to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/manifest.json
+[0m09:17:14.229156 [debug] [MainThread]: Wrote artifact SemanticManifest to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/semantic_manifest.json
+[0m09:17:14.239275 [debug] [MainThread]: Wrote artifact OsiDocument to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/osi_document.json
+[0m09:17:14.241482 [debug] [MainThread]: Resource report: {"command_name": "parse", "command_success": true, "command_wall_clock_time": 0.6700245, "process_in_blocks": "0", "process_kernel_time": 0.234014, "process_mem_max_rss": "149389312", "process_out_blocks": "0", "process_user_time": 1.244657}
+[0m09:17:14.241804 [debug] [MainThread]: Command `dbt parse` succeeded at 09:17:14.241752 after 0.67 seconds
+[0m09:17:14.242058 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10bdd5a50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c96d8d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c4c7f90>]}
+[0m09:17:14.242306 [debug] [MainThread]: Flushing usage events
+[0m09:17:15.350429 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m09:17:21.070556 [debug] [ThreadPool]: sqlserver adapter: Got a retryable error when attempting to open a sqlserver connection.
+2 attempts remaining. Retrying in 1 seconds.
+Error:
+('HYT00', '[HYT00] [Microsoft][ODBC Driver 18 for SQL Server]Login timeout expired (0) (SQLDriverConnect)')
+[0m09:17:22.076549 [debug] [ThreadPool]: sqlserver adapter: Using connection string: DRIVER={ODBC Driver 18 for SQL Server};SERVER=192.168.0.116,1433;Database=stage_db;UID=***;PWD=***;encrypt=Yes;TrustServerCertificate=Yes;APP=dbt-sqlserver/1.10.1;Pooling=true;SQL_ATTR_TRACE=SQL_OPT_TRACE_OFF;ConnectRetryCount=3;ConnectRetryInterval=10
+[0m09:17:26.257653 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a166650>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a217b10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a214650>]}
+
+
+============================== 09:17:26.260663 | 900b5f8e-5528-4722-a30a-82560213fc6e ==============================
+[0m09:17:26.260663 [info ] [MainThread]: Running with dbt=1.12.0
+[0m09:17:26.261110 [debug] [MainThread]: running dbt with arguments {'debug': 'False', 'target_path': 'None', 'indirect_selection': 'eager', 'log_format': 'default', 'log_path': '/Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/logs', 'printer_width': '80', 'profiles_dir': '/Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse', 'fail_fast': 'False', 'maximum_seed_size_mib': '1', 'use_colors': 'True', 'hints_enabled': 'True', 'cache_selected_only': 'False', 'no_print': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'quiet': 'False', 'send_anonymous_usage_stats': 'True', 'introspect': 'True', 'warn_error': 'None', 'invocation_command': 'dbt parse', 'write_json': 'True', 'static_parser': 'True', 'use_experimental_parser': 'False', 'partial_parse': 'True', 'version_check': 'True', 'empty': 'None', 'log_cache_events': 'False'}
+[0m09:17:26.452314 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '900b5f8e-5528-4722-a30a-82560213fc6e', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a5f99d0>]}
+[0m09:17:26.492540 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '900b5f8e-5528-4722-a30a-82560213fc6e', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x108f71f50>]}
+[0m09:17:26.493201 [info ] [MainThread]: Registered adapter: sqlserver=1.10.1
+[0m09:17:26.550757 [warn ] [MainThread]: [[33mWARNING[0m]: When True, uses SQL Server-native string type mappings: STRING -> VARCHAR(MAX), NCHAR -> NCHAR(1), NVARCHAR -> NVARCHAR(4000). When False (default), preserves legacy mappings: STRING and NVARCHAR -> VARCHAR(8000), NCHAR -> CHAR(1). The new behaviour is intended to become the default in a future release.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_native_string_types` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m09:17:26.551478 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': '900b5f8e-5528-4722-a30a-82560213fc6e', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a8ab5d0>]}
+[0m09:17:26.551855 [warn ] [MainThread]: [[33mWARNING[0m]: When True, dbt transaction hooks (begin/commit) emit real T-SQL BEGIN TRANSACTION / COMMIT TRANSACTION statements. When False (default and legacy), begin/commit are no-ops and each statement is auto-committed by the driver. This means earlier successful statements are not rolled back if a later statement fails. This behavior is intended to become the default in a future release.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_dbt_transactions` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m09:17:26.552160 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': '900b5f8e-5528-4722-a30a-82560213fc6e', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a9cb6d0>]}
+[0m09:17:26.560700 [debug] [MainThread]: checksum: bed11768657b77a668c10da8f2eebbfbd19acd280154f51a0ec69bc064e92266, vars: {}, profile: sales_warehouse, target: dev, version: 1.12.0
+[0m09:17:26.650831 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 1 files added, 0 files changed.
+[0m09:17:26.651288 [debug] [MainThread]: Partial parsing: added file: sales_warehouse://tests/test_amount_positive.sql
+[0m09:17:26.732624 [warn ] [MainThread]: [[33mWARNING[0m]: When True, uses dbt-core's standard schema concatenation (`target.schema` + `_` + `custom_schema_name`). When False (default), uses legacy adapter behaviour: `custom_schema_name` is used directly without prefixing `target.schema`. For a permanent solution, override the `sqlserver__generate_schema_name` macro in your project instead.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_default_schema_concat` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m09:17:26.733086 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': '900b5f8e-5528-4722-a30a-82560213fc6e', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a893690>]}
+[0m09:17:26.775868 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '900b5f8e-5528-4722-a30a-82560213fc6e', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a869ad0>]}
+[0m09:17:26.783754 [info ] [MainThread]: Performance info: /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/perf_info.json
+[0m09:17:26.851449 [debug] [MainThread]: Wrote artifact WritableManifest to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/manifest.json
+[0m09:17:26.853815 [debug] [MainThread]: Wrote artifact SemanticManifest to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/semantic_manifest.json
+[0m09:17:26.865348 [debug] [MainThread]: Wrote artifact OsiDocument to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/osi_document.json
+[0m09:17:26.867831 [debug] [MainThread]: Resource report: {"command_name": "parse", "command_success": true, "command_wall_clock_time": 0.6684625, "process_in_blocks": "0", "process_kernel_time": 0.261551, "process_mem_max_rss": "143540224", "process_out_blocks": "0", "process_user_time": 1.340024}
+[0m09:17:26.868231 [debug] [MainThread]: Command `dbt parse` succeeded at 09:17:26.868176 after 0.67 seconds
+[0m09:17:26.868521 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a214750>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a2142d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10aa359d0>]}
+[0m09:17:26.868809 [debug] [MainThread]: Flushing usage events
+[0m09:17:27.847440 [debug] [MainThread]: An error was encountered while trying to flush usage events
+==================== 2026-08-09T01:17:33.298009Z | 019fe418-b8e3-7271-9ece-d2eca9c91948 ====================
+01:17:33.301040 [info ]: dbt-fusion 2.0.0-preview.204
+01:17:33.304490 [info ]: Started loading project
+01:17:33.323465 [info ]: Loading profiles.yml
+01:17:33.336416 [info ]: Finished loading project [  0.03s]
+01:17:33.337050 [error]: [InvalidConfig (dbt1005)]: Failed to parse profiles.yml: unknown variant `sqlserver`, expected one of `redshift`, `snowflake`, `postgres`, `bigquery`, `trino`, `datafusion`, `spark`, `databricks`, `salesforce`, `duckdb`, `alt`, `exasol`, `fabric`, `clickhouse`
+[0m09:17:37.105595 [debug] [ThreadPool]: sqlserver adapter: Got a retryable error when attempting to open a sqlserver connection.
+1 attempts remaining. Retrying in 1 seconds.
+Error:
+('HYT00', '[HYT00] [Microsoft][ODBC Driver 18 for SQL Server]Login timeout expired (0) (SQLDriverConnect)')
+[0m09:17:38.113350 [debug] [ThreadPool]: sqlserver adapter: Using connection string: DRIVER={ODBC Driver 18 for SQL Server};SERVER=192.168.0.116,1433;Database=stage_db;UID=***;PWD=***;encrypt=Yes;TrustServerCertificate=Yes;APP=dbt-sqlserver/1.10.1;Pooling=true;SQL_ATTR_TRACE=SQL_OPT_TRACE_OFF;ConnectRetryCount=3;ConnectRetryInterval=10
+[0m09:17:53.562811 [debug] [ThreadPool]: sqlserver adapter: SQL execution raised FailedToConnectError: Database Error
+  ('HYT00', '[HYT00] [Microsoft][ODBC Driver 18 for SQL Server]Login timeout expired (0) (SQLDriverConnect)')
+[0m09:17:53.564970 [debug] [ThreadPool]: sqlserver adapter: Error running SQL: /* {"app": "dbt", "dbt_version": "1.12.0", "profile_name": "sales_warehouse", "target_name": "dev", "connection_name": "list_core_db"} */
+USE [core_db];
+    select  name as [schema]
+    from sys.schemas with (nolock) 
+    OPTION (LABEL = 'dbt-sqlserver');
+
+  
+[0m09:17:53.565870 [debug] [ThreadPool]: sqlserver adapter: Rolling back transaction.
+[0m09:17:53.566962 [debug] [ThreadPool]: On list_core_db: No close available on handle
+[0m09:17:53.568562 [debug] [ThreadPool]: sqlserver adapter: SQL execution raised FailedToConnectError: Database Error
+  ('HYT00', '[HYT00] [Microsoft][ODBC Driver 18 for SQL Server]Login timeout expired (0) (SQLDriverConnect)')
+[0m09:17:53.569468 [debug] [ThreadPool]: sqlserver adapter: Error running SQL: macro list_schemas
+[0m09:17:53.570068 [debug] [ThreadPool]: sqlserver adapter: Rolling back transaction.
+[0m09:17:53.573780 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m09:17:53.574622 [debug] [MainThread]: Connection 'list_core_db' was properly closed.
+[0m09:17:53.575593 [info ] [MainThread]: 
+[0m09:17:53.576561 [info ] [MainThread]: Finished running  in 0 hours 1 minutes and 4.74 seconds (64.74s).
+[0m09:17:53.578760 [error] [MainThread]: [[31mERROR[0m]: Encountered an error:
+Database Error
+  ('HYT00', '[HYT00] [Microsoft][ODBC Driver 18 for SQL Server]Login timeout expired (0) (SQLDriverConnect)')
+[0m09:17:53.588344 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": false, "command_wall_clock_time": 65.37449, "process_in_blocks": "0", "process_kernel_time": 0.305662, "process_mem_max_rss": "135888896", "process_out_blocks": "0", "process_user_time": 1.257566}
+[0m09:17:53.589476 [debug] [MainThread]: Command `dbt run` failed at 09:17:53.589335 after 65.38 seconds
+[0m09:17:53.590631 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1097b57d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109b52090>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a09b1d0>]}
+[0m09:17:53.591368 [debug] [MainThread]: Flushing usage events
+[0m09:17:54.656460 [debug] [MainThread]: An error was encountered while trying to flush usage events
+01:18:48.814043 [info ]: 
+==================== Execution Summary =====================
+Finished 'list' with 1 error [1m 16s]
+[0m09:18:50.058546 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10ba1d850>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10bb33750>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10bb30390>]}
+
+
+============================== 09:18:50.061429 | a6555861-3221-44eb-929f-55de2f694f27 ==============================
+[0m09:18:50.061429 [info ] [MainThread]: Running with dbt=1.12.0
+[0m09:18:50.061850 [debug] [MainThread]: running dbt with arguments {'target_path': 'None', 'debug': 'False', 'quiet': 'False', 'use_experimental_parser': 'False', 'no_print': 'None', 'write_json': 'True', 'printer_width': '80', 'empty': 'False', 'partial_parse': 'True', 'profiles_dir': '/Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse', 'warn_error': 'None', 'indirect_selection': 'eager', 'log_format': 'default', 'log_cache_events': 'False', 'maximum_seed_size_mib': '1', 'cache_selected_only': 'False', 'introspect': 'True', 'log_path': '/Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/logs', 'static_parser': 'True', 'invocation_command': 'dbt run --select sales_wide', 'use_colors': 'True', 'fail_fast': 'False', 'version_check': 'True', 'hints_enabled': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'send_anonymous_usage_stats': 'True'}
+[0m09:18:50.308942 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'a6555861-3221-44eb-929f-55de2f694f27', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10ba17f10>]}
+[0m09:18:50.346538 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'a6555861-3221-44eb-929f-55de2f694f27', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10b847cd0>]}
+[0m09:18:50.347051 [info ] [MainThread]: Registered adapter: sqlserver=1.10.1
+[0m09:18:50.398862 [warn ] [MainThread]: [[33mWARNING[0m]: When True, uses SQL Server-native string type mappings: STRING -> VARCHAR(MAX), NCHAR -> NCHAR(1), NVARCHAR -> NVARCHAR(4000). When False (default), preserves legacy mappings: STRING and NVARCHAR -> VARCHAR(8000), NCHAR -> CHAR(1). The new behaviour is intended to become the default in a future release.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_native_string_types` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m09:18:50.399490 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': 'a6555861-3221-44eb-929f-55de2f694f27', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c2d6890>]}
+[0m09:18:50.399837 [warn ] [MainThread]: [[33mWARNING[0m]: When True, dbt transaction hooks (begin/commit) emit real T-SQL BEGIN TRANSACTION / COMMIT TRANSACTION statements. When False (default and legacy), begin/commit are no-ops and each statement is auto-committed by the driver. This means earlier successful statements are not rolled back if a later statement fails. This behavior is intended to become the default in a future release.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_dbt_transactions` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m09:18:50.400187 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': 'a6555861-3221-44eb-929f-55de2f694f27', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c2d7310>]}
+[0m09:18:50.407453 [debug] [MainThread]: checksum: bed11768657b77a668c10da8f2eebbfbd19acd280154f51a0ec69bc064e92266, vars: {}, profile: sales_warehouse, target: dev, version: 1.12.0
+[0m09:18:50.492335 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 0 files changed.
+[0m09:18:50.492667 [debug] [MainThread]: Nothing changed, skipping partial parsing.
+[0m09:18:50.492877 [debug] [MainThread]: Partial parsing enabled, no changes found, skipping parsing
+[0m09:18:50.498031 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'a6555861-3221-44eb-929f-55de2f694f27', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c620890>]}
+[0m09:18:50.578408 [debug] [MainThread]: Wrote artifact WritableManifest to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/manifest.json
+[0m09:18:50.580732 [debug] [MainThread]: Wrote artifact SemanticManifest to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/semantic_manifest.json
+[0m09:18:50.592638 [debug] [MainThread]: Wrote artifact OsiDocument to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/osi_document.json
+[0m09:18:50.600019 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': 'a6555861-3221-44eb-929f-55de2f694f27', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c39be10>]}
+[0m09:18:50.600380 [info ] [MainThread]: Found 8 models, 2 data tests, 3 sources, 536 macros
+[0m09:18:50.600626 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'a6555861-3221-44eb-929f-55de2f694f27', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c138a10>]}
+[0m09:18:50.601531 [info ] [MainThread]: 
+[0m09:18:50.601782 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m09:18:50.601985 [info ] [MainThread]: 
+[0m09:18:50.602340 [debug] [MainThread]: Acquiring new sqlserver connection 'master'
+[0m09:18:50.602823 [debug] [ThreadPool]: Acquiring new sqlserver connection 'list_mart_db'
+[0m09:18:50.613608 [debug] [ThreadPool]: dbt-sqlserver
+[0m09:18:50.615578 [debug] [ThreadPool]: Using sqlserver connection "list_mart_db"
+[0m09:18:50.615923 [debug] [ThreadPool]: On list_mart_db: /* {"app": "dbt", "dbt_version": "1.12.0", "profile_name": "sales_warehouse", "target_name": "dev", "connection_name": "list_mart_db"} */
+USE [mart_db];
+    select  name as [schema]
+    from sys.schemas with (nolock) 
+    OPTION (LABEL = 'dbt-sqlserver');
+
+  
+[0m09:18:50.616158 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m09:18:50.621435 [debug] [ThreadPool]: sqlserver adapter: Using connection string: DRIVER={ODBC Driver 18 for SQL Server};SERVER=192.168.0.116,1433;Database=stage_db;UID=***;PWD=***;encrypt=Yes;TrustServerCertificate=Yes;APP=dbt-sqlserver/1.10.1;Pooling=true;SQL_ATTR_TRACE=SQL_OPT_TRACE_OFF;ConnectRetryCount=3;ConnectRetryInterval=10
+[0m09:19:05.791434 [debug] [ThreadPool]: sqlserver adapter: Got a retryable error when attempting to open a sqlserver connection.
+3 attempts remaining. Retrying in 1 seconds.
+Error:
+('HYT00', '[HYT00] [Microsoft][ODBC Driver 18 for SQL Server]Login timeout expired (0) (SQLDriverConnect)')
+[0m09:19:06.800624 [debug] [ThreadPool]: sqlserver adapter: Using connection string: DRIVER={ODBC Driver 18 for SQL Server};SERVER=192.168.0.116,1433;Database=stage_db;UID=***;PWD=***;encrypt=Yes;TrustServerCertificate=Yes;APP=dbt-sqlserver/1.10.1;Pooling=true;SQL_ATTR_TRACE=SQL_OPT_TRACE_OFF;ConnectRetryCount=3;ConnectRetryInterval=10
+[0m09:19:22.833461 [debug] [ThreadPool]: sqlserver adapter: Got a retryable error when attempting to open a sqlserver connection.
+2 attempts remaining. Retrying in 1 seconds.
+Error:
+('HYT00', '[HYT00] [Microsoft][ODBC Driver 18 for SQL Server]Login timeout expired (0) (SQLDriverConnect)')
+[0m09:19:23.840732 [debug] [ThreadPool]: sqlserver adapter: Using connection string: DRIVER={ODBC Driver 18 for SQL Server};SERVER=192.168.0.116,1433;Database=stage_db;UID=***;PWD=***;encrypt=Yes;TrustServerCertificate=Yes;APP=dbt-sqlserver/1.10.1;Pooling=true;SQL_ATTR_TRACE=SQL_OPT_TRACE_OFF;ConnectRetryCount=3;ConnectRetryInterval=10
+[0m09:19:38.876281 [debug] [ThreadPool]: sqlserver adapter: Got a retryable error when attempting to open a sqlserver connection.
+1 attempts remaining. Retrying in 1 seconds.
+Error:
+('HYT00', '[HYT00] [Microsoft][ODBC Driver 18 for SQL Server]Login timeout expired (0) (SQLDriverConnect)')
+[0m09:19:39.883789 [debug] [ThreadPool]: sqlserver adapter: Using connection string: DRIVER={ODBC Driver 18 for SQL Server};SERVER=192.168.0.116,1433;Database=stage_db;UID=***;PWD=***;encrypt=Yes;TrustServerCertificate=Yes;APP=dbt-sqlserver/1.10.1;Pooling=true;SQL_ATTR_TRACE=SQL_OPT_TRACE_OFF;ConnectRetryCount=3;ConnectRetryInterval=10
+[0m09:19:55.721950 [debug] [ThreadPool]: sqlserver adapter: SQL execution raised FailedToConnectError: Database Error
+  ('HYT00', '[HYT00] [Microsoft][ODBC Driver 18 for SQL Server]Login timeout expired (0) (SQLDriverConnect)')
+[0m09:19:55.723366 [debug] [ThreadPool]: sqlserver adapter: Error running SQL: /* {"app": "dbt", "dbt_version": "1.12.0", "profile_name": "sales_warehouse", "target_name": "dev", "connection_name": "list_mart_db"} */
+USE [mart_db];
+    select  name as [schema]
+    from sys.schemas with (nolock) 
+    OPTION (LABEL = 'dbt-sqlserver');
+
+  
+[0m09:19:55.724096 [debug] [ThreadPool]: sqlserver adapter: Rolling back transaction.
+[0m09:19:55.724918 [debug] [ThreadPool]: On list_mart_db: No close available on handle
+[0m09:19:55.726176 [debug] [ThreadPool]: sqlserver adapter: SQL execution raised FailedToConnectError: Database Error
+  ('HYT00', '[HYT00] [Microsoft][ODBC Driver 18 for SQL Server]Login timeout expired (0) (SQLDriverConnect)')
+[0m09:19:55.726784 [debug] [ThreadPool]: sqlserver adapter: Error running SQL: macro list_schemas
+[0m09:19:55.727324 [debug] [ThreadPool]: sqlserver adapter: Rolling back transaction.
+[0m09:19:55.730408 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m09:19:55.731029 [debug] [MainThread]: Connection 'list_mart_db' was properly closed.
+[0m09:19:55.731815 [info ] [MainThread]: 
+[0m09:19:55.732647 [info ] [MainThread]: Finished running  in 0 hours 1 minutes and 5.13 seconds (65.13s).
+[0m09:19:55.734482 [error] [MainThread]: [[31mERROR[0m]: Encountered an error:
+Database Error
+  ('HYT00', '[HYT00] [Microsoft][ODBC Driver 18 for SQL Server]Login timeout expired (0) (SQLDriverConnect)')
+[0m09:19:55.739639 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": false, "command_wall_clock_time": 65.7421, "process_in_blocks": "0", "process_kernel_time": 0.305277, "process_mem_max_rss": "143228928", "process_out_blocks": "0", "process_user_time": 1.251179}
+[0m09:19:55.740524 [debug] [MainThread]: Command `dbt run` failed at 09:19:55.740405 after 65.74 seconds
+[0m09:19:55.741465 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10bb32e10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c3e1e90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c3b2f50>]}
+[0m09:19:55.742144 [debug] [MainThread]: Flushing usage events
+[0m09:19:56.734055 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m09:42:46.517083 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e2e9cd0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e36f890>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e36c7d0>]}
+
+
+============================== 09:42:46.521120 | 124fbf99-b7c3-47e1-8aa0-b7ad5bf7bb68 ==============================
+[0m09:42:46.521120 [info ] [MainThread]: Running with dbt=1.12.0
+[0m09:42:46.521535 [debug] [MainThread]: running dbt with arguments {'profiles_dir': '/Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse', 'use_colors': 'True', 'no_print': 'None', 'send_anonymous_usage_stats': 'True', 'log_path': '/Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/logs', 'hints_enabled': 'True', 'use_experimental_parser': 'False', 'maximum_seed_size_mib': '1', 'indirect_selection': 'eager', 'target_path': 'None', 'warn_error': 'None', 'invocation_command': 'dbt parse', 'write_json': 'True', 'log_format': 'default', 'debug': 'False', 'log_cache_events': 'False', 'partial_parse': 'True', 'static_parser': 'True', 'quiet': 'False', 'cache_selected_only': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'fail_fast': 'False', 'empty': 'None', 'introspect': 'True', 'version_check': 'True', 'printer_width': '80'}
+[0m09:42:46.770308 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '124fbf99-b7c3-47e1-8aa0-b7ad5bf7bb68', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e8b4c10>]}
+[0m09:42:46.809278 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '124fbf99-b7c3-47e1-8aa0-b7ad5bf7bb68', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10d0d9e50>]}
+[0m09:42:46.809871 [info ] [MainThread]: Registered adapter: sqlserver=1.10.1
+[0m09:42:46.864922 [warn ] [MainThread]: [[33mWARNING[0m]: When True, uses SQL Server-native string type mappings: STRING -> VARCHAR(MAX), NCHAR -> NCHAR(1), NVARCHAR -> NVARCHAR(4000). When False (default), preserves legacy mappings: STRING and NVARCHAR -> VARCHAR(8000), NCHAR -> CHAR(1). The new behaviour is intended to become the default in a future release.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_native_string_types` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m09:42:46.865543 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': '124fbf99-b7c3-47e1-8aa0-b7ad5bf7bb68', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e3ea710>]}
+[0m09:42:46.865916 [warn ] [MainThread]: [[33mWARNING[0m]: When True, dbt transaction hooks (begin/commit) emit real T-SQL BEGIN TRANSACTION / COMMIT TRANSACTION statements. When False (default and legacy), begin/commit are no-ops and each statement is auto-committed by the driver. This means earlier successful statements are not rolled back if a later statement fails. This behavior is intended to become the default in a future release.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_dbt_transactions` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m09:42:46.866232 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': '124fbf99-b7c3-47e1-8aa0-b7ad5bf7bb68', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10eb1af50>]}
+[0m09:42:46.872652 [debug] [MainThread]: checksum: bed11768657b77a668c10da8f2eebbfbd19acd280154f51a0ec69bc064e92266, vars: {}, profile: sales_warehouse, target: dev, version: 1.12.0
+[0m09:42:46.959493 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 1 files changed.
+[0m09:42:46.960124 [debug] [MainThread]: Partial parsing: updated file: sales_warehouse://models/staging/sources.yml
+[0m09:42:47.090208 [warn ] [MainThread]: [[33mWARNING[0m]: When True, uses dbt-core's standard schema concatenation (`target.schema` + `_` + `custom_schema_name`). When False (default), uses legacy adapter behaviour: `custom_schema_name` is used directly without prefixing `target.schema`. For a permanent solution, override the `sqlserver__generate_schema_name` macro in your project instead.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_default_schema_concat` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m09:42:47.090618 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': '124fbf99-b7c3-47e1-8aa0-b7ad5bf7bb68', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10ef57a90>]}
+[0m09:42:47.272747 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '124fbf99-b7c3-47e1-8aa0-b7ad5bf7bb68', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10f41ddd0>]}
+[0m09:42:47.275505 [info ] [MainThread]: Performance info: /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/perf_info.json
+[0m09:42:47.339395 [debug] [MainThread]: Wrote artifact WritableManifest to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/manifest.json
+[0m09:42:47.341659 [debug] [MainThread]: Wrote artifact SemanticManifest to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/semantic_manifest.json
+[0m09:42:47.354701 [debug] [MainThread]: Wrote artifact OsiDocument to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/osi_document.json
+[0m09:42:47.356975 [debug] [MainThread]: Resource report: {"command_name": "parse", "command_success": true, "command_wall_clock_time": 0.9073471, "process_in_blocks": "0", "process_kernel_time": 0.239632, "process_mem_max_rss": "155844608", "process_out_blocks": "0", "process_user_time": 1.379732}
+[0m09:42:47.357301 [debug] [MainThread]: Command `dbt parse` succeeded at 09:42:47.357254 after 0.91 seconds
+[0m09:42:47.357546 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e2b4050>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e36c7d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109fb0690>]}
+[0m09:42:47.357803 [debug] [MainThread]: Flushing usage events
+[0m09:42:48.408107 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m09:42:49.735695 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a1a50d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a257890>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a254690>]}
+
+
+============================== 09:42:49.738370 | 7aab6ee0-2264-46c7-b609-8984ccfcda08 ==============================
+[0m09:42:49.738370 [info ] [MainThread]: Running with dbt=1.12.0
+[0m09:42:49.738748 [debug] [MainThread]: running dbt with arguments {'hints_enabled': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'log_cache_events': 'False', 'fail_fast': 'False', 'static_parser': 'True', 'maximum_seed_size_mib': '1', 'empty': 'None', 'debug': 'False', 'target_path': 'None', 'introspect': 'True', 'printer_width': '80', 'warn_error': 'None', 'profiles_dir': '/Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse', 'partial_parse': 'True', 'indirect_selection': 'eager', 'quiet': 'False', 'invocation_command': 'dbt parse', 'cache_selected_only': 'False', 'use_colors': 'True', 'log_path': '/Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/logs', 'version_check': 'True', 'send_anonymous_usage_stats': 'True', 'no_print': 'None', 'use_experimental_parser': 'False', 'log_format': 'default', 'write_json': 'True'}
+[0m09:42:50.002368 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '7aab6ee0-2264-46c7-b609-8984ccfcda08', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a1d2550>]}
+[0m09:42:50.042243 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '7aab6ee0-2264-46c7-b609-8984ccfcda08', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x108fbdcd0>]}
+[0m09:42:50.042802 [info ] [MainThread]: Registered adapter: sqlserver=1.10.1
+[0m09:42:50.096375 [warn ] [MainThread]: [[33mWARNING[0m]: When True, uses SQL Server-native string type mappings: STRING -> VARCHAR(MAX), NCHAR -> NCHAR(1), NVARCHAR -> NVARCHAR(4000). When False (default), preserves legacy mappings: STRING and NVARCHAR -> VARCHAR(8000), NCHAR -> CHAR(1). The new behaviour is intended to become the default in a future release.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_native_string_types` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m09:42:50.096924 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': '7aab6ee0-2264-46c7-b609-8984ccfcda08', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10aa03090>]}
+[0m09:42:50.097259 [warn ] [MainThread]: [[33mWARNING[0m]: When True, dbt transaction hooks (begin/commit) emit real T-SQL BEGIN TRANSACTION / COMMIT TRANSACTION statements. When False (default and legacy), begin/commit are no-ops and each statement is auto-committed by the driver. This means earlier successful statements are not rolled back if a later statement fails. This behavior is intended to become the default in a future release.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_dbt_transactions` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m09:42:50.097546 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': '7aab6ee0-2264-46c7-b609-8984ccfcda08', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10aa03090>]}
+[0m09:42:50.103237 [debug] [MainThread]: checksum: bed11768657b77a668c10da8f2eebbfbd19acd280154f51a0ec69bc064e92266, vars: {}, profile: sales_warehouse, target: dev, version: 1.12.0
+[0m09:42:50.190678 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 1 files changed.
+[0m09:42:50.191315 [debug] [MainThread]: Partial parsing: updated file: sales_warehouse://models/staging/sources.yml
+[0m09:42:50.325035 [warn ] [MainThread]: [[33mWARNING[0m]: When True, uses dbt-core's standard schema concatenation (`target.schema` + `_` + `custom_schema_name`). When False (default), uses legacy adapter behaviour: `custom_schema_name` is used directly without prefixing `target.schema`. For a permanent solution, override the `sqlserver__generate_schema_name` macro in your project instead.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_default_schema_concat` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m09:42:50.325549 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': '7aab6ee0-2264-46c7-b609-8984ccfcda08', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10ae34290>]}
+[0m09:42:50.522393 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '7aab6ee0-2264-46c7-b609-8984ccfcda08', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x108fcdfd0>]}
+[0m09:42:50.524390 [info ] [MainThread]: Performance info: /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/perf_info.json
+[0m09:42:50.583983 [debug] [MainThread]: Wrote artifact WritableManifest to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/manifest.json
+[0m09:42:50.585760 [debug] [MainThread]: Wrote artifact SemanticManifest to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/semantic_manifest.json
+[0m09:42:50.596843 [debug] [MainThread]: Wrote artifact OsiDocument to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/osi_document.json
+[0m09:42:50.598726 [debug] [MainThread]: Resource report: {"command_name": "parse", "command_success": true, "command_wall_clock_time": 0.92371935, "process_in_blocks": "0", "process_kernel_time": 0.207645, "process_mem_max_rss": "155893760", "process_out_blocks": "0", "process_user_time": 1.412922}
+[0m09:42:50.599042 [debug] [MainThread]: Command `dbt parse` succeeded at 09:42:50.598992 after 0.92 seconds
+[0m09:42:50.599307 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a24a710>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10aa50d10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x105e60690>]}
+[0m09:42:50.599574 [debug] [MainThread]: Flushing usage events
+[0m09:42:51.509249 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m09:42:52.742600 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10bf82550>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10bf8b810>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10bf88550>]}
+
+
+============================== 09:42:52.745175 | d5afb73e-dceb-48d3-95c2-15213b651acc ==============================
+[0m09:42:52.745175 [info ] [MainThread]: Running with dbt=1.12.0
+[0m09:42:52.745555 [debug] [MainThread]: running dbt with arguments {'maximum_seed_size_mib': '1', 'log_format': 'default', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'debug': 'False', 'profiles_dir': '/Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse', 'warn_error': 'None', 'fail_fast': 'False', 'partial_parse': 'True', 'log_path': '/Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/logs', 'write_json': 'True', 'use_colors': 'True', 'log_cache_events': 'False', 'quiet': 'False', 'cache_selected_only': 'False', 'use_experimental_parser': 'False', 'version_check': 'True', 'printer_width': '80', 'introspect': 'True', 'target_path': 'None', 'empty': 'None', 'send_anonymous_usage_stats': 'True', 'static_parser': 'True', 'no_print': 'None', 'invocation_command': 'dbt parse', 'hints_enabled': 'True', 'indirect_selection': 'eager'}
+[0m09:42:52.998564 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'd5afb73e-dceb-48d3-95c2-15213b651acc', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10bedbad0>]}
+[0m09:42:53.036225 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'd5afb73e-dceb-48d3-95c2-15213b651acc', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10acf5f90>]}
+[0m09:42:53.036760 [info ] [MainThread]: Registered adapter: sqlserver=1.10.1
+[0m09:42:53.089067 [warn ] [MainThread]: [[33mWARNING[0m]: When True, uses SQL Server-native string type mappings: STRING -> VARCHAR(MAX), NCHAR -> NCHAR(1), NVARCHAR -> NVARCHAR(4000). When False (default), preserves legacy mappings: STRING and NVARCHAR -> VARCHAR(8000), NCHAR -> CHAR(1). The new behaviour is intended to become the default in a future release.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_native_string_types` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m09:42:53.089622 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': 'd5afb73e-dceb-48d3-95c2-15213b651acc', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c73ea50>]}
+[0m09:42:53.089959 [warn ] [MainThread]: [[33mWARNING[0m]: When True, dbt transaction hooks (begin/commit) emit real T-SQL BEGIN TRANSACTION / COMMIT TRANSACTION statements. When False (default and legacy), begin/commit are no-ops and each statement is auto-committed by the driver. This means earlier successful statements are not rolled back if a later statement fails. This behavior is intended to become the default in a future release.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_dbt_transactions` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m09:42:53.090239 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': 'd5afb73e-dceb-48d3-95c2-15213b651acc', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c73ea50>]}
+[0m09:42:53.095814 [debug] [MainThread]: checksum: bed11768657b77a668c10da8f2eebbfbd19acd280154f51a0ec69bc064e92266, vars: {}, profile: sales_warehouse, target: dev, version: 1.12.0
+[0m09:42:53.184778 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 1 files changed.
+[0m09:42:53.185405 [debug] [MainThread]: Partial parsing: updated file: sales_warehouse://models/staging/sources.yml
+[0m09:42:53.307754 [warn ] [MainThread]: [[33mWARNING[0m]: When True, uses dbt-core's standard schema concatenation (`target.schema` + `_` + `custom_schema_name`). When False (default), uses legacy adapter behaviour: `custom_schema_name` is used directly without prefixing `target.schema`. For a permanent solution, override the `sqlserver__generate_schema_name` macro in your project instead.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_default_schema_concat` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m09:42:53.308173 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': 'd5afb73e-dceb-48d3-95c2-15213b651acc', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10cb773d0>]}
+[0m09:42:53.486048 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'd5afb73e-dceb-48d3-95c2-15213b651acc', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10d02a710>]}
+[0m09:42:53.488148 [info ] [MainThread]: Performance info: /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/perf_info.json
+[0m09:42:53.547798 [debug] [MainThread]: Wrote artifact WritableManifest to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/manifest.json
+[0m09:42:53.549540 [debug] [MainThread]: Wrote artifact SemanticManifest to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/semantic_manifest.json
+[0m09:42:53.562976 [debug] [MainThread]: Wrote artifact OsiDocument to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/osi_document.json
+[0m09:42:53.564831 [debug] [MainThread]: Resource report: {"command_name": "parse", "command_success": true, "command_wall_clock_time": 0.88055104, "process_in_blocks": "0", "process_kernel_time": 0.20374, "process_mem_max_rss": "155877376", "process_out_blocks": "0", "process_user_time": 1.37647}
+[0m09:42:53.565227 [debug] [MainThread]: Command `dbt parse` succeeded at 09:42:53.565155 after 0.88 seconds
+[0m09:42:53.565535 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10bf9e150>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10bf9ff10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x107bb4690>]}
+[0m09:42:53.565813 [debug] [MainThread]: Flushing usage events
+[0m09:42:54.539010 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m09:42:55.687162 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10dd7fa50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10dd7fd90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10de28ad0>]}
+
+
+============================== 09:42:55.690194 | 3fb6b0da-caee-4499-b0aa-974aa199dcb4 ==============================
+[0m09:42:55.690194 [info ] [MainThread]: Running with dbt=1.12.0
+[0m09:42:55.690654 [debug] [MainThread]: running dbt with arguments {'log_format': 'default', 'fail_fast': 'False', 'quiet': 'False', 'invocation_command': 'dbt parse', 'version_check': 'True', 'maximum_seed_size_mib': '1', 'profiles_dir': '/Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse', 'send_anonymous_usage_stats': 'True', 'empty': 'None', 'indirect_selection': 'eager', 'target_path': 'None', 'warn_error': 'None', 'printer_width': '80', 'partial_parse': 'True', 'cache_selected_only': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'debug': 'False', 'hints_enabled': 'True', 'log_path': '/Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/logs', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'write_json': 'True', 'introspect': 'True', 'no_print': 'None', 'static_parser': 'True', 'log_cache_events': 'False'}
+[0m09:42:55.885665 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '3fb6b0da-caee-4499-b0aa-974aa199dcb4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10dd97010>]}
+[0m09:42:55.927214 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '3fb6b0da-caee-4499-b0aa-974aa199dcb4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10cb99d50>]}
+[0m09:42:55.927854 [info ] [MainThread]: Registered adapter: sqlserver=1.10.1
+[0m09:42:55.981020 [warn ] [MainThread]: [[33mWARNING[0m]: When True, uses SQL Server-native string type mappings: STRING -> VARCHAR(MAX), NCHAR -> NCHAR(1), NVARCHAR -> NVARCHAR(4000). When False (default), preserves legacy mappings: STRING and NVARCHAR -> VARCHAR(8000), NCHAR -> CHAR(1). The new behaviour is intended to become the default in a future release.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_native_string_types` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m09:42:55.981680 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': '3fb6b0da-caee-4499-b0aa-974aa199dcb4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e5d7510>]}
+[0m09:42:55.982037 [warn ] [MainThread]: [[33mWARNING[0m]: When True, dbt transaction hooks (begin/commit) emit real T-SQL BEGIN TRANSACTION / COMMIT TRANSACTION statements. When False (default and legacy), begin/commit are no-ops and each statement is auto-committed by the driver. This means earlier successful statements are not rolled back if a later statement fails. This behavior is intended to become the default in a future release.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_dbt_transactions` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m09:42:55.982325 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': '3fb6b0da-caee-4499-b0aa-974aa199dcb4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e5d7510>]}
+[0m09:42:55.988517 [debug] [MainThread]: checksum: bed11768657b77a668c10da8f2eebbfbd19acd280154f51a0ec69bc064e92266, vars: {}, profile: sales_warehouse, target: dev, version: 1.12.0
+[0m09:42:56.068570 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 1 files changed.
+[0m09:42:56.069263 [debug] [MainThread]: Partial parsing: updated file: sales_warehouse://models/staging/sources.yml
+[0m09:42:56.205075 [warn ] [MainThread]: [[33mWARNING[0m]: When True, uses dbt-core's standard schema concatenation (`target.schema` + `_` + `custom_schema_name`). When False (default), uses legacy adapter behaviour: `custom_schema_name` is used directly without prefixing `target.schema`. For a permanent solution, override the `sqlserver__generate_schema_name` macro in your project instead.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_default_schema_concat` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m09:42:56.205709 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': '3fb6b0da-caee-4499-b0aa-974aa199dcb4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e9e3510>]}
+[0m09:42:56.392499 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '3fb6b0da-caee-4499-b0aa-974aa199dcb4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10eb30e50>]}
+[0m09:42:56.394575 [info ] [MainThread]: Performance info: /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/perf_info.json
+[0m09:42:56.454485 [debug] [MainThread]: Wrote artifact WritableManifest to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/manifest.json
+[0m09:42:56.456210 [debug] [MainThread]: Wrote artifact SemanticManifest to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/semantic_manifest.json
+[0m09:42:56.462924 [debug] [MainThread]: Wrote artifact OsiDocument to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/osi_document.json
+[0m09:42:56.464656 [debug] [MainThread]: Resource report: {"command_name": "parse", "command_success": true, "command_wall_clock_time": 0.83528054, "process_in_blocks": "0", "process_kernel_time": 0.231722, "process_mem_max_rss": "152289280", "process_out_blocks": "0", "process_user_time": 1.456224}
+[0m09:42:56.464987 [debug] [MainThread]: Command `dbt parse` succeeded at 09:42:56.464934 after 0.84 seconds
+[0m09:42:56.465260 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10d65d990>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10eecbbd0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10dd63990>]}
+[0m09:42:56.465534 [debug] [MainThread]: Flushing usage events
+[0m09:42:57.354831 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m10:11:45.471102 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c1793d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c16c050>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c224810>]}
+
+
+============================== 10:11:45.475370 | 51c7a7a6-bdca-4e18-8e15-5c27dd67e5aa ==============================
+[0m10:11:45.475370 [info ] [MainThread]: Running with dbt=1.12.0
+[0m10:11:45.475750 [debug] [MainThread]: running dbt with arguments {'write_json': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'indirect_selection': 'eager', 'invocation_command': 'dbt parse', 'hints_enabled': 'True', 'log_path': '/Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/logs', 'use_experimental_parser': 'False', 'log_cache_events': 'False', 'debug': 'False', 'no_print': 'None', 'target_path': 'None', 'profiles_dir': '/Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse', 'warn_error': 'None', 'maximum_seed_size_mib': '1', 'quiet': 'False', 'introspect': 'True', 'static_parser': 'True', 'send_anonymous_usage_stats': 'True', 'fail_fast': 'False', 'partial_parse': 'True', 'use_colors': 'True', 'version_check': 'True', 'cache_selected_only': 'False', 'printer_width': '80', 'log_format': 'default', 'empty': 'None'}
+[0m10:11:45.691424 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '51c7a7a6-bdca-4e18-8e15-5c27dd67e5aa', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10b72ac90>]}
+[0m10:11:45.727953 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '51c7a7a6-bdca-4e18-8e15-5c27dd67e5aa', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10af91f10>]}
+[0m10:11:45.728522 [info ] [MainThread]: Registered adapter: sqlserver=1.10.1
+[0m10:11:45.788641 [warn ] [MainThread]: [[33mWARNING[0m]: When True, uses SQL Server-native string type mappings: STRING -> VARCHAR(MAX), NCHAR -> NCHAR(1), NVARCHAR -> NVARCHAR(4000). When False (default), preserves legacy mappings: STRING and NVARCHAR -> VARCHAR(8000), NCHAR -> CHAR(1). The new behaviour is intended to become the default in a future release.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_native_string_types` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m10:11:45.789202 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': '51c7a7a6-bdca-4e18-8e15-5c27dd67e5aa', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c8bb3d0>]}
+[0m10:11:45.789521 [warn ] [MainThread]: [[33mWARNING[0m]: When True, dbt transaction hooks (begin/commit) emit real T-SQL BEGIN TRANSACTION / COMMIT TRANSACTION statements. When False (default and legacy), begin/commit are no-ops and each statement is auto-committed by the driver. This means earlier successful statements are not rolled back if a later statement fails. This behavior is intended to become the default in a future release.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_dbt_transactions` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m10:11:45.789791 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': '51c7a7a6-bdca-4e18-8e15-5c27dd67e5aa', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c9d7710>]}
+[0m10:11:45.796026 [debug] [MainThread]: checksum: bed11768657b77a668c10da8f2eebbfbd19acd280154f51a0ec69bc064e92266, vars: {}, profile: sales_warehouse, target: dev, version: 1.12.0
+[0m10:11:45.881453 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 1 files added, 0 files changed.
+[0m10:11:45.881832 [debug] [MainThread]: Partial parsing: added file: sales_warehouse://models/core/sources.yml
+[0m10:11:45.995453 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '51c7a7a6-bdca-4e18-8e15-5c27dd67e5aa', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c17b7d0>]}
+[0m10:11:45.997806 [info ] [MainThread]: Performance info: /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/perf_info.json
+[0m10:11:46.056347 [debug] [MainThread]: Wrote artifact WritableManifest to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/manifest.json
+[0m10:11:46.058678 [debug] [MainThread]: Wrote artifact SemanticManifest to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/semantic_manifest.json
+[0m10:11:46.069746 [debug] [MainThread]: Wrote artifact OsiDocument to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/osi_document.json
+[0m10:11:46.074931 [debug] [MainThread]: Resource report: {"command_name": "parse", "command_success": true, "command_wall_clock_time": 0.66075915, "process_in_blocks": "0", "process_kernel_time": 0.230921, "process_mem_max_rss": "146440192", "process_out_blocks": "0", "process_user_time": 1.162586}
+[0m10:11:46.075288 [debug] [MainThread]: Command `dbt parse` succeeded at 10:11:46.075234 after 0.66 seconds
+[0m10:11:46.075569 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c240850>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x107d74690>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c15f8d0>]}
+[0m10:11:46.075842 [debug] [MainThread]: Flushing usage events
+[0m10:11:47.037437 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m10:11:48.353684 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10bfb1d50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c063610>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c060550>]}
+
+
+============================== 10:11:48.356229 | 977a14b3-3dc3-4341-af6d-cde9afaafedf ==============================
+[0m10:11:48.356229 [info ] [MainThread]: Running with dbt=1.12.0
+[0m10:11:48.356653 [debug] [MainThread]: running dbt with arguments {'profiles_dir': '/Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse', 'fail_fast': 'False', 'log_format': 'default', 'send_anonymous_usage_stats': 'True', 'use_experimental_parser': 'False', 'static_parser': 'True', 'no_print': 'None', 'debug': 'False', 'partial_parse': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'introspect': 'True', 'version_check': 'True', 'invocation_command': 'dbt parse', 'log_path': '/Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/logs', 'printer_width': '80', 'maximum_seed_size_mib': '1', 'warn_error': 'None', 'target_path': 'None', 'quiet': 'False', 'indirect_selection': 'eager', 'use_colors': 'True', 'empty': 'None', 'cache_selected_only': 'False', 'log_cache_events': 'False', 'hints_enabled': 'True', 'write_json': 'True'}
+[0m10:11:48.564300 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '977a14b3-3dc3-4341-af6d-cde9afaafedf', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c0a3750>]}
+[0m10:11:48.605641 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '977a14b3-3dc3-4341-af6d-cde9afaafedf', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10adca190>]}
+[0m10:11:48.606284 [info ] [MainThread]: Registered adapter: sqlserver=1.10.1
+[0m10:11:48.658162 [warn ] [MainThread]: [[33mWARNING[0m]: When True, uses SQL Server-native string type mappings: STRING -> VARCHAR(MAX), NCHAR -> NCHAR(1), NVARCHAR -> NVARCHAR(4000). When False (default), preserves legacy mappings: STRING and NVARCHAR -> VARCHAR(8000), NCHAR -> CHAR(1). The new behaviour is intended to become the default in a future release.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_native_string_types` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m10:11:48.658753 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': '977a14b3-3dc3-4341-af6d-cde9afaafedf', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c816a10>]}
+[0m10:11:48.659101 [warn ] [MainThread]: [[33mWARNING[0m]: When True, dbt transaction hooks (begin/commit) emit real T-SQL BEGIN TRANSACTION / COMMIT TRANSACTION statements. When False (default and legacy), begin/commit are no-ops and each statement is auto-committed by the driver. This means earlier successful statements are not rolled back if a later statement fails. This behavior is intended to become the default in a future release.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_dbt_transactions` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m10:11:48.659386 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': '977a14b3-3dc3-4341-af6d-cde9afaafedf', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c816a10>]}
+[0m10:11:48.665828 [debug] [MainThread]: checksum: bed11768657b77a668c10da8f2eebbfbd19acd280154f51a0ec69bc064e92266, vars: {}, profile: sales_warehouse, target: dev, version: 1.12.0
+[0m10:11:48.744443 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 1 files added, 0 files changed.
+[0m10:11:48.745110 [debug] [MainThread]: Partial parsing: added file: sales_warehouse://models/marts/sources.yml
+[0m10:11:48.867868 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '977a14b3-3dc3-4341-af6d-cde9afaafedf', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c447750>]}
+[0m10:11:48.870175 [info ] [MainThread]: Performance info: /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/perf_info.json
+[0m10:11:48.934763 [debug] [MainThread]: Wrote artifact WritableManifest to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/manifest.json
+[0m10:11:48.936636 [debug] [MainThread]: Wrote artifact SemanticManifest to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/semantic_manifest.json
+[0m10:11:48.943637 [debug] [MainThread]: Wrote artifact OsiDocument to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/osi_document.json
+[0m10:11:48.945480 [debug] [MainThread]: Resource report: {"command_name": "parse", "command_success": true, "command_wall_clock_time": 0.6510562, "process_in_blocks": "0", "process_kernel_time": 0.236583, "process_mem_max_rss": "142688256", "process_out_blocks": "0", "process_user_time": 1.334408}
+[0m10:11:48.945839 [debug] [MainThread]: Command `dbt parse` succeeded at 10:11:48.945780 after 0.65 seconds
+[0m10:11:48.946131 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c056710>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c057d90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x102ddc690>]}
+[0m10:11:48.946387 [debug] [MainThread]: Flushing usage events
+[0m10:11:49.924773 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m10:12:09.746799 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1096fb9d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1097ab650>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1097a8790>]}
+
+
+============================== 10:12:09.751193 | c05fbe09-c6de-4b5a-bd0d-a28c5a377357 ==============================
+[0m10:12:09.751193 [info ] [MainThread]: Running with dbt=1.12.0
+[0m10:12:09.751580 [debug] [MainThread]: running dbt with arguments {'warn_error': 'None', 'send_anonymous_usage_stats': 'True', 'indirect_selection': 'eager', 'fail_fast': 'False', 'version_check': 'True', 'no_print': 'None', 'debug': 'False', 'introspect': 'True', 'maximum_seed_size_mib': '1', 'target_path': 'None', 'log_format': 'default', 'profiles_dir': '/Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse', 'cache_selected_only': 'False', 'invocation_command': 'dbt parse', 'static_parser': 'True', 'printer_width': '80', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'use_experimental_parser': 'False', 'quiet': 'False', 'log_path': '/Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/logs', 'hints_enabled': 'True', 'partial_parse': 'True', 'log_cache_events': 'False', 'empty': 'None', 'use_colors': 'True', 'write_json': 'True'}
+[0m10:12:09.991619 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'c05fbe09-c6de-4b5a-bd0d-a28c5a377357', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109b1cc90>]}
+[0m10:12:10.029701 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'c05fbe09-c6de-4b5a-bd0d-a28c5a377357', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x108511d90>]}
+[0m10:12:10.030217 [info ] [MainThread]: Registered adapter: sqlserver=1.10.1
+[0m10:12:10.084403 [warn ] [MainThread]: [[33mWARNING[0m]: When True, uses SQL Server-native string type mappings: STRING -> VARCHAR(MAX), NCHAR -> NCHAR(1), NVARCHAR -> NVARCHAR(4000). When False (default), preserves legacy mappings: STRING and NVARCHAR -> VARCHAR(8000), NCHAR -> CHAR(1). The new behaviour is intended to become the default in a future release.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_native_string_types` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m10:12:10.084948 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': 'c05fbe09-c6de-4b5a-bd0d-a28c5a377357', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109b66c90>]}
+[0m10:12:10.085263 [warn ] [MainThread]: [[33mWARNING[0m]: When True, dbt transaction hooks (begin/commit) emit real T-SQL BEGIN TRANSACTION / COMMIT TRANSACTION statements. When False (default and legacy), begin/commit are no-ops and each statement is auto-committed by the driver. This means earlier successful statements are not rolled back if a later statement fails. This behavior is intended to become the default in a future release.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_dbt_transactions` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m10:12:10.085543 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': 'c05fbe09-c6de-4b5a-bd0d-a28c5a377357', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109f572d0>]}
+[0m10:12:10.091230 [debug] [MainThread]: checksum: bed11768657b77a668c10da8f2eebbfbd19acd280154f51a0ec69bc064e92266, vars: {}, profile: sales_warehouse, target: dev, version: 1.12.0
+[0m10:12:10.183127 [debug] [MainThread]: Partial parsing enabled: 1 files deleted, 0 files added, 1 files changed.
+[0m10:12:10.183599 [debug] [MainThread]: Partial parsing: updated file: sales_warehouse://models/staging/sources.yml
+[0m10:12:10.304858 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'c05fbe09-c6de-4b5a-bd0d-a28c5a377357', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x108503c50>]}
+[0m10:12:10.307382 [info ] [MainThread]: Performance info: /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/perf_info.json
+[0m10:12:10.369254 [debug] [MainThread]: Wrote artifact WritableManifest to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/manifest.json
+[0m10:12:10.371379 [debug] [MainThread]: Wrote artifact SemanticManifest to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/semantic_manifest.json
+[0m10:12:10.382722 [debug] [MainThread]: Wrote artifact OsiDocument to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/osi_document.json
+[0m10:12:10.384715 [debug] [MainThread]: Resource report: {"command_name": "parse", "command_success": true, "command_wall_clock_time": 0.6965159, "process_in_blocks": "0", "process_kernel_time": 0.233304, "process_mem_max_rss": "143589376", "process_out_blocks": "0", "process_user_time": 1.19262}
+[0m10:12:10.385032 [debug] [MainThread]: Command `dbt parse` succeeded at 10:12:10.384981 after 0.70 seconds
+[0m10:12:10.385292 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1097c2350>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x105390610>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a2eb490>]}
+[0m10:12:10.385553 [debug] [MainThread]: Flushing usage events
+[0m10:12:11.338218 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m10:12:12.558081 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10dbaafd0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10db076d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10dbb4450>]}
+
+
+============================== 10:12:12.562027 | c87975dd-9f66-45b9-86e4-deed080af8bc ==============================
+[0m10:12:12.562027 [info ] [MainThread]: Running with dbt=1.12.0
+[0m10:12:12.562516 [debug] [MainThread]: running dbt with arguments {'version_check': 'True', 'introspect': 'True', 'profiles_dir': '/Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse', 'no_print': 'None', 'log_cache_events': 'False', 'use_colors': 'True', 'indirect_selection': 'eager', 'maximum_seed_size_mib': '1', 'printer_width': '80', 'debug': 'False', 'partial_parse': 'True', 'log_path': '/Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/logs', 'invocation_command': 'dbt parse', 'fail_fast': 'False', 'send_anonymous_usage_stats': 'True', 'use_experimental_parser': 'False', 'cache_selected_only': 'False', 'hints_enabled': 'True', 'quiet': 'False', 'static_parser': 'True', 'warn_error': 'None', 'log_format': 'default', 'write_json': 'True', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'empty': 'None'}
+[0m10:12:12.743144 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'c87975dd-9f66-45b9-86e4-deed080af8bc', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10db4d4d0>]}
+[0m10:12:12.779525 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'c87975dd-9f66-45b9-86e4-deed080af8bc', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c91df50>]}
+[0m10:12:12.780055 [info ] [MainThread]: Registered adapter: sqlserver=1.10.1
+[0m10:12:12.829361 [warn ] [MainThread]: [[33mWARNING[0m]: When True, uses SQL Server-native string type mappings: STRING -> VARCHAR(MAX), NCHAR -> NCHAR(1), NVARCHAR -> NVARCHAR(4000). When False (default), preserves legacy mappings: STRING and NVARCHAR -> VARCHAR(8000), NCHAR -> CHAR(1). The new behaviour is intended to become the default in a future release.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_native_string_types` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m10:12:12.829902 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': 'c87975dd-9f66-45b9-86e4-deed080af8bc', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e367290>]}
+[0m10:12:12.830227 [warn ] [MainThread]: [[33mWARNING[0m]: When True, dbt transaction hooks (begin/commit) emit real T-SQL BEGIN TRANSACTION / COMMIT TRANSACTION statements. When False (default and legacy), begin/commit are no-ops and each statement is auto-committed by the driver. This means earlier successful statements are not rolled back if a later statement fails. This behavior is intended to become the default in a future release.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_dbt_transactions` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m10:12:12.830495 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': 'c87975dd-9f66-45b9-86e4-deed080af8bc', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e367310>]}
+[0m10:12:12.835355 [debug] [MainThread]: checksum: bed11768657b77a668c10da8f2eebbfbd19acd280154f51a0ec69bc064e92266, vars: {}, profile: sales_warehouse, target: dev, version: 1.12.0
+[0m10:12:12.922035 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 1 files changed.
+[0m10:12:12.922467 [debug] [MainThread]: Partial parsing: updated file: sales_warehouse://models/staging/sources.yml
+[0m10:12:12.973180 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'c87975dd-9f66-45b9-86e4-deed080af8bc', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c92e250>]}
+[0m10:12:12.975130 [info ] [MainThread]: Performance info: /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/perf_info.json
+[0m10:12:13.039530 [debug] [MainThread]: Wrote artifact WritableManifest to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/manifest.json
+[0m10:12:13.041176 [debug] [MainThread]: Wrote artifact SemanticManifest to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/semantic_manifest.json
+[0m10:12:13.051062 [debug] [MainThread]: Wrote artifact OsiDocument to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/osi_document.json
+[0m10:12:13.052916 [debug] [MainThread]: Resource report: {"command_name": "parse", "command_success": true, "command_wall_clock_time": 0.55280614, "process_in_blocks": "0", "process_kernel_time": 0.212801, "process_mem_max_rss": "144244736", "process_out_blocks": "0", "process_user_time": 1.125784}
+[0m10:12:13.053231 [debug] [MainThread]: Command `dbt parse` succeeded at 10:12:13.053184 after 0.55 seconds
+[0m10:12:13.053501 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10dbb71d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10dbb7b10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e5cde10>]}
+[0m10:12:13.053758 [debug] [MainThread]: Flushing usage events
+[0m10:12:14.055375 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m10:12:15.242879 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a2c1d90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a36fc10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a36c690>]}
+
+
+============================== 10:12:15.245486 | 0ea5ae4b-07ea-4214-9165-5fc3e6498932 ==============================
+[0m10:12:15.245486 [info ] [MainThread]: Running with dbt=1.12.0
+[0m10:12:15.245871 [debug] [MainThread]: running dbt with arguments {'no_print': 'None', 'debug': 'False', 'cache_selected_only': 'False', 'fail_fast': 'False', 'partial_parse': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'indirect_selection': 'eager', 'use_experimental_parser': 'False', 'target_path': 'None', 'write_json': 'True', 'use_colors': 'True', 'log_cache_events': 'False', 'quiet': 'False', 'empty': 'None', 'version_check': 'True', 'profiles_dir': '/Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse', 'log_path': '/Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/logs', 'warn_error': 'None', 'invocation_command': 'dbt parse', 'send_anonymous_usage_stats': 'True', 'printer_width': '80', 'hints_enabled': 'True', 'log_format': 'default', 'introspect': 'True', 'static_parser': 'True', 'maximum_seed_size_mib': '1'}
+[0m10:12:15.415883 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '0ea5ae4b-07ea-4214-9165-5fc3e6498932', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a6f7f50>]}
+[0m10:12:15.452464 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '0ea5ae4b-07ea-4214-9165-5fc3e6498932', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1090dde50>]}
+[0m10:12:15.452949 [info ] [MainThread]: Registered adapter: sqlserver=1.10.1
+[0m10:12:15.502495 [warn ] [MainThread]: [[33mWARNING[0m]: When True, uses SQL Server-native string type mappings: STRING -> VARCHAR(MAX), NCHAR -> NCHAR(1), NVARCHAR -> NVARCHAR(4000). When False (default), preserves legacy mappings: STRING and NVARCHAR -> VARCHAR(8000), NCHAR -> CHAR(1). The new behaviour is intended to become the default in a future release.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_native_string_types` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m10:12:15.503056 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': '0ea5ae4b-07ea-4214-9165-5fc3e6498932', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10ab1f2d0>]}
+[0m10:12:15.503380 [warn ] [MainThread]: [[33mWARNING[0m]: When True, dbt transaction hooks (begin/commit) emit real T-SQL BEGIN TRANSACTION / COMMIT TRANSACTION statements. When False (default and legacy), begin/commit are no-ops and each statement is auto-committed by the driver. This means earlier successful statements are not rolled back if a later statement fails. This behavior is intended to become the default in a future release.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_dbt_transactions` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m10:12:15.503651 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': '0ea5ae4b-07ea-4214-9165-5fc3e6498932', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10ab1f2d0>]}
+[0m10:12:15.509398 [debug] [MainThread]: checksum: bed11768657b77a668c10da8f2eebbfbd19acd280154f51a0ec69bc064e92266, vars: {}, profile: sales_warehouse, target: dev, version: 1.12.0
+[0m10:12:15.594641 [debug] [MainThread]: Partial parsing enabled: 1 files deleted, 0 files added, 0 files changed.
+[0m10:12:15.642070 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '0ea5ae4b-07ea-4214-9165-5fc3e6498932', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a349010>]}
+[0m10:12:15.644000 [info ] [MainThread]: Performance info: /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/perf_info.json
+[0m10:12:15.712081 [debug] [MainThread]: Wrote artifact WritableManifest to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/manifest.json
+[0m10:12:15.713721 [debug] [MainThread]: Wrote artifact SemanticManifest to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/semantic_manifest.json
+[0m10:12:15.723333 [debug] [MainThread]: Wrote artifact OsiDocument to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/osi_document.json
+[0m10:12:15.725427 [debug] [MainThread]: Resource report: {"command_name": "parse", "command_success": true, "command_wall_clock_time": 0.53753144, "process_in_blocks": "0", "process_kernel_time": 0.197745, "process_mem_max_rss": "144048128", "process_out_blocks": "0", "process_user_time": 1.120365}
+[0m10:12:15.725822 [debug] [MainThread]: Command `dbt parse` succeeded at 10:12:15.725767 after 0.54 seconds
+[0m10:12:15.726116 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a38a310>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x105ebc610>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10aeb19d0>]}
+[0m10:12:15.726375 [debug] [MainThread]: Flushing usage events
+[0m10:12:16.656334 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m10:38:30.091440 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e011e10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e093c50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e0907d0>]}
+
+
+============================== 10:38:30.096584 | 7c354bac-5879-4af7-9114-071db7c00730 ==============================
+[0m10:38:30.096584 [info ] [MainThread]: Running with dbt=1.12.0
+[0m10:38:30.096983 [debug] [MainThread]: running dbt with arguments {'indirect_selection': 'eager', 'warn_error': 'None', 'empty': 'None', 'invocation_command': 'dbt parse', 'quiet': 'False', 'cache_selected_only': 'False', 'maximum_seed_size_mib': '1', 'log_format': 'default', 'profiles_dir': '/Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse', 'fail_fast': 'False', 'static_parser': 'True', 'use_experimental_parser': 'False', 'hints_enabled': 'True', 'log_path': '/Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/logs', 'write_json': 'True', 'target_path': 'None', 'version_check': 'True', 'introspect': 'True', 'printer_width': '80', 'send_anonymous_usage_stats': 'True', 'log_cache_events': 'False', 'use_colors': 'True', 'partial_parse': 'True', 'debug': 'False', 'no_print': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])'}
+[0m10:38:30.344252 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '7c354bac-5879-4af7-9114-071db7c00730', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e44cc90>]}
+[0m10:38:30.439393 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '7c354bac-5879-4af7-9114-071db7c00730', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10ce01d10>]}
+[0m10:38:30.440245 [info ] [MainThread]: Registered adapter: sqlserver=1.10.1
+[0m10:38:30.500754 [warn ] [MainThread]: [[33mWARNING[0m]: When True, uses SQL Server-native string type mappings: STRING -> VARCHAR(MAX), NCHAR -> NCHAR(1), NVARCHAR -> NVARCHAR(4000). When False (default), preserves legacy mappings: STRING and NVARCHAR -> VARCHAR(8000), NCHAR -> CHAR(1). The new behaviour is intended to become the default in a future release.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_native_string_types` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m10:38:30.501309 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': '7c354bac-5879-4af7-9114-071db7c00730', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e84b090>]}
+[0m10:38:30.501630 [warn ] [MainThread]: [[33mWARNING[0m]: When True, dbt transaction hooks (begin/commit) emit real T-SQL BEGIN TRANSACTION / COMMIT TRANSACTION statements. When False (default and legacy), begin/commit are no-ops and each statement is auto-committed by the driver. This means earlier successful statements are not rolled back if a later statement fails. This behavior is intended to become the default in a future release.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_dbt_transactions` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m10:38:30.501898 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': '7c354bac-5879-4af7-9114-071db7c00730', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e84b090>]}
+[0m10:38:30.507804 [debug] [MainThread]: checksum: bed11768657b77a668c10da8f2eebbfbd19acd280154f51a0ec69bc064e92266, vars: {}, profile: sales_warehouse, target: dev, version: 1.12.0
+[0m10:38:30.572010 [info ] [MainThread]: Unable to do partial parsing because a project config has changed
+[0m10:38:30.572425 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': '7c354bac-5879-4af7-9114-071db7c00730', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e5f6950>]}
+[0m10:38:31.112133 [warn ] [MainThread]: [[33mWARNING[0m]: When True, uses dbt-core's standard schema concatenation (`target.schema` + `_` + `custom_schema_name`). When False (default), uses legacy adapter behaviour: `custom_schema_name` is used directly without prefixing `target.schema`. For a permanent solution, override the `sqlserver__generate_schema_name` macro in your project instead.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_default_schema_concat` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m10:38:31.112588 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': '7c354bac-5879-4af7-9114-071db7c00730', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10ecd6c90>]}
+[0m10:38:31.494297 [warn ] [MainThread]: [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 1 unused configuration paths:
+- models.sales_warehouse.ods
+[0m10:38:31.496222 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '7c354bac-5879-4af7-9114-071db7c00730', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e91c590>]}
+[0m10:38:31.498594 [info ] [MainThread]: Performance info: /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/perf_info.json
+[0m10:38:31.560693 [debug] [MainThread]: Wrote artifact WritableManifest to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/manifest.json
+[0m10:38:31.563234 [debug] [MainThread]: Wrote artifact SemanticManifest to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/semantic_manifest.json
+[0m10:38:31.576176 [debug] [MainThread]: Wrote artifact OsiDocument to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/osi_document.json
+[0m10:38:31.578536 [debug] [MainThread]: Resource report: {"command_name": "parse", "command_success": true, "command_wall_clock_time": 1.5472138, "process_in_blocks": "0", "process_kernel_time": 0.267705, "process_mem_max_rss": "151109632", "process_out_blocks": "0", "process_user_time": 1.954941}
+[0m10:38:31.578858 [debug] [MainThread]: Command `dbt parse` succeeded at 10:38:31.578802 after 1.55 seconds
+[0m10:38:31.579142 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e08a0d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e08a510>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109cf8550>]}
+[0m10:38:31.579402 [debug] [MainThread]: Flushing usage events
+[0m10:38:32.617271 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m10:38:33.875092 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a2c2710>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a36f7d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a36c810>]}
+
+
+============================== 10:38:33.877594 | 3cb320be-756e-4b04-9789-f4fe8f15fc6c ==============================
+[0m10:38:33.877594 [info ] [MainThread]: Running with dbt=1.12.0
+[0m10:38:33.878003 [debug] [MainThread]: running dbt with arguments {'no_print': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'fail_fast': 'False', 'debug': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'indirect_selection': 'eager', 'use_experimental_parser': 'False', 'target_path': 'None', 'write_json': 'True', 'log_cache_events': 'False', 'use_colors': 'True', 'quiet': 'False', 'empty': 'None', 'send_anonymous_usage_stats': 'True', 'profiles_dir': '/Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse', 'version_check': 'True', 'printer_width': '80', 'invocation_command': 'dbt parse', 'log_path': '/Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/logs', 'warn_error': 'None', 'hints_enabled': 'True', 'log_format': 'default', 'introspect': 'True', 'static_parser': 'True', 'maximum_seed_size_mib': '1'}
+[0m10:38:34.051893 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '3cb320be-756e-4b04-9789-f4fe8f15fc6c', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a71fa10>]}
+[0m10:38:34.089210 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '3cb320be-756e-4b04-9789-f4fe8f15fc6c', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1090d9dd0>]}
+[0m10:38:34.089730 [info ] [MainThread]: Registered adapter: sqlserver=1.10.1
+[0m10:38:34.138987 [warn ] [MainThread]: [[33mWARNING[0m]: When True, uses SQL Server-native string type mappings: STRING -> VARCHAR(MAX), NCHAR -> NCHAR(1), NVARCHAR -> NVARCHAR(4000). When False (default), preserves legacy mappings: STRING and NVARCHAR -> VARCHAR(8000), NCHAR -> CHAR(1). The new behaviour is intended to become the default in a future release.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_native_string_types` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m10:38:34.139599 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': '3cb320be-756e-4b04-9789-f4fe8f15fc6c', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10aa02250>]}
+[0m10:38:34.139906 [warn ] [MainThread]: [[33mWARNING[0m]: When True, dbt transaction hooks (begin/commit) emit real T-SQL BEGIN TRANSACTION / COMMIT TRANSACTION statements. When False (default and legacy), begin/commit are no-ops and each statement is auto-committed by the driver. This means earlier successful statements are not rolled back if a later statement fails. This behavior is intended to become the default in a future release.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_dbt_transactions` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m10:38:34.140173 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': '3cb320be-756e-4b04-9789-f4fe8f15fc6c', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10ab236d0>]}
+[0m10:38:34.145883 [debug] [MainThread]: checksum: bed11768657b77a668c10da8f2eebbfbd19acd280154f51a0ec69bc064e92266, vars: {}, profile: sales_warehouse, target: dev, version: 1.12.0
+[0m10:38:34.208748 [info ] [MainThread]: Unable to do partial parsing because a project config has changed
+[0m10:38:34.209127 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': '3cb320be-756e-4b04-9789-f4fe8f15fc6c', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109053a10>]}
+[0m10:38:34.743562 [warn ] [MainThread]: [[33mWARNING[0m]: When True, uses dbt-core's standard schema concatenation (`target.schema` + `_` + `custom_schema_name`). When False (default), uses legacy adapter behaviour: `custom_schema_name` is used directly without prefixing `target.schema`. For a permanent solution, override the `sqlserver__generate_schema_name` macro in your project instead.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_default_schema_concat` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m10:38:34.743992 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': '3cb320be-756e-4b04-9789-f4fe8f15fc6c', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a991190>]}
+[0m10:38:35.121556 [warn ] [MainThread]: [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 1 unused configuration paths:
+- models.sales_warehouse.ods_layer
+[0m10:38:35.123559 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '3cb320be-756e-4b04-9789-f4fe8f15fc6c', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a2ead10>]}
+[0m10:38:35.125657 [info ] [MainThread]: Performance info: /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/perf_info.json
+[0m10:38:35.187897 [debug] [MainThread]: Wrote artifact WritableManifest to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/manifest.json
+[0m10:38:35.189547 [debug] [MainThread]: Wrote artifact SemanticManifest to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/semantic_manifest.json
+[0m10:38:35.199465 [debug] [MainThread]: Wrote artifact OsiDocument to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/osi_document.json
+[0m10:38:35.201281 [debug] [MainThread]: Resource report: {"command_name": "parse", "command_success": true, "command_wall_clock_time": 1.3826667, "process_in_blocks": "0", "process_kernel_time": 0.232203, "process_mem_max_rss": "156237824", "process_out_blocks": "0", "process_user_time": 1.945011}
+[0m10:38:35.201598 [debug] [MainThread]: Command `dbt parse` succeeded at 10:38:35.201555 after 1.38 seconds
+[0m10:38:35.201850 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a36fb90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a36c790>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10b31bc10>]}
+[0m10:38:35.202094 [debug] [MainThread]: Flushing usage events
+[0m10:38:36.180297 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m10:38:37.434838 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c2b3590>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c35fcd0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c35c810>]}
+
+
+============================== 10:38:37.437637 | 9504273c-c27d-4cdc-b1ed-e640b37e5680 ==============================
+[0m10:38:37.437637 [info ] [MainThread]: Running with dbt=1.12.0
+[0m10:38:37.438046 [debug] [MainThread]: running dbt with arguments {'no_print': 'None', 'warn_error': 'None', 'empty': 'None', 'static_parser': 'True', 'introspect': 'True', 'profiles_dir': '/Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse', 'partial_parse': 'True', 'log_path': '/Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/logs', 'use_experimental_parser': 'False', 'hints_enabled': 'True', 'send_anonymous_usage_stats': 'True', 'invocation_command': 'dbt parse', 'log_format': 'default', 'quiet': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'log_cache_events': 'False', 'use_colors': 'True', 'indirect_selection': 'eager', 'version_check': 'True', 'fail_fast': 'False', 'debug': 'False', 'write_json': 'True', 'target_path': 'None', 'cache_selected_only': 'False', 'maximum_seed_size_mib': '1', 'printer_width': '80'}
+[0m10:38:37.611804 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '9504273c-c27d-4cdc-b1ed-e640b37e5680', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c37c8d0>]}
+[0m10:38:37.648544 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '9504273c-c27d-4cdc-b1ed-e640b37e5680', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10b0c9f10>]}
+[0m10:38:37.649032 [info ] [MainThread]: Registered adapter: sqlserver=1.10.1
+[0m10:38:37.699057 [warn ] [MainThread]: [[33mWARNING[0m]: When True, uses SQL Server-native string type mappings: STRING -> VARCHAR(MAX), NCHAR -> NCHAR(1), NVARCHAR -> NVARCHAR(4000). When False (default), preserves legacy mappings: STRING and NVARCHAR -> VARCHAR(8000), NCHAR -> CHAR(1). The new behaviour is intended to become the default in a future release.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_native_string_types` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m10:38:37.699661 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': '9504273c-c27d-4cdc-b1ed-e640b37e5680', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10cb1ab50>]}
+[0m10:38:37.699994 [warn ] [MainThread]: [[33mWARNING[0m]: When True, dbt transaction hooks (begin/commit) emit real T-SQL BEGIN TRANSACTION / COMMIT TRANSACTION statements. When False (default and legacy), begin/commit are no-ops and each statement is auto-committed by the driver. This means earlier successful statements are not rolled back if a later statement fails. This behavior is intended to become the default in a future release.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_dbt_transactions` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m10:38:37.700304 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': '9504273c-c27d-4cdc-b1ed-e640b37e5680', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10cb1ab50>]}
+[0m10:38:37.706204 [debug] [MainThread]: checksum: bed11768657b77a668c10da8f2eebbfbd19acd280154f51a0ec69bc064e92266, vars: {}, profile: sales_warehouse, target: dev, version: 1.12.0
+[0m10:38:37.768497 [info ] [MainThread]: Unable to do partial parsing because a project config has changed
+[0m10:38:37.768892 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': '9504273c-c27d-4cdc-b1ed-e640b37e5680', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10b861550>]}
+[0m10:38:38.300340 [warn ] [MainThread]: [[33mWARNING[0m]: When True, uses dbt-core's standard schema concatenation (`target.schema` + `_` + `custom_schema_name`). When False (default), uses legacy adapter behaviour: `custom_schema_name` is used directly without prefixing `target.schema`. For a permanent solution, override the `sqlserver__generate_schema_name` macro in your project instead.
+You may opt into the new behavior sooner by setting `flags.dbt_sqlserver_use_default_schema_concat` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m10:38:38.300761 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'BehaviorChangeEvent', 'label': '9504273c-c27d-4cdc-b1ed-e640b37e5680', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10cf34e50>]}
+[0m10:38:38.775207 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '9504273c-c27d-4cdc-b1ed-e640b37e5680', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10cb1b510>]}
+[0m10:38:38.777713 [info ] [MainThread]: Performance info: /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/perf_info.json
+[0m10:38:38.840801 [debug] [MainThread]: Wrote artifact WritableManifest to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/manifest.json
+[0m10:38:38.842285 [debug] [MainThread]: Wrote artifact SemanticManifest to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/semantic_manifest.json
+[0m10:38:38.851847 [debug] [MainThread]: Wrote artifact OsiDocument to /Users/wadesong/Documents/trae_projects/DBT/backend/dbt_projects/sales_warehouse/target/osi_document.json
+[0m10:38:38.853728 [debug] [MainThread]: Resource report: {"command_name": "parse", "command_success": true, "command_wall_clock_time": 1.4752009, "process_in_blocks": "0", "process_kernel_time": 0.216147, "process_mem_max_rss": "156106752", "process_out_blocks": "0", "process_user_time": 1.957806}
+[0m10:38:38.854063 [debug] [MainThread]: Command `dbt parse` succeeded at 10:38:38.854014 after 1.48 seconds
+[0m10:38:38.854345 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c3576d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c2a4190>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x107f78650>]}
+[0m10:38:38.854618 [debug] [MainThread]: Flushing usage events
+[0m10:38:39.889290 [debug] [MainThread]: An error was encountered while trying to flush usage events

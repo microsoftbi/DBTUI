@@ -1,0 +1,295 @@
+{
+  "chapters": {
+    "第1章": "失败",
+    "第2章": "失败",
+    "第3章": "失败",
+    "第4章": "失败",
+    "第5章": "失败",
+    "第6章": "失败",
+    "第7章": "失败"
+  },
+  "screenshots": {
+    "01_项目列表页.png": {
+      "status": "是",
+      "note": "",
+      "chapter": "第1章",
+      "actual_size": 23296,
+      "expected_size": 32062
+    },
+    "02_新建项目弹窗.png": {
+      "status": "是",
+      "note": "",
+      "chapter": "第1章",
+      "actual_size": 30895,
+      "expected_size": 37210
+    },
+    "03_填写项目信息.png": {
+      "status": "是",
+      "note": "",
+      "chapter": "第1章",
+      "actual_size": 31944,
+      "expected_size": 38299
+    },
+    "04_项目列表_创建成功.png": {
+      "status": "是",
+      "note": "",
+      "chapter": "第1章",
+      "actual_size": 33410,
+      "expected_size": 32062
+    },
+    "05_项目详情页.png": {
+      "status": "是",
+      "note": "",
+      "chapter": "第1章",
+      "actual_size": 37959,
+      "expected_size": 39628
+    },
+    "06_连接配置_profiles.png": {
+      "status": "是",
+      "note": "",
+      "chapter": "第1章",
+      "actual_size": 60526,
+      "expected_size": 62967
+    },
+    "07_重新解析完成.png": {
+      "status": "是",
+      "note": "",
+      "chapter": "第1章",
+      "actual_size": 37925,
+      "expected_size": 42220
+    },
+    "08_模型列表_含source.png": {
+      "status": "是",
+      "note": "",
+      "chapter": "第2章",
+      "actual_size": 37927,
+      "expected_size": 39580
+    },
+    "09_新建模型弹窗.png": {
+      "status": "是",
+      "note": "",
+      "chapter": "第3章",
+      "actual_size": 49844,
+      "expected_size": 51870
+    },
+    "10_填写stg_customer.png": {
+      "status": "是",
+      "note": "",
+      "chapter": "第3章",
+      "actual_size": 61446,
+      "expected_size": 63963
+    },
+    "11_Stage层模型列表.png": {
+      "status": "是",
+      "note": "",
+      "chapter": "第3章",
+      "actual_size": 68020,
+      "expected_size": 68111
+    },
+    "12_运行stg_customer.png": {
+      "status": "是",
+      "note": "",
+      "chapter": "第3章",
+      "actual_size": 45566,
+      "expected_size": 47980
+    },
+    "13_Stage运行中.png": {
+      "status": "是",
+      "note": "",
+      "chapter": "第3章",
+      "actual_size": 110430,
+      "expected_size": 98395
+    },
+    "14_Stage运行完成.png": {
+      "status": "是",
+      "note": "",
+      "chapter": "第3章",
+      "actual_size": 110445,
+      "expected_size": 97570
+    },
+    "15_Core层模型列表.png": {
+      "status": "是",
+      "note": "",
+      "chapter": "第4章",
+      "actual_size": 92838,
+      "expected_size": 92754
+    },
+    "16_编辑fact_sales.png": {
+      "status": "是",
+      "note": "",
+      "chapter": "第4章",
+      "actual_size": 82116,
+      "expected_size": 84932
+    },
+    "17_运行fact_sales.png": {
+      "status": "是",
+      "note": "",
+      "chapter": "第4章",
+      "actual_size": 56955,
+      "expected_size": 59298
+    },
+    "18_Core运行中.png": {
+      "status": "是",
+      "note": "",
+      "chapter": "第4章",
+      "actual_size": 57671,
+      "expected_size": 113475
+    },
+    "19_Core运行完成.png": {
+      "status": "是",
+      "note": "",
+      "chapter": "第4章",
+      "actual_size": 119432,
+      "expected_size": 108996
+    },
+    "20_Mart层模型列表.png": {
+      "status": "是",
+      "note": "",
+      "chapter": "第5章",
+      "actual_size": 99741,
+      "expected_size": 100136
+    },
+    "21_Tests标签页.png": {
+      "status": "是",
+      "note": "",
+      "chapter": "第5章",
+      "actual_size": 34061,
+      "expected_size": 35743
+    },
+    "22_新建测试弹窗.png": {
+      "status": "是",
+      "note": "",
+      "chapter": "第5章",
+      "actual_size": 41848,
+      "expected_size": 44013
+    },
+    "23_填写测试SQL.png": {
+      "status": "是",
+      "note": "",
+      "chapter": "第5章",
+      "actual_size": 43834,
+      "expected_size": 46180
+    },
+    "24_测试列表.png": {
+      "status": "是",
+      "note": "",
+      "chapter": "第5章",
+      "actual_size": 42661,
+      "expected_size": 42204
+    },
+    "25_DAG全景图.png": {
+      "status": "是",
+      "note": "",
+      "chapter": "第6章",
+      "actual_size": 62219,
+      "expected_size": 63970
+    },
+    "26_DAG_fact_sales血缘.png": {
+      "status": "是",
+      "note": "",
+      "chapter": "第6章",
+      "actual_size": 62219,
+      "expected_size": 53977
+    },
+    "27_DAG_sales_wide血缘.png": {
+      "status": "是",
+      "note": "",
+      "chapter": "第6章",
+      "actual_size": 62219,
+      "expected_size": 64754
+    },
+    "28_运行历史列表.png": {
+      "status": "是",
+      "note": "",
+      "chapter": "第7章",
+      "actual_size": 187531,
+      "expected_size": 94541
+    },
+    "29_查看运行日志.png": {
+      "status": "是",
+      "note": "",
+      "chapter": "第7章",
+      "actual_size": 179432,
+      "expected_size": 88047
+    },
+    "30_返回项目列表.png": {
+      "status": "是",
+      "note": "",
+      "chapter": "第7章",
+      "actual_size": 30721,
+      "expected_size": 32108
+    }
+  },
+  "issues": [
+    {
+      "severity": "high",
+      "chapter": "第1章",
+      "description": "项目创建后未出现在列表中: Locator expected to be visible\nActual value: None\nError: strict mode violation: get_by_text(\"sales_warehouse\") resolved to 2 elements:\n    1) <div class=\"cell\">…</div> aka get_by_text(\"sales_warehouse\").first\n    2) <div class=\"cell\">…</div> aka get_by_text(\"sales_warehouse\").nth(1)\n \nCall log:\n  - Expect \"to_be_visible\" with timeout 5000ms\n  - waiting for get_by_text(\"sales_warehouse\")\n"
+    },
+    {
+      "severity": "high",
+      "chapter": "第1章",
+      "description": "重新解析失败: Locator expected to be visible\nActual value: None\nError: strict mode violation: get_by_text(\"success\") resolved to 18 elements:\n    1) <span class=\"el-tag__content\">success</span> aka get_by_text(\"success\").first\n    2) <span class=\"el-tag__content\">success</span> aka get_by_text(\"success\").nth(1)\n    3) <span class=\"el-tag__content\">success</span> aka get_by_text(\"success\").nth(2)\n    4) <span class=\"el-tag__content\">success</span> aka get_by_text(\"success\").nth(3)\n    5) <span class=\"el-tag__content\">success</span> aka get_by_text(\"success\").nth(4)\n    6) <span class=\"el-tag__content\">success</span> aka get_by_text(\"success\").nth(5)\n    7) <span class=\"el-tag__content\">success</span> aka locator(\"tr:nth-child(12) > .el-table_4_column_23 > .cell > .el-tag > .el-tag__content\")\n    8) <span class=\"el-tag__content\">success</span> aka locator(\"tr:nth-child(13) > .el-table_4_column_23 > .cell > .el-tag > .el-tag__content\")\n    9) <span class=\"el-tag__content\">success</span> aka locator(\"tr:nth-child(14) > .el-table_4_column_23 > .cell > .el-tag > .el-tag__content\")\n    10) <span class=\"el-tag__content\">success</span> aka locator(\"tr:nth-child(15) > .el-table_4_column_23 > .cell > .el-tag > .el-tag__content\")\n    ...\n \nCall log:\n  - Expect \"to_be_visible\" with timeout 5000ms\n  - waiting for get_by_text(\"success\")\n"
+    },
+    {
+      "severity": "high",
+      "chapter": "第2章",
+      "description": "Source 节点未出现在列表中: Page.wait_for_selector: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator(\"text=sales_db\") to be visible\n    24 × locator resolved to 3 elements. Proceeding with the first one: <text x=\"75\" y=\"25\" data-v-52286955=\"\" class=\"node-label\" text-anchor=\"middle\">sales_db.customer</text>\n"
+    },
+    {
+      "severity": "high",
+      "chapter": "第3章",
+      "description": "Stage 层模型未全部显示: Locator expected to be visible\nActual value: None\nError: strict mode violation: get_by_text(\"stg_customer\", exact=True) resolved to 9 elements:\n    1) <div class=\"cell\">…</div> aka get_by_label(\"Models\").get_by_text(\"stg_customer\", exact=True)\n    2) <text x=\"75\" y=\"25\" data-v-52286955=\"\" class=\"node-label\" text-anchor=\"middle\">stg_customer</text> aka get_by_label(\"DAG\").get_by_text(\"stg_customer\")\n    3) <div class=\"cell el-tooltip\">…</div> aka get_by_text(\"stg_customer\").nth(3)\n    4) <div class=\"cell el-tooltip\">…</div> aka get_by_text(\"stg_customer\").nth(4)\n    5) <div class=\"cell el-tooltip\">…</div> aka get_by_text(\"stg_customer\").nth(5)\n    6) <div class=\"cell el-tooltip\">…</div> aka get_by_text(\"stg_customer\", exact=True).nth(5)\n    7) <div class=\"cell el-tooltip\">…</div> aka locator(\"div\").filter(has_text=re.compile(r\"^stg_customer$\")).nth(5)\n    8) <div class=\"cell el-tooltip\">…</div> aka locator(\"tr:nth-child(14) > .el-table_4_column_22 > .cell\")\n    9) <div class=\"cell el-tooltip\">…</div> aka locator(\"tr:nth-child(16) > .el-table_4_column_22 > .cell\")\n \nCall log:\n  - Expect \"to_be_visible\" with timeout 5000ms\n  - waiting for get_by_text(\"stg_customer\", exact=True)\n"
+    },
+    {
+      "severity": "high",
+      "chapter": "第3章",
+      "description": "运行超时（60秒未完成）"
+    },
+    {
+      "severity": "info",
+      "chapter": "第3章",
+      "description": "SQL Server 192.168.0.116 不可达，无法验证数据库数据"
+    },
+    {
+      "severity": "high",
+      "chapter": "第4章",
+      "description": "Core 层模型未全部显示: Locator expected to be visible\nActual value: None\nError: strict mode violation: get_by_text(\"dim_customer\", exact=True) resolved to 2 elements:\n    1) <div class=\"cell\">…</div> aka get_by_label(\"Models\").get_by_text(\"dim_customer\", exact=True)\n    2) <text x=\"75\" y=\"25\" data-v-52286955=\"\" class=\"node-label\" text-anchor=\"middle\">dim_customer</text> aka get_by_label(\"DAG\").get_by_text(\"dim_customer\")\n \nCall log:\n  - Expect \"to_be_visible\" with timeout 5000ms\n  - waiting for get_by_text(\"dim_customer\", exact=True)\n"
+    },
+    {
+      "severity": "high",
+      "chapter": "第4章",
+      "description": "运行超时（90秒未完成）"
+    },
+    {
+      "severity": "high",
+      "chapter": "第5章",
+      "description": "sales_wide 未显示: Locator expected to be visible\nActual value: None\nError: strict mode violation: get_by_text(\"sales_wide\", exact=True) resolved to 2 elements:\n    1) <div class=\"cell\">…</div> aka get_by_label(\"Models\").get_by_text(\"sales_wide\", exact=True)\n    2) <text x=\"75\" y=\"25\" data-v-52286955=\"\" class=\"node-label\" text-anchor=\"middle\">sales_wide</text> aka get_by_label(\"DAG\").get_by_text(\"sales_wide\")\n \nCall log:\n  - Expect \"to_be_visible\" with timeout 5000ms\n  - waiting for get_by_text(\"sales_wide\", exact=True)\n"
+    },
+    {
+      "severity": "high",
+      "chapter": "第5章",
+      "description": "测试未显示: Locator expected to be visible\nActual value: None\nError: strict mode violation: get_by_text(\"test_amount_positive\", exact=True) resolved to 2 elements:\n    1) <div class=\"cell\">…</div> aka get_by_label(\"Tests\").get_by_text(\"test_amount_positive\")\n    2) <text x=\"75\" y=\"25\" data-v-52286955=\"\" class=\"node-label\" text-anchor=\"middle\">test_amount_positive</text> aka get_by_label(\"DAG\").get_by_text(\"test_amount_positive\")\n \nCall log:\n  - Expect \"to_be_visible\" with timeout 5000ms\n  - waiting for get_by_text(\"test_amount_positive\", exact=True)\n"
+    },
+    {
+      "severity": "high",
+      "chapter": "第5章",
+      "description": "sales_wide 运行超时"
+    },
+    {
+      "severity": "medium",
+      "chapter": "第6章",
+      "description": "无法点击 fact_sales 节点: Locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for get_by_text(\"fact_sales\").first\n    - locator resolved to <div class=\"cell\">…</div>\n  - attempting click action\n    2 × waiting for element to be visible, enabled and stable\n      - element is not visible\n    - retrying click action\n    - waiting 20ms\n    2 × waiting for element to be visible, enabled and stable\n      - element is not visible\n    - retrying click action\n      - waiting 100ms\n    56 × waiting for element to be visible, enabled and stable\n       - element is not visible\n     - retrying click action\n       - waiting 500ms\n"
+    },
+    {
+      "severity": "medium",
+      "chapter": "第6章",
+      "description": "无法点击 sales_wide 节点: Locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for get_by_text(\"sales_wide\").first\n    - locator resolved to <div class=\"cell\">…</div>\n  - attempting click action\n    2 × waiting for element to be visible, enabled and stable\n      - element is not visible\n    - retrying click action\n    - waiting 20ms\n    2 × waiting for element to be visible, enabled and stable\n      - element is not visible\n    - retrying click action\n      - waiting 100ms\n    56 × waiting for element to be visible, enabled and stable\n       - element is not visible\n     - retrying click action\n       - waiting 500ms\n"
+    },
+    {
+      "severity": "high",
+      "chapter": "第7章",
+      "description": "返回项目列表失败: Locator expected to be visible\nActual value: None\nError: strict mode violation: get_by_text(\"DBT 项目\") resolved to 2 elements:\n    1) <h1 data-v-33eb13a2=\"\">DBT 项目</h1> aka get_by_role(\"heading\", name=\"DBT 项目\")\n    2) <p class=\"subtitle\" data-v-33eb13a2=\"\">创建和管理 DBT 项目</p> aka get_by_text(\"创建和管理 DBT 项目\")\n \nCall log:\n  - Expect \"to_be_visible\" with timeout 5000ms\n  - waiting for get_by_text(\"DBT 项目\")\n"
+    }
+  ]
+}

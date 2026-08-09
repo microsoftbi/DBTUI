@@ -1,0 +1,31 @@
+name: sales_warehouse
+version: 1.0.0
+config-version: 2
+profile: sales_warehouse
+model-paths:
+- models
+analysis-paths:
+- analyses
+test-paths:
+- tests
+seed-paths:
+- seeds
+macro-paths:
+- macros
+snapshot-paths:
+- snapshots
+target-path: target
+clean-targets:
+- target
+- dbt_packages
+models:
+  sales_warehouse:
+    staging:
+      +database: stage_db
+      +materialized: view
+    core:
+      +database: core_db
+      +materialized: table
+    marts:
+      +database: mart_db
+      +materialized: table
