@@ -31,3 +31,8 @@ dist/
 # Env files
 .env
 .env.local
+
+# dbt
+dbt_packages/
+target/
+logs/

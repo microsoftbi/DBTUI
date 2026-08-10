@@ -7,7 +7,16 @@ from fastapi.middleware.cors import CORSMiddleware
 from . import models
 from .config import settings
 from .database import Base, engine
-from .routers import dag, layers, models as models_router, projects, runs, sources, tests
+from .routers import (
+    dag,
+    data_viewer,
+    layers,
+    models as models_router,
+    projects,
+    runs,
+    sources,
+    tests,
+)
 
 
 @asynccontextmanager
@@ -34,6 +43,7 @@ app.include_router(tests.router)
 app.include_router(sources.router)
 app.include_router(layers.router)
 app.include_router(dag.router)
+app.include_router(data_viewer.router)
 app.include_router(runs.router)
 app.include_router(runs.ws_router)
 

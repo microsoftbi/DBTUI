@@ -38,10 +38,21 @@ import {
   type LayerDefinition,
 } from '@/api/layers'
 import { listRuns, getRunDetail, type RunHistory } from '@/api/runs'
+import {
+  getData,
+  getDdl,
+  listDatabases,
+  listTables,
+  type DataPreview,
+  type TableInfo,
+} from '@/api/dataViewer'
 import RunDialog from '@/components/RunDialog.vue'
 import DagGraph from '@/components/DagGraph.vue'
 import SqlEditor from '@/components/SqlEditor.vue'
 import type { Project } from '@/types'
+import { Codemirror } from 'vue-codemirror'
+import { sql } from '@codemirror/lang-sql'
+import { DataAnalysis, Grid, View, Refresh } from '@element-plus/icons-vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -572,9 +583,159 @@ async function saveProfilesAction() {
   }
 }
 
+// ---------- 数据查看器 ----------
+const dvLoading = ref(false)
+const dvDatabases = ref<string[]>([])
+const dvActiveDb = ref('')
+const dvTables = ref<TableInfo[]>([])
+const dvViews = ref<TableInfo[]>([])
+const dvSelected = ref<{ database: string; schema: string; table: string; type: 'table' | 'view' } | null>(null)
+const dvDdl = ref('')
+const dvDdlType = ref<'table' | 'view'>('table')
+const dvData = ref<DataPreview | null>(null)
+const dvDataLoading = ref(false)
+const dvDdlLoading = ref(false)
+
+// 树节点类型
+interface DvTreeNode {
+  key: string
+  label: string
+  type: 'database' | 'folder' | 'table'
+  icon?: string
+  children?: DvTreeNode[]
+  database?: string
+  tableType?: 'table' | 'view'
+  schema?: string
+  tableName?: string
+}
+
+const dvTreeData = ref<DvTreeNode[]>([])
+const dvTreeKey = ref(0)
+
+async function refreshDataViewer() {
+  dvSelected.value = null
+  dvDdl.value = ''
+  dvData.value = null
+  dvTreeKey.value++
+  await loadDataViewer()
+  ElMessage.success('已刷新')
+}
+
+async function loadDataViewer() {
+  dvLoading.value = true
+  try {
+    const res = await listDatabases(projectId)
+    dvDatabases.value = res.data.databases
+    // 构建树（数据库节点为一级，子节点通过 lazy 加载）
+    dvTreeData.value = dvDatabases.value.map((db) => ({
+      key: `db:${db}`,
+      label: db,
+      type: 'database',
+      database: db,
+    }))
+    if (dvDatabases.value.length > 0 && !dvActiveDb.value) {
+      dvActiveDb.value = dvDatabases.value[0]
+    }
+  } finally {
+    dvLoading.value = false
+  }
+}
+
+// el-tree lazy 模式加载函数
+function dvLoadNode(
+  node: { level: number; data: DvTreeNode },
+  resolve: (children: DvTreeNode[]) => void,
+) {
+  const data = node.data
+  if (data.type === 'database' && data.database) {
+    dvActiveDb.value = data.database
+    // 返回「表」和「视图」两个文件夹
+    resolve([
+      {
+        key: `db:${data.database}:tables`,
+        label: '表',
+        type: 'folder',
+        icon: 'table',
+        database: data.database,
+        tableType: 'table',
+      },
+      {
+        key: `db:${data.database}:views`,
+        label: '视图',
+        type: 'folder',
+        icon: 'view',
+        database: data.database,
+        tableType: 'view',
+      },
+    ])
+  } else if (data.type === 'folder' && data.database && data.tableType) {
+    // 加载表/视图列表
+    listTables(projectId, data.database, data.tableType)
+      .then((res) => {
+        const children = res.data.tables.map((t) => ({
+          key: `tbl:${data.database}:${data.tableType}:${t.schema}.${t.name}`,
+          label: t.name,
+          type: 'table' as const,
+          database: data.database,
+          tableType: data.tableType,
+          schema: t.schema,
+          tableName: t.name,
+        }))
+        if (data.tableType === 'table') {
+          dvTables.value = res.data.tables
+        } else {
+          dvViews.value = res.data.tables
+        }
+        resolve(children)
+      })
+      .catch(() => {
+        resolve([])
+      })
+  } else {
+    resolve([])
+  }
+}
+
+async function onDvNodeClick(data: DvTreeNode) {
+  if (data.type === 'table' && data.database && data.tableName && data.schema && data.tableType) {
+    // 点击表/视图，加载 DDL 和数据
+    dvSelected.value = {
+      database: data.database,
+      schema: data.schema,
+      table: data.tableName,
+      type: data.tableType,
+    }
+    loadDvDdl(data.database, data.schema, data.tableName)
+    loadDvData(data.database, data.schema, data.tableName)
+  }
+}
+
+async function loadDvDdl(database: string, schema: string, table: string) {
+  dvDdlLoading.value = true
+  try {
+    const res = await getDdl(projectId, database, table, schema)
+    dvDdl.value = res.data.ddl
+    dvDdlType.value = res.data.type
+  } finally {
+    dvDdlLoading.value = false
+  }
+}
+
+async function loadDvData(database: string, schema: string, table: string) {
+  dvDataLoading.value = true
+  try {
+    const res = await getData(projectId, database, table, schema, 1000)
+    dvData.value = res.data
+  } finally {
+    dvDataLoading.value = false
+  }
+}
+
 onMounted(async () => {
   await loadProject()
   await load()
+  // 预加载数据查看器数据库列表
+  loadDataViewer()
 })
 </script>
 
@@ -772,6 +933,119 @@ onMounted(async () => {
           :live-status="liveStatuses"
           @run="onDagRun"
         />
+      </el-tab-pane>
+
+      <!-- 数据查看器 -->
+      <el-tab-pane label="数据查看器" name="data-viewer">
+        <div class="data-viewer" v-loading="dvLoading">
+          <!-- 左侧树 -->
+          <div class="dv-tree">
+            <div class="dv-tree-header">
+              <span class="dv-tree-title">数据库</span>
+              <el-button
+                size="small"
+                :icon="Refresh"
+                text
+                @click="refreshDataViewer"
+              >
+                刷新
+              </el-button>
+            </div>
+            <el-tree
+              :key="dvTreeKey"
+              :data="dvTreeData"
+              :props="{ label: 'label', children: 'children' }"
+              node-key="key"
+              :expand-on-click-node="false"
+              lazy
+              :load="dvLoadNode"
+              @node-click="onDvNodeClick"
+              empty-text="暂无数据库"
+            >
+              <template #default="{ data }">
+                <span class="dv-tree-node">
+                  <el-icon v-if="data.type === 'database'" class="dv-icon-db">
+                    <DataAnalysis />
+                  </el-icon>
+                  <el-icon v-else-if="data.type === 'folder' && data.tableType === 'table'" class="dv-icon-table">
+                    <Grid />
+                  </el-icon>
+                  <el-icon v-else-if="data.type === 'folder' && data.tableType === 'view'" class="dv-icon-view">
+                    <View />
+                  </el-icon>
+                  <el-icon v-else-if="data.tableType === 'table'" class="dv-icon-table-sm">
+                    <Grid />
+                  </el-icon>
+                  <el-icon v-else class="dv-icon-view-sm">
+                    <View />
+                  </el-icon>
+                  {{ data.label }}
+                </span>
+              </template>
+            </el-tree>
+          </div>
+
+          <!-- 右侧详情 -->
+          <div class="dv-detail">
+            <div v-if="!dvSelected" class="dv-empty">
+              <el-empty description="请选择左侧的表或视图查看详情" />
+            </div>
+            <div v-else class="dv-detail-inner">
+              <!-- 上半部分：DDL -->
+              <div class="dv-section">
+                <div class="dv-section-header">
+                  <span>
+                    创建脚本（{{ dvDdlType === 'view' ? '视图' : '表' }}）
+                    <el-tag size="small" type="info" style="margin-left: 8px">
+                      {{ dvSelected.database }}.{{ dvSelected.schema }}.{{ dvSelected.table }}
+                    </el-tag>
+                  </span>
+                </div>
+                <div class="dv-ddl-box" v-loading="dvDdlLoading">
+                  <Codemirror
+                    :model-value="dvDdl"
+                    :extensions="[sql()]"
+                    theme="dark"
+                    :editable="false"
+                    style="height: 100%"
+                  />
+                </div>
+              </div>
+
+              <!-- 下半部分：数据预览 -->
+              <div class="dv-section">
+                <div class="dv-section-header">
+                  <span>
+                    数据预览
+                    <span v-if="dvData" style="margin-left: 8px; color: #909399; font-size: 12px">
+                      显示前 {{ dvData.returned }} 行，共 {{ dvData.total }} 行
+                    </span>
+                  </span>
+                </div>
+                <div class="dv-data-box" v-loading="dvDataLoading">
+                  <el-table
+                    v-if="dvData"
+                    :data="dvData.rows"
+                    size="small"
+                    stripe
+                    border
+                    height="100%"
+                    empty-text="暂无数据"
+                  >
+                    <el-table-column
+                      v-for="col in dvData.columns"
+                      :key="col"
+                      :prop="col"
+                      :label="col"
+                      min-width="120"
+                      show-overflow-tooltip
+                    />
+                  </el-table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </el-tab-pane>
 
       <!-- Runs -->
@@ -1187,5 +1461,106 @@ onMounted(async () => {
   align-items: center;
   margin-bottom: 12px;
   color: #909399;
+}
+/* 数据查看器 */
+.data-viewer {
+  display: flex;
+  gap: 16px;
+  min-height: 600px;
+}
+.dv-tree {
+  width: 280px;
+  border: 1px solid #e4e7ed;
+  border-radius: 6px;
+  padding: 8px;
+  background: #fafafa;
+  overflow-y: auto;
+  max-height: 700px;
+  display: flex;
+  flex-direction: column;
+}
+.dv-tree-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 4px 8px;
+  border-bottom: 1px solid #e4e7ed;
+  margin-bottom: 4px;
+}
+.dv-tree-title {
+  font-weight: 600;
+  font-size: 14px;
+  color: #303133;
+}
+.dv-tree-node {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+}
+.dv-icon-db {
+  color: #409eff;
+}
+.dv-icon-table {
+  color: #67c23a;
+}
+.dv-icon-view {
+  color: #e6a23c;
+}
+.dv-icon-table-sm,
+.dv-icon-view-sm {
+  font-size: 12px;
+  color: #909399;
+}
+.dv-detail {
+  flex: 1;
+  border: 1px solid #e4e7ed;
+  border-radius: 6px;
+  background: #fff;
+  overflow: hidden;
+}
+.dv-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+}
+.dv-detail-inner {
+  display: flex;
+  flex-direction: column;
+  height: 700px;
+}
+.dv-section {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  border-bottom: 1px solid #e4e7ed;
+}
+.dv-section:last-child {
+  border-bottom: none;
+}
+.dv-section-header {
+  padding: 10px 16px;
+  font-weight: 500;
+  color: #303133;
+  background: #f5f7fa;
+  border-bottom: 1px solid #e4e7ed;
+  font-size: 14px;
+}
+.dv-ddl-box {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+}
+.dv-ddl-box :deep(.cm-editor) {
+  height: 100%;
+  font-size: 12px;
+}
+.dv-data-box {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 8px;
 }
 </style>

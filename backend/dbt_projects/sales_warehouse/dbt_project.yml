@@ -22,7 +22,7 @@ models:
   sales_warehouse:
     staging:
       +database: stage_db
-      +materialized: view
+      +materialized: table
     core:
       +database: core_db
       +materialized: table
