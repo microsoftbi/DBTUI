@@ -31,7 +31,7 @@
 └─────────────┘    └─────────────┘    └─────────────┘    └─────────────┘
 ```
 
-- **stage_db（Stage 层）**：从源系统 1:1 加载，做字段命名规范化和基础清洗，以视图形式存在
+- **stage_db（Stage 层）**：从源系统 1:1 加载，做字段命名规范化和基础清洗，以表形式存在
 - **core_db（Core 层）**：维度建模，组织成维度表（dimension）和事实表（fact）
 - **mart_db（Mart 层）**：面向业务应用的大宽表，直接供报表/分析使用
 
@@ -222,7 +222,7 @@ dbt 项目通过 `dbt_project.yml` 中的 `models` 配置，按目录划分不�
 
 | 显示名称 | 目录名 | 数据库 | 物化 | 说明 |
 |----------|--------|--------|------|------|
-| Stage 层 | `staging` | `stage_db` | view | 贴源加载层 |
+| Stage 层 | `staging` | `stage_db` | table | 贴源加载层 |
 | Core 层 | `core` | `core_db` | table | 维度建模核心层 |
 | Mart 层 | `marts` | `mart_db` | table | 应用宽表层 |
 
@@ -320,7 +320,7 @@ source 节点会显示在模型列表中，其「数据库」列显示为 `sales
 
 ## 第 4 章：Stage 层 — 贴源加载（stage_db）
 
-Stage 层是数据仓库的第一层，所有模型写入 `stage_db` 数据库。负责从源系统 1:1 加载数据，做字段命名规范化和基础清洗，默认以视图（view）形式物化。
+Stage 层是数据仓库的第一层，所有模型写入 `stage_db` 数据库。负责从源系统 1:1 加载数据，做字段命名规范化和基础清洗，默认以表（table）形式物化。
 
 ### 4.1 新建 Stage 模型
 
@@ -372,9 +372,9 @@ FROM {{ source('sales_db', 'customer') }}
 
 | 模型名 | 数据库 | 物化 | 说明 | 来源 |
 |--------|--------|------|------|------|
-| `stg_customer` | stage_db | view | 客户贴源表 | `{{ source('sales_db', 'customer') }}` |
-| `stg_product` | stage_db | view | 商品贴源表 | `{{ source('sales_db', 'product') }}` |
-| `stg_salesorder` | stage_db | view | 订单贴源表 | `{{ source('sales_db', 'salesorder') }}` |
+| `stg_customer` | stage_db | table | 客户贴源表 | `{{ source('sales_db', 'customer') }}` |
+| `stg_product` | stage_db | table | 商品贴源表 | `{{ source('sales_db', 'product') }}` |
+| `stg_salesorder` | stage_db | table | 订单贴源表 | `{{ source('sales_db', 'salesorder') }}` |
 
 **stg_product SQL：**
 ```sql
@@ -405,7 +405,7 @@ FROM {{ source('sales_db', 'salesorder') }}
 
 ![Stage 层模型列表](userguide/11_stage_model_list.png)
 
-可以看到所有 `stg_` 开头的模型，「数据库」列都显示为 `stage_db`，「物化」列显示为 `view`。
+可以看到所有 `stg_` 开头的模型，「数据库」列都显示为 `stage_db`，「物化」列显示为 `table`。
 
 ### 4.4 运行 stg_customer
 
@@ -438,7 +438,7 @@ FROM {{ source('sales_db', 'salesorder') }}
 - `✔ 运行完成（returncode 0）`：运行成功
 - `✘ 运行失败（returncode N）`：运行失败，查看日志排查原因
 
-运行成功后，`stage_db` 数据库中会创建对应的视图。
+运行成功后，`stage_db` 数据库中会创建对应的表。
 
 ---
 
@@ -712,9 +712,9 @@ DAG（有向无环图）以可视化方式展示模型间的依赖关系，包�
 | Source | sales_db | `sales_db.customer` | source | — | 源系统客户表 |
 | Source | sales_db | `sales_db.product` | source | — | 源系统商品表 |
 | Source | sales_db | `sales_db.salesorder` | source | — | 源系统订单表 |
-| Stage | stage_db | `stg_customer` | model | view | 客户贴源表 |
-| Stage | stage_db | `stg_product` | model | view | 商品贴源表 |
-| Stage | stage_db | `stg_salesorder` | model | view | 订单贴源表 |
+| Stage | stage_db | `stg_customer` | model | table | 客户贴源表 |
+| Stage | stage_db | `stg_product` | model | table | 商品贴源表 |
+| Stage | stage_db | `stg_salesorder` | model | table | 订单贴源表 |
 | Core | core_db | `dim_customer` | model | table | 客户维度表 |
 | Core | core_db | `dim_product` | model | table | 商品维度表 |
 | Core | core_db | `fact_sales` | model | table | 销售事实表（已完成订单） |
@@ -796,7 +796,7 @@ models:
     # Stage 层 — 贴源加载，写入 stage_db
     staging:
       +database: stage_db
-      +materialized: view
+      +materialized: table
     # Core 层 — 维度建模，写入 core_db
     core:
       +database: core_db

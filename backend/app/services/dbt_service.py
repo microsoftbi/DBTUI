@@ -398,7 +398,7 @@ models:
     # Stage 层 — 贴源加载，写入 stage_db
     staging:
       +database: stage_db
-      +materialized: view
+      +materialized: table
     # Core 层 — 维度建模，写入 core_db
     core:
       +database: core_db

@@ -9,14 +9,40 @@
 ## ✨ 功能特性
 
 - **项目管理**：创建 / 编辑 / 删除 DBT 项目，自动生成标准脚手架（`dbt_project.yml`、`profiles.yml`、`models/`、`tests/` 等），自动探测本机 dbt 版本。
+
+  ![项目管理](doc/userguide/02_new_project_dialog.png)
+
 - **连接配置**：在 UI 中直接查看 / 编辑 `profiles.yml`（数据源连接），保存时校验 YAML。
+
+  ![连接配置](doc/userguide/06_connection_profiles.png)
+
 - **分层配置管理**：可视化管理 `models/` 下的分层目录（stage / core / mart 等），支持新建、编辑显示名称、配置物化策略与目标数据库、重命名目录、删除层级，自动同步写入 `dbt_project.yml`。
+
+  ![分层配置管理](doc/userguide/07c_layer_config_list.png)
+
 - **Sources 可视化**：UI 化管理 `sources.yml`，支持多 source 目录扫描、新建 / 编辑 source、添加 / 编辑 / 删除表、表跨目录移动，自动生成 `{{ source() }}` 引用。
+
+  ![Sources 可视化](doc/userguide/08b_source_detail.png)
+
 - **Model 管理**：模型列表（物化策略、运行状态）、新建 / 编辑（CodeMirror SQL 高亮）/ 删除、配置物化策略（view/table/incremental/ephemeral），支持按分层目录筛选。
+
+  ![Model 管理](doc/userguide/11_stage_model_list.png)
+
 - **Test 管理**：展示 generic 与 singular 测试，可新建 / 编辑 / 删除 singular test，运行测试查看结果。
+
+  ![Test 管理](doc/userguide/24_test_list.png)
+
 - **DAG 可视化**：交互式血缘图（类型着色 + 状态描边）、点击节点高亮上下游、搜索与类型筛选、点击节点运行（run/test/build/compile）。
+
+  ![DAG 可视化](doc/userguide/25_dag_overview.png)
+
 - **运行**：通过 WebSocket 实时流式输出 dbt 日志，支持 `--select`、运行中取消，运行历史与日志查看。
+
+  ![运行](doc/userguide/13_stage_running.png)
+
 - **实时状态**：运行中的节点显示蓝色呼吸动画，每个资源完成后实时点亮为最终状态。
+
+  ![实时状态](doc/userguide/18_core_running.png)
 
 ---
 
