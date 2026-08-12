@@ -6,7 +6,7 @@ from datetime import datetime
 from sqlalchemy import delete
 from sqlalchemy.orm import Session
 
-from ..models import DagEdge, Model, Project, Source, Test
+from ..models import DagEdge, Macro, Model, Project, Source, Test
 from . import dbt_service
 
 
@@ -25,7 +25,7 @@ def sync_manifest(db: Session, project: Project) -> None:
 
     pid = project.id
     # 先清空旧数据，再全量写入（保持与磁盘一致）
-    for table in (Model, Test, Source, DagEdge):
+    for table in (Model, Test, Source, Macro, DagEdge):
         db.execute(delete(table).where(table.project_id == pid))
 
     for item in m["models"]:
@@ -70,6 +70,17 @@ def sync_manifest(db: Session, project: Project) -> None:
                 identifier=item.get("identifier", ""),
                 loader=item.get("loader", ""),
                 description=item.get("description", ""),
+            )
+        )
+    for item in m["macros"]:
+        db.add(
+            Macro(
+                project_id=pid,
+                unique_id=item["unique_id"],
+                name=item["name"],
+                file_path=item.get("file_path", ""),
+                description=item.get("description", ""),
+                macro_sql=item.get("macro_sql", ""),
             )
         )
     for edge in m["edges"]:

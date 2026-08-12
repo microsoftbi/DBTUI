@@ -72,6 +72,20 @@ class Test(Base):
     run_at: Mapped[Optional[datetime]] = mapped_column(DateTime, nullable=True)
 
 
+class Macro(Base):
+    """DBT macro 节点。"""
+
+    __tablename__ = "macros"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    project_id: Mapped[int] = mapped_column(Integer, index=True)
+    unique_id: Mapped[str] = mapped_column(String(255), index=True)
+    name: Mapped[str] = mapped_column(String(255))
+    file_path: Mapped[str] = mapped_column(String(1024), default="")
+    description: Mapped[str] = mapped_column(Text, default="")
+    macro_sql: Mapped[str] = mapped_column(Text, default="")
+
+
 class Source(Base):
     """DBT source 节点。"""
 

@@ -45,7 +45,7 @@ SQL Server 原生支持跨库查询（`database.schema.table`），dbt 通过 `{
 
 填写项目信息，选择 `sqlserver` 适配器：
 
-![新建项目](https://images.cnblogs.com/cnblogs_com/aspnetx/65269/o_260810173141_03_fill_project_info.png))
+![新建项目](https://images.cnblogs.com/cnblogs_com/aspnetx/65269/o_260810173141_03_fill_project_info.png)
 
 点击确定后，系统会自动完成：
 
@@ -80,11 +80,11 @@ SQL Server 原生支持跨库查询（`database.schema.table`），dbt 通过 `{
 
 填写 Source 名称、数据库、Schema 等信息：
 
-![新建 Source](https://images.cnblogs.com/cnblogs_com/aspnetx/65269/o_260810172226_08a_new_source_dialog.png))
+![新建 Source](https://images.cnblogs.com/cnblogs_com/aspnetx/65269/o_260810172226_08a_new_source_dialog.png)
 
 创建后，在 Source 详情页添加三张源表：
 
-![Source 表列表](https://images.cnblogs.com/cnblogs_com/aspnetx/65269/o_260810172226_08d_source_table_list.png))
+![Source 表列表](https://images.cnblogs.com/cnblogs_com/aspnetx/65269/o_260810172226_08d_source_table_list.png)
 
 这样，在模型 SQL 中就可以用 `{{ source('sales_db', 'customer') }}` 来引用源表了。
 
@@ -94,7 +94,7 @@ Stage 层是数据仓库的入口，负责从源系统 1:1 加载数据，做字
 
 点击「新建模型」，选择「Stage 层」，编写 SQL：
 
-![新建 Stage 模型](https://images.cnblogs.com/cnblogs_com/aspnetx/65269/o_260810171946_10_fill_stg_customer.png))
+![新建 Stage 模型](https://images.cnblogs.com/cnblogs_com/aspnetx/65269/o_260810171946_10_fill_stg_customer.png)
 
 ```sql
 SELECT
@@ -109,15 +109,15 @@ FROM {{ source('sales_db', 'customer') }}
 
 用同样的方式创建 `stg_product` 和 `stg_salesorder`。完成后 Stage 层模型列表如下：
 
-![Stage 层模型列表](https://images.cnblogs.com/cnblogs_com/aspnetx/65269/o_260810171947_11_stage_model_list.png))
+![Stage 层模型列表](https://images.cnblogs.com/cnblogs_com/aspnetx/65269/o_260810171947_11_stage_model_list.png)
 
 点击「运行」按钮，选择运行类型和表达式，即可执行 dbt run：
 
-![运行 stg\_customer](https://images.cnblogs.com/cnblogs_com/aspnetx/65269/o_260810172127_12_run_stg_customer.png))
+![运行 stg\_customer](https://images.cnblogs.com/cnblogs_com/aspnetx/65269/o_260810172127_12_run_stg_customer.png)
 
 运行过程中日志实时推送：
 
-![Stage 运行中](https://images.cnblogs.com/cnblogs_com/aspnetx/65269/o_260810171946_13_stage_running.png))
+![Stage 运行中](https://images.cnblogs.com/cnblogs_com/aspnetx/65269/o_260810171946_13_stage_running.png)
 
 运行成功后，`stage_db` 中就创建好了对应的视图。
 
@@ -149,7 +149,7 @@ FROM {{ ref('stg_salesorder') }} s
 WHERE s.status = 'completed'
 ```
 
-![编辑 fact\_sales](https://images.cnblogs.com/cnblogs_com/aspnetx/65269/o_260810171113_16_edit_fact_sales.png))
+![编辑 fact\_sales](https://images.cnblogs.com/cnblogs_com/aspnetx/65269/o_260810171113_16_edit_fact_sales.png)
 
 注意这里用的是 `{{ ref('stg_salesorder') }}` 而不是 `source()`。dbt 会自动识别 `stg_salesorder` 在 `stage_db`，`fact_sales` 在 `core_db`，并生成正确的跨库 SQL。
 
@@ -185,7 +185,7 @@ LEFT JOIN {{ ref('dim_product') }} p ON f.product_id = p.product_id
 
 切换到 DAG 标签页，完整的数据流向一目了然：
 
-![DAG 全景图](https://images.cnblogs.com/cnblogs_com/aspnetx/65269/o_260810171113_25_dag_overview.png))
+![DAG 全景图](https://images.cnblogs.com/cnblogs_com/aspnetx/65269/o_260810171113_25_dag_overview.png)
 
 - 🔵 蓝色节点：model（模型）
 - 🟢 绿色节点：source（源表）
@@ -193,7 +193,7 @@ LEFT JOIN {{ ref('dim_product') }} p ON f.product_id = p.product_id
 
 点击任意节点，可以高亮它的完整血缘链路。比如 `sales_wide` 的血缘：
 
-![DAG sales\_wide 血缘](https://images.cnblogs.com/cnblogs_com/aspnetx/65269/o_260810171629_27_dag_sales_wide_lineage.png))
+![DAG sales\_wide 血缘](https://images.cnblogs.com/cnblogs_com/aspnetx/65269/o_260810171629_27_dag_sales_wide_lineage.png)
 
 从图中可以清晰看到数据从 `sales_db` 源表 → `stage_db` 贴源 → `core_db` 维度建模 → `mart_db` 宽表的完整路径。
 
@@ -201,7 +201,7 @@ LEFT JOIN {{ ref('dim_product') }} p ON f.product_id = p.product_id
 
 dbt 不仅能构建模型，还能做数据质量测试。切换到 Tests 标签页，可以创建和管理测试：
 
-![Tests 标签页](https://images.cnblogs.com/cnblogs_com/aspnetx/65269/o_260810171805_21_tests_tab.png))
+![Tests 标签页](https://images.cnblogs.com/cnblogs_com/aspnetx/65269/o_260810171805_21_tests_tab.png)
 
 比如我们创建一个测试，验证销售金额必须为正数：
 

@@ -11,6 +11,7 @@ from .routers import (
     dag,
     data_viewer,
     layers,
+    macros as macros_router,
     models as models_router,
     projects,
     runs,
@@ -40,6 +41,7 @@ app.add_middleware(
 app.include_router(projects.router)
 app.include_router(models_router.router)
 app.include_router(tests.router)
+app.include_router(macros_router.router)
 app.include_router(sources.router)
 app.include_router(layers.router)
 app.include_router(dag.router)

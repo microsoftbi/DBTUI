@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { onBeforeUnmount, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { ElMessage } from 'element-plus'
 import { cancelRun } from '@/api/runs'
+
+const { t } = useI18n()
 
 const props = defineProps<{ projectId: number }>()
 const emit = defineEmits<{
@@ -51,7 +54,7 @@ function start() {
     const msg = JSON.parse(ev.data)
     if (msg.type === 'start') {
       currentRunId.value = msg.run_id
-      push(`▶ 开始运行 #${msg.run_id}`)
+      push(`▶ ${t('runDialog.running')} #${msg.run_id}`)
     } else if (msg.type === 'running') {
       emit('running', msg.names ?? [])
     } else if (msg.type === 'log') {
@@ -63,10 +66,10 @@ function start() {
       currentRunId.value = null
       push(
         msg.cancelled
-          ? '✕ 运行已取消'
+          ? `✕ ${t('runDialog.cancelled')}`
           : msg.returncode === 0
-            ? '✔ 运行完成（returncode 0）'
-            : `✘ 运行失败（returncode ${msg.returncode}）`,
+            ? `✔ ${t('runDialog.success')}（returncode 0）`
+            : `✘ ${t('runDialog.failed')}（returncode ${msg.returncode}）`,
       )
       emit('done')
     } else if (msg.type === 'error') {
@@ -78,8 +81,8 @@ function start() {
   ws.onerror = () => {
     running.value = false
     currentRunId.value = null
-    push('✘ WebSocket 连接失败')
-    ElMessage.error('连接失败，请确认后端已启动')
+    push(`✘ ${t('runDialog.failed')} WebSocket`)
+    ElMessage.error('Connection failed, please make sure the backend is running')
   }
   ws.onclose = () => {
     running.value = false
@@ -89,7 +92,7 @@ function start() {
 async function cancel() {
   if (currentRunId.value === null) return
   await cancelRun(props.projectId, currentRunId.value)
-  push('✕ 正在取消…')
+  push(`✕ ${t('runDialog.cancelling')}`)
 }
 
 function push(text: string) {
@@ -113,7 +116,7 @@ onBeforeUnmount(close)
 <template>
   <el-dialog
     v-model="visible"
-    title="运行"
+    :title="t('runDialog.title')"
     width="720px"
     :close-on-click-modal="false"
     @closed="close"
@@ -127,18 +130,20 @@ onBeforeUnmount(close)
       </el-select>
       <el-input
         v-model="selection"
-        placeholder="--select 表达式，如 example 或 example+"
+        :placeholder="t('runDialog.selectionPlaceholder')"
         style="flex: 1"
         :disabled="running"
       />
       <el-button type="primary" :loading="running" @click="start">
-        {{ running ? '运行中…' : '开始运行' }}
+        {{ running ? t('runDialog.running') + '…' : t('runDialog.start') }}
       </el-button>
-      <el-button v-if="running" type="danger" plain @click="cancel">取消</el-button>
+      <el-button v-if="running" type="danger" plain @click="cancel">
+        {{ t('common.cancel') }}
+      </el-button>
     </div>
 
     <div ref="logBox" class="log-box">
-      <pre v-if="lines.length === 0" class="placeholder">运行日志将在此实时显示…</pre>
+      <pre v-if="lines.length === 0" class="placeholder">{{ t('runDialog.log') }}...</pre>
       <div v-for="(line, i) in lines" :key="i" class="log-line">{{ line }}</div>
     </div>
   </el-dialog>

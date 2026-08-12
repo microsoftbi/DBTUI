@@ -211,8 +211,10 @@ def parse_project(project_path: str) -> dict:
 
 def _extract_manifest(manifest: dict) -> dict:
     """从原始 manifest 抽取 UI 需要的数据。"""
-    models, tests, sources, edges = [], [], [], []
+    models, tests, sources, macros, edges = [], [], [], [], []
     parent_map = manifest.get("parent_map", {})
+    metadata = manifest.get("metadata", {}) or {}
+    project_name = metadata.get("project_name", "")
 
     for unique_id, node in manifest.get("nodes", {}).items():
         config = node.get("config", {}) or {}
@@ -261,6 +263,20 @@ def _extract_manifest(manifest: dict) -> dict:
             }
         )
 
+    # 只提取当前项目自身的 macro（排除 dbt 内置和第三方包）
+    for unique_id, macro in manifest.get("macros", {}).items():
+        if macro.get("package_name") != project_name:
+            continue
+        macros.append(
+            {
+                "unique_id": unique_id,
+                "name": macro.get("name", ""),
+                "file_path": macro.get("original_file_path", ""),
+                "description": macro.get("description", ""),
+                "macro_sql": macro.get("macro_sql", "") or macro.get("raw_sql", ""),
+            }
+        )
+
     # parent_map[child] = [parents]，生成 parent -> child 边
     for child, parents in parent_map.items():
         for parent in parents:
@@ -270,6 +286,7 @@ def _extract_manifest(manifest: dict) -> dict:
         "models": models,
         "tests": tests,
         "sources": sources,
+        "macros": macros,
         "edges": edges,
     }
 

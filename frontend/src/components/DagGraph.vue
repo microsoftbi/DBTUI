@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { computed, onMounted, ref, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { getDag, type DagEdge, type DagNode } from '@/api/dag'
+
+const { t } = useI18n()
 
 const props = defineProps<{
   projectId: number
@@ -217,7 +220,7 @@ watch(
     <div class="dag-toolbar">
       <el-input
         v-model="search"
-        placeholder="搜索节点…"
+        :placeholder="t('dag.searchPlaceholder')"
         clearable
         style="width: 180px"
       />
@@ -237,13 +240,13 @@ watch(
           <i :style="{ background: TYPE_COLOR[t] }" />{{ t }}
         </label>
       </div>
-      <el-button v-if="selected" link @click="selected = null">清除血缘</el-button>
+      <el-button v-if="selected" link @click="selected = null">Clear lineage</el-button>
       <div class="spacer" />
       <el-button-group>
         <el-button size="small" @click="zoom(-1)">−</el-button>
         <el-button size="small" @click="zoom(1)">＋</el-button>
       </el-button-group>
-      <el-button size="small" :loading="loading" @click="load">刷新</el-button>
+      <el-button size="small" :loading="loading" @click="load">{{ t('common.refresh') }}</el-button>
     </div>
 
     <div class="dag-canvas" v-loading="loading">
@@ -305,7 +308,7 @@ watch(
         </svg>
       </div>
       <div v-if="!loading && nodes.length === 0" class="empty">
-        暂无节点，请先点击「重新解析」
+        {{ t('dag.noData') }}
       </div>
     </div>
 
@@ -314,18 +317,18 @@ watch(
       <div class="info-head">
         <span class="info-label">{{ selected }}</span>
         <div class="spacer" />
-        <el-button size="small" @click="runAction('run')">运行</el-button>
-        <el-button size="small" @click="runAction('test')">测试</el-button>
-        <el-button size="small" @click="runAction('build')">Build</el-button>
-        <el-button size="small" @click="runAction('compile')">编译</el-button>
+        <el-button size="small" @click="runAction('run')">{{ t('dag.run') }}</el-button>
+        <el-button size="small" @click="runAction('test')">{{ t('dag.test') }}</el-button>
+        <el-button size="small" @click="runAction('build')">{{ t('dag.build') }}</el-button>
+        <el-button size="small" @click="runAction('compile')">{{ t('dag.compile') }}</el-button>
       </div>
       <div v-for="n in nodes.filter((x) => x.id === selected)" :key="n.id">
-        类型：{{ n.type }}
-        <template v-if="n.materialized"> · 物化：{{ n.materialized }}</template>
-        <template v-if="n.status"> · 状态：{{ n.status }}</template>
+        Type: {{ n.type }}
+        <template v-if="n.materialized"> · Materialized: {{ n.materialized }}</template>
+        <template v-if="n.status"> · Status: {{ n.status }}</template>
       </div>
       <div v-if="lineage" class="lineage-summary">
-        上游 {{ lineage.up.size }} 个 · 下游 {{ lineage.down.size }} 个
+        Upstream {{ lineage.up.size }} · Downstream {{ lineage.down.size }}
       </div>
     </div>
   </div>

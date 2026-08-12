@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onMounted, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import {
   createProject,
@@ -10,6 +11,7 @@ import {
 } from '@/api/projects'
 import type { Project } from '@/types'
 
+const { t } = useI18n()
 const router = useRouter()
 
 const ADAPTERS = ['sqlserver', 'postgres', 'snowflake', 'bigquery']
@@ -51,17 +53,17 @@ function openEdit(row: Project) {
 
 async function submit() {
   if (!form.name.trim()) {
-    ElMessage.warning('请输入项目名称')
+    ElMessage.warning(t('projectList.enterName'))
     return
   }
   saving.value = true
   try {
     if (editingId.value === null) {
       await createProject({ ...form })
-      ElMessage.success('项目创建成功')
+      ElMessage.success(t('projectList.created'))
     } else {
       await updateProject(editingId.value, { ...form })
-      ElMessage.success('项目已更新')
+      ElMessage.success(t('projectList.updated'))
     }
     dialogVisible.value = false
     await load()
@@ -72,12 +74,12 @@ async function submit() {
 
 async function remove(row: Project) {
   await ElMessageBox.confirm(
-    `确定删除项目「${row.name}」？将同时删除磁盘上的 dbt 项目目录。`,
-    '删除确认',
-    { type: 'warning', confirmButtonText: '删除', cancelButtonText: '取消' },
+    t('projectList.deleteConfirm', { name: row.name }),
+    t('projectList.deleteTitle'),
+    { type: 'warning', confirmButtonText: t('common.delete'), cancelButtonText: t('common.cancel') },
   )
   await deleteProject(row.id)
-  ElMessage.success('项目已删除')
+  ElMessage.success(t('projectList.deleted'))
   await load()
 }
 
@@ -92,28 +94,28 @@ onMounted(load)
   <div class="page">
     <header class="page-header">
       <div>
-        <h1>DBT 项目</h1>
-        <p class="subtitle">创建和管理 DBT 项目</p>
+        <h1>{{ t('projectList.title') }}</h1>
+        <p class="subtitle">{{ t('projectList.subtitle') }}</p>
       </div>
-      <el-button type="primary" @click="openCreate">新建项目</el-button>
+      <el-button type="primary" @click="openCreate">{{ t('projectList.newProject') }}</el-button>
     </header>
 
     <el-table
       v-loading="loading"
       :data="projects"
       stripe
-      empty-text="暂无项目，点击「新建项目」开始"
+      :empty-text="t('projectList.noProjects')"
     >
-      <el-table-column prop="name" label="名称" min-width="160" />
-      <el-table-column prop="slug" label="Slug" min-width="140" />
-      <el-table-column prop="adapter" label="Adapter" width="120">
+      <el-table-column :prop="'name'" :label="t('projectList.projectName')" min-width="160" />
+      <el-table-column :prop="'slug'" :label="t('projectList.slug')" min-width="140" />
+      <el-table-column :prop="'adapter'" :label="t('projectList.adapter')" width="120">
         <template #default="{ row }">
           <el-tag size="small">{{ row.adapter }}</el-tag>
         </template>
       </el-table-column>
       <el-table-column
-        prop="dbt_version"
-        label="dbt 版本"
+        :prop="'dbt_version'"
+        :label="t('projectList.dbtVersion')"
         width="200"
         show-overflow-tooltip
       >
@@ -121,17 +123,17 @@ onMounted(load)
           {{ row.dbt_version || '-' }}
         </template>
       </el-table-column>
-      <el-table-column prop="description" label="描述" min-width="160" show-overflow-tooltip />
-      <el-table-column label="创建时间" width="180">
+      <el-table-column :prop="'description'" :label="t('projectList.description')" min-width="160" show-overflow-tooltip />
+      <el-table-column :label="t('projectList.createdAt')" width="180">
         <template #default="{ row }">{{ formatTime(row.created_at) }}</template>
       </el-table-column>
-      <el-table-column label="操作" width="200" fixed="right">
+      <el-table-column :label="t('projectList.actions')" width="200" fixed="right">
         <template #default="{ row }">
           <el-button link type="primary" @click="router.push(`/projects/${row.id}`)">
-            打开
+            {{ t('projectList.open') }}
           </el-button>
-          <el-button link type="primary" @click="openEdit(row)">编辑</el-button>
-          <el-button link type="danger" @click="remove(row)">删除</el-button>
+          <el-button link type="primary" @click="openEdit(row)">{{ t('projectList.edit') }}</el-button>
+          <el-button link type="danger" @click="remove(row)">{{ t('projectList.delete') }}</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -139,14 +141,14 @@ onMounted(load)
     <!-- 新建 / 编辑弹窗 -->
     <el-dialog
       v-model="dialogVisible"
-      :title="editingId === null ? '新建项目' : '编辑项目'"
+      :title="editingId === null ? t('projectList.newProject') : t('projectList.editProject')"
       width="520px"
     >
       <el-form label-width="90px">
-        <el-form-item label="项目名称" required>
-          <el-input v-model="form.name" placeholder="如：My Analytics" />
+        <el-form-item :label="t('projectList.projectName')" required>
+          <el-input v-model="form.name" :placeholder="t('projectList.placeholderName')" />
         </el-form-item>
-        <el-form-item label="Adapter">
+        <el-form-item :label="t('projectList.adapter')">
           <el-select v-model="form.adapter" style="width: 100%">
             <el-option
               v-for="a in ADAPTERS"
@@ -156,18 +158,18 @@ onMounted(load)
             />
           </el-select>
         </el-form-item>
-        <el-form-item label="描述">
+        <el-form-item :label="t('projectList.description')">
           <el-input
             v-model="form.description"
             type="textarea"
             :rows="3"
-            placeholder="项目描述（可选）"
+            :placeholder="t('projectList.placeholderDesc')"
           />
         </el-form-item>
       </el-form>
       <template #footer>
-        <el-button @click="dialogVisible = false">取消</el-button>
-        <el-button type="primary" :loading="saving" @click="submit">确定</el-button>
+        <el-button @click="dialogVisible = false">{{ t('common.cancel') }}</el-button>
+        <el-button type="primary" :loading="saving" @click="submit">{{ t('common.confirm') }}</el-button>
       </template>
     </el-dialog>
   </div>

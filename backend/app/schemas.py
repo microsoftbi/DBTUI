@@ -97,6 +97,35 @@ class TestRead(BaseModel):
     run_at: Optional[datetime] = None
 
 
+# ---------- Macro ----------
+class MacroRead(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: int
+    project_id: int
+    unique_id: str
+    name: str
+    file_path: str
+    description: str
+    macro_sql: str
+
+
+class MacroCreate(BaseModel):
+    """新建 macro（写入磁盘 macros/**/*.sql）。"""
+
+    name: str = Field(min_length=1, max_length=255, pattern=r"^[a-zA-Z0-9_]+$")
+    sql: str = Field(
+        default="{% macro example_macro() %}\n  SELECT 1\n{% endmacro %}\n"
+    )
+    subdir: str = Field(default="", pattern=r"^[a-zA-Z0-9_/]*$")
+
+
+class MacroUpdate(BaseModel):
+    name: Optional[str] = Field(default=None, pattern=r"^[a-zA-Z0-9_]+$")
+    sql: Optional[str] = None
+    description: Optional[str] = None
+
+
 # ---------- DAG ----------
 class DagNode(BaseModel):
     id: str  # unique_id
