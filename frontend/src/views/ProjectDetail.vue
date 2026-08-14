@@ -29,6 +29,14 @@ import {
   type Macro,
 } from '@/api/macros'
 import {
+  createSnapshot,
+  deleteSnapshot,
+  getSnapshotSql,
+  listSnapshots,
+  updateSnapshot,
+  type Snapshot,
+} from '@/api/snapshots'
+import {
   addSourceTable,
   createSource,
   deleteSource,
@@ -71,6 +79,7 @@ const projectId = Number(route.params.id)
 const project = ref<Project | null>(null)
 const models = ref<Model[]>([])
 const tests = ref<Test[]>([])
+const snapshots = ref<Snapshot[]>([])
 const macros = ref<Macro[]>([])
 const runs = ref<RunHistory[]>([])
 const loading = ref(false)
@@ -102,13 +111,16 @@ async function loadTests() {
 async function loadMacros() {
   macros.value = (await listMacros(projectId)).data
 }
+async function loadSnapshots() {
+  snapshots.value = (await listSnapshots(projectId)).data
+}
 async function loadRuns() {
   runs.value = (await listRuns(projectId)).data
 }
 async function load() {
   loading.value = true
   try {
-    await Promise.all([loadModels(), loadTests(), loadMacros(), loadSources(), loadLayers(), loadRuns()])
+    await Promise.all([loadModels(), loadTests(), loadSnapshots(), loadMacros(), loadSources(), loadLayers(), loadRuns()])
   } finally {
     loading.value = false
   }
@@ -127,7 +139,7 @@ async function doParse() {
 }
 
 // ---------- 运行 ----------
-function openRun(selection: string, runType: 'run' | 'test' | 'compile' | 'build') {
+function openRun(selection: string, runType: 'run' | 'test' | 'compile' | 'build' | 'snapshot') {
   runDialog.value?.open()
   setTimeout(() => runDialog.value?.setRun(selection, runType), 0)
 }
@@ -155,7 +167,7 @@ function onRunning(names: string[]) {
   runningAt.value = nowAt
 }
 function onDagRun(payload: { selection: string; runType: string }) {
-  openRun(payload.selection, payload.runType as 'run' | 'test' | 'compile' | 'build')
+  openRun(payload.selection, payload.runType as 'run' | 'test' | 'compile' | 'build' | 'snapshot')
 }
 
 // ---------- Model CRUD ----------
@@ -326,6 +338,95 @@ async function removeMacro(macro: Macro) {
   ElMessage.success(t('dialog.macroDeleted'))
   dagVersion.value++
   await loadMacros()
+}
+
+// ---------- Snapshot CRUD ----------
+const snapshotEdit = ref(false)
+const snapshotForm = ref({
+  snapshotId: null as number | null,
+  name: '',
+  sql: `{% snapshot snapshot_name %}
+
+{{
+    config(
+      target_schema='snapshots',
+      unique_key='id',
+      strategy='timestamp',
+      updated_at='updated_at',
+    )
+}}
+
+select * from {{ ref('source_table') }}
+
+{% endsnapshot %}
+`,
+  originalName: '',
+})
+function openSnapshotCreate() {
+  snapshotForm.value = {
+    snapshotId: null,
+    name: '',
+    sql: `{% snapshot snapshot_name %}
+
+{{
+    config(
+      target_schema='snapshots',
+      unique_key='id',
+      strategy='timestamp',
+      updated_at='updated_at',
+    )
+}}
+
+select * from {{ ref('source_table') }}
+
+{% endsnapshot %}
+`,
+    originalName: '',
+  }
+  snapshotEdit.value = true
+}
+async function openSnapshotEdit(snapshot: Snapshot) {
+  const res = await getSnapshotSql(projectId, snapshot.id)
+  snapshotForm.value = {
+    snapshotId: snapshot.id,
+    name: res.data.name,
+    sql: res.data.sql,
+    originalName: res.data.name,
+  }
+  snapshotEdit.value = true
+}
+async function saveSnapshot() {
+  if (!snapshotForm.value.name.trim()) {
+    ElMessage.warning(t('dialog.enterSnapshotName'))
+    return
+  }
+  if (snapshotForm.value.snapshotId === null) {
+    await createSnapshot(projectId, {
+      name: snapshotForm.value.name,
+      sql: snapshotForm.value.sql,
+    })
+    ElMessage.success(t('dialog.snapshotCreated'))
+  } else {
+    await updateSnapshot(projectId, snapshotForm.value.snapshotId, {
+      name: snapshotForm.value.name,
+      sql: snapshotForm.value.sql,
+    })
+    ElMessage.success(t('dialog.snapshotSaved'))
+  }
+  snapshotEdit.value = false
+  dagVersion.value++
+  await loadSnapshots()
+}
+async function removeSnapshot(snapshot: Snapshot) {
+  await ElMessageBox.confirm(
+    t('dialog.snapshotDeleteConfirm', { name: snapshot.name }),
+    t('dialog.snapshotDeleteTitle'),
+    { type: 'warning' },
+  )
+  await deleteSnapshot(projectId, snapshot.id)
+  ElMessage.success(t('dialog.snapshotDeleted'))
+  dagVersion.value++
+  await loadSnapshots()
 }
 
 // ---------- Source CRUD ----------
@@ -1004,6 +1105,55 @@ onMounted(async () => {
         </el-table>
       </el-tab-pane>
 
+      <!-- Snapshots -->
+      <el-tab-pane :label="t('projectDetail.tabSnapshots')" name="snapshots">
+        <div class="toolbar">
+          <span>{{ t('projectDetail.snapshotCount', { count: snapshots.length }) }}</span>
+          <div class="spacer" />
+          <el-button type="primary" @click="openSnapshotCreate">{{ t('projectDetail.newSnapshot') }}</el-button>
+        </div>
+        <el-table :data="snapshots" v-loading="loading" stripe :empty-text="t('projectDetail.noSnapshots')">
+          <el-table-column prop="name" :label="t('projectDetail.snapshotName')" min-width="200" />
+          <el-table-column prop="snapshot_strategy" :label="t('projectDetail.snapshotStrategy')" width="120">
+            <template #default="{ row }">
+              <el-tag v-if="row.snapshot_strategy" size="small" :type="row.snapshot_strategy === 'timestamp' ? 'success' : 'warning'">
+                {{ row.snapshot_strategy }}
+              </el-tag>
+              <span v-else>-</span>
+            </template>
+          </el-table-column>
+          <el-table-column prop="target_schema" :label="t('projectDetail.snapshotTargetSchema')" width="140">
+            <template #default="{ row }">
+              {{ row.target_schema || '-' }}
+            </template>
+          </el-table-column>
+          <el-table-column prop="unique_key" :label="t('projectDetail.snapshotUniqueKey')" width="140" show-overflow-tooltip>
+            <template #default="{ row }">
+              {{ row.unique_key || '-' }}
+            </template>
+          </el-table-column>
+          <el-table-column :label="t('projectDetail.snapshotDbSchema')" width="180">
+            <template #default="{ row }">
+              {{ row.database ? row.database + '.' : '' }}{{ row.schema_name || '-' }}
+            </template>
+          </el-table-column>
+          <el-table-column :label="t('projectDetail.snapshotStatus')" width="110">
+            <template #default="{ row }">
+              <el-tag v-if="row.run_status" size="small" :type="statusTag(row.run_status)">
+                {{ row.run_status }}
+              </el-tag>
+            </template>
+          </el-table-column>
+          <el-table-column :label="t('projectDetail.snapshotActions')" width="200" fixed="right">
+            <template #default="{ row }">
+              <el-button link type="primary" @click="openSnapshotEdit(row)">{{ t('projectDetail.snapshotEdit') }}</el-button>
+              <el-button link type="primary" @click="openRun(row.name, 'snapshot')">{{ t('projectDetail.snapshotRun') }}</el-button>
+              <el-button link type="danger" @click="removeSnapshot(row)">{{ t('projectDetail.snapshotDelete') }}</el-button>
+            </template>
+          </el-table-column>
+        </el-table>
+      </el-tab-pane>
+
       <!-- Macros -->
       <el-tab-pane :label="t('projectDetail.tabMacros')" name="macros">
         <div class="toolbar">
@@ -1262,6 +1412,26 @@ onMounted(async () => {
       <template #footer>
         <el-button @click="macroEdit = false">{{ t('dialog.macroCancel') }}</el-button>
         <el-button type="primary" @click="saveMacro">{{ macroForm.macroId === null ? t('dialog.macroCreate') : t('dialog.macroSave') }}</el-button>
+      </template>
+    </el-dialog>
+
+    <!-- 新建/编辑 Snapshot -->
+    <el-dialog
+      v-model="snapshotEdit"
+      :title="snapshotForm.snapshotId === null ? t('dialog.newSnapshot') : t('dialog.editSnapshot', { name: snapshotForm.originalName })"
+      width="720px"
+    >
+      <el-form label-width="80px">
+        <el-form-item :label="t('dialog.snapshotNameLabel')" required>
+          <el-input v-model="snapshotForm.name" :placeholder="t('dialog.snapshotNamePlaceholder')" />
+        </el-form-item>
+        <el-form-item :label="t('dialog.snapshotSql')">
+          <SqlEditor v-model="snapshotForm.sql" height="320px" />
+        </el-form-item>
+      </el-form>
+      <template #footer>
+        <el-button @click="snapshotEdit = false">{{ t('dialog.snapshotCancel') }}</el-button>
+        <el-button type="primary" @click="saveSnapshot">{{ snapshotForm.snapshotId === null ? t('dialog.snapshotCreate') : t('dialog.snapshotSave') }}</el-button>
       </template>
     </el-dialog>
 

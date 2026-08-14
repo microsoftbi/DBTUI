@@ -16,7 +16,7 @@ const emit = defineEmits<{
 const visible = ref(false)
 const running = ref(false)
 const selection = ref('')
-const runType = ref<'run' | 'test' | 'compile' | 'build'>('run')
+const runType = ref<'run' | 'test' | 'compile' | 'build' | 'snapshot'>('run')
 const lines = ref<string[]>([])
 const autoscroll = ref(true)
 const logBox = ref<HTMLElement>()
@@ -35,7 +35,7 @@ function open() {
   running.value = false
 }
 
-function setRun(selectionVal: string, type?: 'run' | 'test' | 'compile' | 'build') {
+function setRun(selectionVal: string, type?: 'run' | 'test' | 'compile' | 'build' | 'snapshot') {
   selection.value = selectionVal
   if (type) runType.value = type
 }
@@ -127,6 +127,7 @@ onBeforeUnmount(close)
         <el-option label="test" value="test" />
         <el-option label="compile" value="compile" />
         <el-option label="build" value="build" />
+        <el-option label="snapshot" value="snapshot" />
       </el-select>
       <el-input
         v-model="selection"

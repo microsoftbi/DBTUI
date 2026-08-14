@@ -264,6 +264,164 @@ def capture_sources_screenshots(page: Page):
 
 
 # ═══════════════════════════════════════════════════════
+#  Snapshot 管理截图
+# ═══════════════════════════════════════════════════════
+
+def close_any_dialog(page: Page):
+    """关闭页面上残留的任何 el-dialog（右上角 X），避免拦截点击。"""
+    # 自顶向下（最后弹出的在最后）依次关闭
+    overlays = page.locator(".el-overlay")
+    n = overlays.count()
+    for i in range(n):
+        # 每次都处理最后一个 overlay，避免 stale reference
+        overlay = page.locator(".el-overlay").last
+        dialog = overlay.locator(".el-dialog").last
+        if dialog.count() > 0:
+            close_btn = dialog.locator(".el-dialog__close").first
+            if close_btn.is_visible():
+                try:
+                    close_btn.click()
+                    wait(page, 400)
+                except Exception:
+                    try:
+                        page.keyboard.press("Escape")
+                        wait(page, 400)
+                    except Exception:
+                        pass
+
+
+def ensure_snapshot_data(page: Page):
+    """确保 Snapshots 标签页下有示例快照，不存在则创建。"""
+    close_any_dialog(page)
+    page.get_by_role("tab", name="Snapshots").click()
+    wait(page, 1500)
+
+    tab_panel = page.get_by_role("tabpanel", name="Snapshots")
+    if "snap_customer" in tab_panel.inner_text():
+        return  # 已存在
+
+    # 点击新建快照
+    page.get_by_role("button", name="新建快照").click()
+    wait(page, 800)
+
+    dialog = dialog_by_title(page, "新建快照")
+    dialog.get_by_label("名称").fill("snap_customer")
+
+    sql = """{% snapshot snap_customer %}
+
+{{
+    config(
+      target_schema='snapshots',
+      unique_key='customer_id',
+      strategy='check',
+      check_cols=['customer_level', 'phone'],
+    )
+}}
+
+select
+    customer_id,
+    customer_name,
+    customer_level,
+    phone,
+    region
+from {{ ref('stg_customer') }}
+
+{% endsnapshot %}
+"""
+    sql_editor = dialog.locator(".cm-editor").first
+    sql_editor.click()
+    page.keyboard.press("Meta+A")
+    page.keyboard.press("Backspace")
+    for line in sql.splitlines(keepends=True):
+        page.keyboard.type(line, delay=5)
+
+    dialog.get_by_role("button", name="创建").click()
+    # 创建完成后弹窗应自动关闭；列表中出现 snap_customer 即代表成功
+    tab_panel = page.get_by_role("tabpanel", name="Snapshots")
+    try:
+        tab_panel.get_by_text("snap_customer").wait_for(state="visible", timeout=15000)
+    except Exception:
+        page.screenshot(path=str(OUTPUT_DIR / "ensure_snapshot_failed.png"), full_page=True)
+        raise
+    wait(page, 1500)
+
+
+def capture_snapshot_screenshots(page: Page):
+    """采集 Snapshot 管理相关的所有截图（41/42/43）。"""
+    print("\n═══ Snapshot 管理截图 ═══")
+
+    # 准备测试数据（至少有 1 条快照）
+    ensure_snapshot_data(page)
+
+    # ── 41: Snapshots 标签页（列表有数据） ──
+    print("\n[41] Snapshots 标签页")
+    close_any_dialog(page)
+    page.get_by_role("tab", name="Snapshots").click()
+    wait(page, 1500)
+    screenshot(page, "41_snapshots_tab.png")
+
+    # ── 42: 新建快照弹窗（预填示例） ──
+    print("\n[42] 新建快照弹窗")
+    page.get_by_role("button", name="新建快照").click()
+    wait(page, 800)
+    dialog = dialog_by_title(page, "新建快照")
+    # 填写示例表单但不提交
+    dialog.get_by_label("名称").fill("snap_product")
+    sample_sql = """{% snapshot snap_product %}
+
+{{
+    config(
+      target_schema='snapshots',
+      unique_key='product_id',
+      strategy='timestamp',
+      updated_at='updated_at',
+    )
+}}
+
+select
+    product_id,
+    product_name,
+    category,
+    price,
+    updated_at
+from {{ ref('stg_product') }}
+
+{% endsnapshot %}
+"""
+    sql_editor = dialog.locator(".cm-editor").first
+    sql_editor.click()
+    page.keyboard.press("Meta+A")
+    page.keyboard.press("Backspace")
+    for line in sample_sql.splitlines(keepends=True):
+        page.keyboard.type(line, delay=5)
+    wait(page, 800)
+    dialog.screenshot(path=str(OUTPUT_DIR / "42_new_snapshot_dialog.png"))
+    print(f"  ✓ 截图保存: 42_new_snapshot_dialog.png")
+    # 取消关闭
+    dialog.get_by_role("button", name="取消").click()
+    wait(page, 500)
+
+    # ── 43: 运行 Snapshot 对话框 ──
+    print("\n[43] 运行 Snapshot 对话框")
+    close_any_dialog(page)
+    page.get_by_role("tab", name="Snapshots").click()
+    wait(page, 1500)
+    tab_panel = page.get_by_role("tabpanel", name="Snapshots")
+    row = tab_panel.locator("tbody tr").filter(has_text="snap_customer")
+    row.get_by_role("button", name="运行").click()
+    wait(page, 1000)
+    # 运行对话框标题为"运行"
+    run_dialog = dialog_by_title(page, "运行")
+    run_dialog.screenshot(path=str(OUTPUT_DIR / "43_run_snapshot.png"))
+    print(f"  ✓ 截图保存: 43_run_snapshot.png")
+    # 关闭对话框（右上角 X）
+    close_btn = run_dialog.locator(".el-dialog__close")
+    if close_btn.count() > 0:
+        close_btn.click()
+    wait(page, 500)
+
+
+# ═══════════════════════════════════════════════════════
 #  重拍旧截图（因新增分层配置按钮、Sources tab 导致界面变化）
 # ═══════════════════════════════════════════════════════
 
@@ -358,6 +516,9 @@ def main():
 
             # 采集 Sources 截图
             capture_sources_screenshots(page)
+
+            # 采集 Snapshot 截图
+            capture_snapshot_screenshots(page)
 
             # 重拍因界面变化需要更新的旧截图
             capture_legacy_screenshots(page)

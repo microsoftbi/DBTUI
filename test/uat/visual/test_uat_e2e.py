@@ -144,11 +144,11 @@ async def test_uat_full_flow(page: Page, base_url: str, uat_project: dict):
     await page.locator("div[role='dialog']").filter(visible=True).first.wait_for(state="visible", timeout=10000)
     await page.wait_for_timeout(200)
     await shot(page, "运行对话框")
-    await page.get_by_role("button", name="开始运行").click()
+    await page.get_by_role("button", name="开始").click()
     await page.wait_for_timeout(2000)
     await shot(page, "运行中_日志实时输出")
     # 等运行完成
-    await page.wait_for_selector("text=运行完成", timeout=30000)
+    await page.wait_for_selector("text=成功", timeout=30000)
     await page.wait_for_timeout(300)
     await shot(page, "运行成功")
     await page.keyboard.press("Escape")

@@ -24,7 +24,10 @@ def _model_path(project: Project, filename: str) -> Path:
 def list_models(project_id: int, db: Session = Depends(get_db)):
     get_project_or_404(db, project_id)
     return db.scalars(
-        select(Model).where(Model.project_id == project_id).order_by(Model.name)
+        select(Model).where(
+            Model.project_id == project_id,
+            Model.resource_type == "model",
+        ).order_by(Model.name)
     ).all()
 
 

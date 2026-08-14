@@ -50,6 +50,10 @@ class Model(Base):
     tags_json: Mapped[str] = mapped_column(Text, default="[]")
     description: Mapped[str] = mapped_column(Text, default="")
     compiled_code: Mapped[str] = mapped_column(Text, default="")
+    # snapshot 特有配置（非 snapshot 节点为空）
+    snapshot_strategy: Mapped[str] = mapped_column(String(32), default="")
+    target_schema: Mapped[str] = mapped_column(String(255), default="")
+    unique_key: Mapped[str] = mapped_column(String(255), default="")
     run_status: Mapped[str] = mapped_column(String(32), default="")
     run_at: Mapped[Optional[datetime]] = mapped_column(DateTime, nullable=True)
 

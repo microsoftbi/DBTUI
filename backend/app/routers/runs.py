@@ -16,6 +16,7 @@ from ..models import Model, Project, RunHistory, RunResult, Test
 from ..schemas import MessageResponse, RunHistoryRead, RunResultRead, RunStart
 from ..services import dbt_service
 from ._common import get_project_or_404
+from ..config import settings
 
 router = APIRouter(prefix="/api/projects/{project_id}/runs", tags=["runs"])
 ws_router = APIRouter(tags=["runs-ws"])
@@ -30,10 +31,21 @@ def _run_args(run_type: str, selection: str) -> list[str]:
 
 # dbt-fusion 结果行： "Succeeded [0.01s] model main.example (view)"
 #                     "Passed [0.10s] test  not_null_example_id"
-_STATUS_RE = re.compile(
+_FUSION_STATUS_RE = re.compile(
     r"^\s*(Succeeded|Passed|Failed|Errored|Skipped|Warned)\s+\[\s*[\d.]+\s*s\]\s+"
     r"(model|test|seed|snapshot)\s+([^\s(]+)"
 )
+
+# dbt-core 结果行： "1 of 1 OK created sql view model dbo.example ... [OK in 0.11s]"
+#                   "1 of 1 ERROR snapshotting snapshots.test_snap ... [ERROR in 0.18s]"
+#                   "1 of 1 PASS not_null_example_id ... [PASS in 0.05s]"
+_CORE_STATUS_RE = re.compile(
+    r"\d+\s+of\s+\d+\s+(OK|ERROR|FAIL|PASS|WARN|SKIP)\s+"
+    r"(?:created\s+sql\s+\w+\s+)?(?:model|test|snapshot|seed)\s+"
+    r"([^\s\.]+(?:\.[^\s\.]+)*)"
+    r".*\[(?:OK|ERROR|FAIL|PASS|WARN|SKIP)\s+in\s+[\d.]+\s*s\]"
+)
+
 _STATUS_MAP = {
     "Succeeded": "success",
     "Passed": "pass",
@@ -41,25 +53,40 @@ _STATUS_MAP = {
     "Errored": "error",
     "Skipped": "skipped",
     "Warned": "warn",
+    "OK": "success",
+    "PASS": "pass",
+    "FAIL": "fail",
+    "ERROR": "error",
+    "SKIP": "skipped",
+    "WARN": "warn",
 }
 
 
 def _extract_node_status(line: str) -> tuple[str, str] | None:
     """从 dbt 结果行提取 (节点名, 状态)；无法识别返回 None。"""
-    m = _STATUS_RE.match(line)
-    if not m:
-        return None
-    keyword, rtype, name = m.groups()
-    if rtype == "model":
-        # model 行为 schema.name，取最后一节
-        name = name.split(".")[-1]
-    return name, _STATUS_MAP.get(keyword, keyword.lower())
+    # 去除 ANSI 颜色转义码
+    clean = re.sub(r"\x1b\[[0-9;]*m", "", line)
+    # 先尝试 dbt-fusion 格式
+    m = _FUSION_STATUS_RE.match(clean)
+    if m:
+        keyword, rtype, name = m.groups()
+        if rtype == "model":
+            name = name.split(".")[-1]
+        return name, _STATUS_MAP.get(keyword, keyword.lower())
+    # 再尝试 dbt-core 格式
+    m = _CORE_STATUS_RE.search(clean)
+    if m:
+        keyword, full_name = m.groups()
+        # 取最后一段作为节点名
+        name = full_name.split(".")[-1]
+        return name, _STATUS_MAP.get(keyword, keyword.lower())
+    return None
 
 
 def _ls_names(project_path: str, run_type: str, selection: str) -> list[str]:
     """用 dbt ls 预判本次运行会涉及的节点名，用于运行中点亮。"""
-    args = ["dbt", "ls", "--output", "json"]
-    rt = {"run": "model", "compile": "model", "test": "test"}.get(run_type)
+    args = [settings.dbt_bin, "ls", "--output", "json"]
+    rt = {"run": "model", "compile": "model", "test": "test", "snapshot": "snapshot"}.get(run_type)
     if rt:
         args += ["--resource-type", rt]
     if selection:

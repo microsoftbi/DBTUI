@@ -209,6 +209,15 @@ def parse_project(project_path: str) -> dict:
     return {"ok": True, "error": "", "manifest": _extract_manifest(manifest)}
 
 
+def __unique_key_str(val) -> str:
+    """unique_key 可能是字符串或列表，统一转成逗号分隔字符串。"""
+    if val is None:
+        return ""
+    if isinstance(val, list):
+        return ",".join(str(v) for v in val)
+    return str(val)
+
+
 def _extract_manifest(manifest: dict) -> dict:
     """从原始 manifest 抽取 UI 需要的数据。"""
     models, tests, sources, macros, edges = [], [], [], [], []
@@ -246,6 +255,10 @@ def _extract_manifest(manifest: dict) -> dict:
                     "description": node.get("description", ""),
                     "compiled_code": node.get("compiled_code", "")
                     or node.get("raw_code", ""),
+                    # snapshot 特有配置
+                    "snapshot_strategy": config.get("strategy", "") or "",
+                    "target_schema": config.get("target_schema", "") or "",
+                    "unique_key": __unique_key_str(config.get("unique_key")),
                 }
             )
 

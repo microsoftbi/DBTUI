@@ -43,6 +43,9 @@ def sync_manifest(db: Session, project: Project) -> None:
                 tags_json=__str_list(item.get("tags", [])),
                 description=item.get("description", ""),
                 compiled_code=item.get("compiled_code", ""),
+                snapshot_strategy=item.get("snapshot_strategy", ""),
+                target_schema=item.get("target_schema", ""),
+                unique_key=item.get("unique_key", ""),
             )
         )
     for item in m["tests"]:

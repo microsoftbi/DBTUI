@@ -32,6 +32,16 @@ async def test_detail_tests_tab(page: Page, base_url: str, visual_project: dict)
 
 
 @pytest.mark.asyncio(loop_scope="session")
+async def test_detail_snapshots_tab(page: Page, base_url: str, visual_project: dict):
+    """项目详情 - Snapshots 标签（空列表状态）。"""
+    await page.goto(f"{base_url}/projects/{visual_project['id']}")
+    await page.get_by_text("Snapshots", exact=True).click()
+    await page.get_by_role("button", name="新建快照").wait_for(state="visible")
+    await page.wait_for_timeout(300)
+    await page.screenshot(path=str(SHOT_DIR / "detail-snapshots.png"), full_page=True)
+
+
+@pytest.mark.asyncio(loop_scope="session")
 async def test_detail_dag_tab(page: Page, base_url: str, visual_project: dict):
     """项目详情 - DAG 标签（节点着色与边）。"""
     await page.goto(f"{base_url}/projects/{visual_project['id']}")

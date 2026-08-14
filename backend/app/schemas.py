@@ -73,6 +73,58 @@ class ModelUpdate(BaseModel):
     materialized: Optional[str] = None
 
 
+# ---------- Snapshot ----------
+class SnapshotRead(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: int
+    project_id: int
+    unique_id: str
+    name: str
+    resource_type: str
+    file_path: str
+    database: str
+    schema_name: str
+    alias: str
+    tags_json: str
+    description: str
+    compiled_code: str
+    snapshot_strategy: str
+    target_schema: str
+    unique_key: str
+    run_status: str
+    run_at: Optional[datetime] = None
+
+
+class SnapshotCreate(BaseModel):
+    """新建 snapshot（写入磁盘 snapshots/*.sql）。"""
+
+    name: str = Field(min_length=1, max_length=255, pattern=r"^[a-zA-Z0-9_]+$")
+    sql: str = Field(
+        default="""\
+{% snapshot snapshot_name %}
+
+{{
+    config(
+      target_schema='snapshots',
+      unique_key='id',
+      strategy='timestamp',
+      updated_at='updated_at',
+    )
+}}
+
+select * from {{ ref('source_table') }}
+
+{% endsnapshot %}
+"""
+    )
+
+
+class SnapshotUpdate(BaseModel):
+    name: Optional[str] = Field(default=None, pattern=r"^[a-zA-Z0-9_]+$")
+    sql: Optional[str] = None
+
+
 # ---------- Test ----------
 class TestCreate(BaseModel):
     """创建 singular test。"""
@@ -148,7 +200,7 @@ class DagOut(BaseModel):
 
 # ---------- Run ----------
 class RunStart(BaseModel):
-    run_type: str = Field(default="run", pattern="^(run|test|compile|build)$")
+    run_type: str = Field(default="run", pattern="^(run|test|compile|build|snapshot)$")
     selection: str = Field(default="", description="dbt --select 表达式")
 
 

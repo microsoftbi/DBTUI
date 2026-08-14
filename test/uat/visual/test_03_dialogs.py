@@ -41,6 +41,18 @@ async def test_run_dialog(page: Page, base_url: str, visual_project: dict):
 
 
 @pytest.mark.asyncio(loop_scope="session")
+async def test_new_snapshot_dialog(page: Page, base_url: str, visual_project: dict):
+    """新建快照弹窗视觉。"""
+    await page.goto(f"{base_url}/projects/{visual_project['id']}")
+    await page.get_by_text("Snapshots", exact=True).click()
+    await page.get_by_role("button", name="新建快照").wait_for(state="visible")
+    await page.get_by_role("button", name="新建快照").click()
+    await _wait_dialog(page)
+    await page.wait_for_timeout(200)
+    await page.screenshot(path=str(SHOT_DIR / "dialog-new-snapshot.png"), full_page=True)
+
+
+@pytest.mark.asyncio(loop_scope="session")
 async def test_profiles_dialog(page: Page, base_url: str, visual_project: dict):
     """连接配置弹窗视觉。"""
     await page.goto(f"{base_url}/projects/{visual_project['id']}")

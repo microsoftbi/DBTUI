@@ -15,6 +15,7 @@ from .routers import (
     models as models_router,
     projects,
     runs,
+    snapshots as snapshots_router,
     sources,
     tests,
 )
@@ -41,6 +42,7 @@ app.add_middleware(
 app.include_router(projects.router)
 app.include_router(models_router.router)
 app.include_router(tests.router)
+app.include_router(snapshots_router.router)
 app.include_router(macros_router.router)
 app.include_router(sources.router)
 app.include_router(layers.router)

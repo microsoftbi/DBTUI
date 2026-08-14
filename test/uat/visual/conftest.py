@@ -42,7 +42,10 @@ async def page(browser: Browser) -> AsyncGenerator[Page, None]:
     context: BrowserContext = await browser.new_context(
         viewport={"width": 1440, "height": 900},
         device_scale_factor=1,
+        locale="zh-CN",
     )
+    # 预先设置中文语言，避免界面显示英文导致选择器匹配失败
+    await context.add_init_script("localStorage.setItem('dbt_ui_locale', 'zh')")
     page = await context.new_page()
     yield page
     await context.close()
